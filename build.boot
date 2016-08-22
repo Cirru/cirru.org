@@ -8,6 +8,7 @@
                  [adzerk/boot-test          "1.1.2"       :scope "test"]
                  [mvc-works/hsl             "0.1.2"]
                  [respo/ui                  "0.1.1"]
+                 [cirru/editor              "0.1.12"]
                  [respo                     "0.3.9"]])
 
 (require '[adzerk.boot-cljs   :refer [cljs]]
@@ -21,11 +22,11 @@
 (def +version+ "0.1.0")
 
 (task-options!
-  pom {:project     'mvc-works/stack-workflow
+  pom {:project     'cirru/org
        :version     +version+
-       :description "Workflow"
-       :url         "https://github.com/mvc-works/stack-workflow"
-       :scm         {:url "https://github.com/mvc-works/stack-workflow"}
+       :description "Cirru home page"
+       :url         "https://github.com/Cirru/cirru.org"
+       :scm         {:url "https://github.com/Cirru/cirru.org"}
        :license     {"MIT" "http://opensource.org/licenses/mit-license.php"}})
 
 (defn use-text [x] {:attrs {:innerHTML x}})
@@ -33,8 +34,9 @@
   (make-html
     (html {}
     (head {}
-      (title (use-text "Stack Workflow"))
-      (link {:attrs {:rel "icon" :type "image/png" :href "mvc-works-192x192.png"}})
+      (title (use-text "Cirru: an editor for AST"))
+      (link {:attrs {:rel "icon" :type "image/png" :href "repo.cirru.org/logo.cirru.org/cirru-400x400.png"}})
+      (link {:attrs {:href "https://fonts.googleapis.com/css?family=Hind+Vadodara|Josefin+Sans:300,400" :rel "stylesheet"}})
       (if (:build? data)
         (link (:attrs {:rel "manifest" :href "manifest.json"})))
       (meta'{:attrs {:charset "utf-8"}})
@@ -66,7 +68,7 @@
     (start-stack-editor!)
     (target :dir #{"src/"})
     (html-file :data {:build? false})
-    (reload :on-jsload 'stack-workflow.core/on-jsload
+    (reload :on-jsload 'cirru-org.core/on-jsload
             :cljs-asset-path ".")
     (cljs)
     (target)))
@@ -87,7 +89,7 @@
 
 (deftask rsync []
   (with-pre-wrap fileset
-    (sh "rsync" "-r" "target/" "tiye:repo/mvc-works/stack-workflow" "--exclude" "main.out" "--delete")
+    (sh "rsync" "-r" "target/" "tiye:repo/Cirru/cirru.org" "--exclude" "main.out" "--delete")
     fileset))
 
 (deftask build []
@@ -110,4 +112,4 @@
     :source-paths #{"src" "test"})
   (comp
     (watch)
-    (test :namespaces '#{stack-workflow.test})))
+    (test :namespaces '#{cirru-org.test})))

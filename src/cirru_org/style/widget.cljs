@@ -1,5 +1,5 @@
 
-(ns stack-workflow.style.widget
+(ns cirru-org.style.widget
   (:require [hsl.core :refer [hsl]]))
 
 (def global {:font-family "Verdana"})

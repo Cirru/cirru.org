@@ -1,7 +1,7 @@
 
-(ns stack-workflow.core
+(ns cirru-org.core
   (:require [respo.core :refer [render! clear-cache!]]
-            [stack-workflow.comp.container :refer [comp-container]]
+            [cirru-org.comp.container :refer [comp-container]]
             [cljs.reader :refer [read-string]]))
 
 (defn dispatch! [op op-data])
