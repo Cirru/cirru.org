@@ -54,6 +54,11 @@
 
 (def style-content {:font-size "16px"})
 
+(defn render-project [project address]
+  (a
+    {:style style-project,
+     :attrs {:inner-text project, :target "_blank", :href address}}))
+
 (defn render-banner []
   (div
     {:style (merge ui/center style-banner)}
@@ -91,19 +96,11 @@
     (div
       {:style (merge typeset/content style-content)}
       (comp-text "Follow updates on " nil)
-      (a
-        {:style style-project,
-         :attrs
-         {:inner-text "GitHub",
-          :target "_blank",
-          :href "github.com/Cirru/"}})
+      (render-project "GitHub" "https://github.com/Cirru/")
+      (comp-text ", " nil)
+      (render-project "Twitter" "https://twitter.com/cirrulang")
       (comp-text " and " nil)
-      (a
-        {:style style-project,
-         :attrs
-         {:inner-text "Twitter",
-          :target "_blank",
-          :href "https://twitter.com/cirrulang"}})
+      (render-project "Medium" "https://medium.com/cirru-project")
       (comp-text ". It's still evolving." nil))))
 
 (defn render-code-intro [tree]
@@ -128,31 +125,31 @@
     (div
       {:style (merge typeset/content style-content)}
       (comp-text "Such as " nil)
-      (a
-        {:style style-project,
-         :attrs
-         {:inner-text "Sepal.clj",
-          :target "_blank",
-          :href "https://github.com/Cirru/sepal.clj"}})
+      (render-project "Sepal.clj" "https://github.com/Cirru/sepal.clj")
       (comp-text " and " nil)
-      (a
-        {:style style-project,
-         :attrs
-         {:inner-text "CirruScript",
-          :target "_blank",
-          :href "https://github.com/Cirru/cirru-script"}})
+      (render-project
+        "CirruScript"
+        "https://github.com/Cirru/cirru-script")
       (comp-text
         ". You can also try a lot more languages, like Ruby, Elixir, Julia, Racket, Python..."
         nil))
     (comp-space nil "60px")
     (div
       {:style (merge typeset/title style-section-title)}
-      (comp-text "Or even build more editors..." nil))
+      (comp-text "Build tools around AST tree." nil))
     (div
       {:style (merge typeset/content style-content)}
       (comp-text
-        "I'm exploring new ways of programming with Cirru. And I've seen a lot of possibilities here."
-        nil))))
+        "I'm exploring new ways of programming with Cirru, such as "
+        nil)
+      (render-project
+        "Stack Editor"
+        "https://github.com/Cirru/stack-editor")
+      (comp-text " and " nil)
+      (render-project
+        "Light Editor"
+        "https://github.com/Cirru/cirru-light-editor")
+      (comp-text ". And I've seen a lot of possibilities here." nil))))
 
 (defn render []
   (fn [state mutate!]
