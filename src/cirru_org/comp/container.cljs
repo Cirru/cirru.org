@@ -26,6 +26,28 @@
 
 (def style-banner-text {:font-size "64px"})
 
+(defn on-update [mutate!]
+  (fn [snapshot dispatch!] (mutate! snapshot) (focus!)))
+
+(def style-section-title {:font-size "24px"})
+
+(def style-code
+ {:line-height "20px",
+  :padding "200px 16px",
+  :font-family "Source Code Pro, Menlo, Consolas, monospace"})
+
+(defn init-state [] {:tree demo-tree, :clipboard [], :focus []})
+
+(def style-link
+ {:color (hsl 0 0 100),
+  :font-size "20px",
+  :font-weight "lighter",
+  :text-decoration "none"})
+
+(def style-project {:color (hsl 200 80 60)})
+
+(def style-content {:font-size "16px"})
+
 (defn render-banner []
   (div
     {:style (merge ui/center style-banner)}
@@ -49,20 +71,6 @@
           :target "_blank",
           :href
           "https://www.youtube.com/playlist?list=PLyvBXLgHYHy1AIK6i5uw3_H5BIUP4CQx6"}}))))
-
-(defn on-update [mutate!]
-  (fn [snapshot dispatch!] (mutate! snapshot) (focus!)))
-
-(def style-section-title {:font-size "24px"})
-
-(def style-code
- {:line-height "20px",
-  :padding "200px 16px",
-  :font-family "Source Code Pro, Menlo, Consolas, monospace"})
-
-(defn init-state [] {:tree demo-tree, :clipboard [], :focus []})
-
-(def style-project {:color (hsl 200 80 60)})
 
 (defn render-links []
   (div
@@ -91,14 +99,6 @@
           :target "_blank",
           :href "https://twitter.com/cirrulang"}})
       (comp-text ". It's still evolving." nil))))
-
-(def style-link
- {:color (hsl 0 0 100),
-  :font-size "20px",
-  :font-weight "lighter",
-  :text-decoration "none"})
-
-(def style-content {:font-size "16px"})
 
 (defn render-code-intro []
   (div
