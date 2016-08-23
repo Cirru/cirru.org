@@ -43,6 +43,7 @@
       (meta' {:attrs {:name "viewport" :content "width=device-width, initial-scale=1"}})
       (style (use-text "body {margin: 0;}"))
       (style (use-text "body * {box-sizing: border-box;}"))
+      (div {:attrs {:innerHTML (slurp "html/ga.html")}})
       (script {:attrs {:id "config" :type "text/edn" :innerHTML (pr-str data)}}))
     (body {}
       (div {:attrs {:id "app"}})
@@ -89,7 +90,7 @@
 
 (deftask rsync []
   (with-pre-wrap fileset
-    (sh "rsync" "-r" "target/" "tiye:repo/Cirru/cirru.org" "--exclude" "main.out" "--delete")
+    (sh "rsync" "-r" "target/" "tiye.me:repo/Cirru/cirru.org" "--exclude" "main.out" "--delete")
     fileset))
 
 (deftask build []
