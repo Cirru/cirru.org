@@ -21,7 +21,7 @@
 
 (def style-banner
  {:color (hsl 0 0 100),
-  :background-color (hsl 240 80 80),
+  :background-color (hsl 200 100 70),
   :height "50vh"})
 
 (def style-banner-text {:font-size "64px"})
@@ -31,10 +31,16 @@
 
 (def style-section-title {:font-size "24px"})
 
-(def style-code
- {:line-height "20px",
-  :padding "200px 16px",
-  :font-family "Source Code Pro, Menlo, Consolas, monospace"})
+(defn on-show [tree]
+  (fn [e dispatch!]
+    (-> js/window
+     (.open)
+     (.-document)
+     (.write
+       (str
+         "<pre><code>"
+         (.stringify js/JSON (clj->js tree) nil 2)
+         "</code></pre>")))))
 
 (defn init-state [] {:tree demo-tree, :clipboard [], :focus []})
 
@@ -100,7 +106,7 @@
           :href "https://twitter.com/cirrulang"}})
       (comp-text ". It's still evolving." nil))))
 
-(defn render-code-intro []
+(defn render-code-intro [tree]
   (div
     {:style (merge ui/flex {:padding "64px 16px"})}
     (div
@@ -110,7 +116,11 @@
       {:style (merge typeset/content style-content)}
       (comp-text
         "You may turn get AST tree in normal data type, which is probably a JSON."
-        nil))
+        nil)
+      (comp-space "8px" nil)
+      (div
+        {:style ui/button, :event {:click (on-show tree)}}
+        (comp-text "Show me data" nil)))
     (comp-space nil "60px")
     (div
       {:style (merge typeset/title style-section-title)}
@@ -131,9 +141,8 @@
          {:inner-text "CirruScript",
           :target "_blank",
           :href "https://github.com/Cirru/cirru-script"}})
-      (comp-text ". You can also" nil)
       (comp-text
-        "try a lot more languages, like Ruby, Elixir, Julia, Racket, Python..."
+        ". You can also try a lot more languages, like Ruby, Elixir, Julia, Racket, Python..."
         nil))
     (comp-space nil "60px")
     (div
@@ -155,12 +164,7 @@
         (comp-editor state (on-update mutate!) on-command))
       (div
         {:style (merge ui/row style-source)}
-        (render-code-intro)
-        (textarea
-          {:style (merge ui/input ui/flex style-code),
-           :attrs
-           {:value
-            (.stringify js/JSON (clj->js (:tree state)) nil 2)}}))
+        (render-code-intro (:tree state)))
       (render-links))))
 
 (def comp-container

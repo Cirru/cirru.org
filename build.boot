@@ -35,7 +35,7 @@
     (html {}
     (head {}
       (title (use-text "Cirru: an editor for AST"))
-      (link {:attrs {:rel "icon" :type "image/png" :href "repo.cirru.org/logo.cirru.org/cirru-400x400.png"}})
+      (link {:attrs {:rel "icon" :type "image/png" :href "http://repo.cirru.org/logo.cirru.org/cirru-400x400.png"}})
       (link {:attrs {:href "https://fonts.googleapis.com/css?family=Hind+Vadodara|Josefin+Sans:300,400" :rel "stylesheet"}})
       (if (:build? data)
         (link (:attrs {:rel "manifest" :href "manifest.json"})))
@@ -43,7 +43,8 @@
       (meta' {:attrs {:name "viewport" :content "width=device-width, initial-scale=1"}})
       (style (use-text "body {margin: 0;}"))
       (style (use-text "body * {box-sizing: border-box;}"))
-      (div {:attrs {:innerHTML (slurp "html/ga.html")}})
+      (if (:build? data)
+        (div {:attrs {:innerHTML (slurp "html/ga.html")}}))
       (script {:attrs {:id "config" :type "text/edn" :innerHTML (pr-str data)}}))
     (body {}
       (div {:attrs {:id "app"}})
