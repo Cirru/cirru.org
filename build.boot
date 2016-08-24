@@ -8,7 +8,7 @@
                  [adzerk/boot-test          "1.1.2"       :scope "test"]
                  [mvc-works/hsl             "0.1.2"]
                  [respo/ui                  "0.1.1"]
-                 [cirru/editor              "0.1.12"]
+                 [cirru/editor              "0.1.14"]
                  [respo                     "0.3.9"]])
 
 (require '[adzerk.boot-cljs   :refer [cljs]]
