@@ -7,9 +7,9 @@
                  [cirru/stack-server        "0.1.8"       :scope "test"]
                  [adzerk/boot-test          "1.1.2"       :scope "test"]
                  [mvc-works/hsl             "0.1.2"]
-                 [respo/ui                  "0.1.1"]
-                 [cirru/editor              "0.1.15"]
-                 [respo                     "0.3.9"]])
+                 [respo/ui                  "0.1.2"]
+                 [cirru/editor              "0.1.17"]
+                 [respo                     "0.3.23"]])
 
 (require '[adzerk.boot-cljs   :refer [cljs]]
          '[adzerk.boot-reload :refer [reload]]
@@ -33,29 +33,31 @@
 (defn html-dsl [data fileset]
   (make-html
     (html {}
-    (head {}
-      (title (use-text "Cirru: an editor for AST"))
-      (link {:attrs {:rel "icon" :type "image/png" :href "http://repo.cirru.org/logo.cirru.org/cirru-400x400.png"}})
-      (link {:attrs {:href "https://fonts.googleapis.com/css?family=Hind+Vadodara|Josefin+Sans:300,400" :rel "stylesheet"}})
-      (if (:build? data)
-        (link (:attrs {:rel "manifest" :href "manifest.json"})))
-      (meta'{:attrs {:charset "utf-8"}})
-      (meta' {:attrs {:name "viewport" :content "width=device-width, initial-scale=1"}})
-      (style (use-text "body {margin: 0;}"))
-      (style (use-text "body * {box-sizing: border-box;}"))
-      (if (:build? data)
-        (div {:attrs {:innerHTML (slurp "html/ga.html")}}))
-      (script {:attrs {:id "config" :type "text/edn" :innerHTML (pr-str data)}}))
-    (body {}
-      (div {:attrs {:id "app"}})
-      (script {:attrs {:src "main.js"}})))))
+      (head {}
+        (title (use-text "Cirru: an editor for AST"))
+        (link {:attrs {:rel "icon" :type "image/png" :href "http://repo.cirru.org/logo.cirru.org/cirru-400x400.png"}})
+        (link {:attrs {:href "https://fonts.googleapis.com/css?family=Hind+Vadodara|Josefin+Sans:300,400" :rel "stylesheet"}})
+        (if (:build? data)
+          (link (:attrs {:rel "manifest" :href "manifest.json"})))
+        (meta'{:attrs {:charset "utf-8"}})
+        (meta' {:attrs {:name "viewport" :content "width=device-width, initial-scale=1"}})
+        (meta' {:attrs {:id "ssr-stages" :content "#{}"}})
+        (meta' {:attrs {:name "description" :content "Cirru is an AST editor"}})
+        (style (use-text "body {margin: 0;}"))
+        (style (use-text "body * {box-sizing: border-box;}"))
+        (if (:build? data)
+          (div {:attrs {:innerHTML (slurp "html/ga.html")}}))
+        (script {:attrs {:id "config" :type "text/edn" :innerHTML (pr-str data)}}))
+      (body {}
+        (div {:attrs {:id "app"}})
+        (script {:attrs {:src "main.js"}})))))
 
 (deftask html-file
   "task to generate HTML file"
   [d data VAL edn "data piece for rendering"]
   (with-pre-wrap fileset
     (let [tmp (tmp-dir!)
-          out (io/file tmp "index.html")]
+          out (io/file tmp "dev.html")]
       (empty-dir! tmp)
       (spit out (html-dsl data fileset))
       (-> fileset
@@ -66,7 +68,7 @@
   (set-env!
     :asset-paths #{"assets"})
   (comp
-    (watch)
+    (repl)
     (start-stack-editor!)
     (target :dir #{"src/"})
     (html-file :data {:build? false})
@@ -85,13 +87,14 @@
     :asset-paths #{"assets"})
   (comp
     (transform-stack :filename "stack-sepal.ir")
-    (cljs :optimizations :advanced)
+    (cljs :optimizations :advanced
+          :compiler-options {:language-in :ecmascript5})
     (html-file :data {:build? true})
     (target)))
 
 (deftask rsync []
   (with-pre-wrap fileset
-    (sh "rsync" "-r" "target/" "tiye.me:repo/Cirru/cirru.org" "--exclude" "main.out" "--delete")
+    (sh "rsync" "-r" "target/" "cirru.org:repo/Cirru/cirru.org" "--exclude" "main.out" "--delete")
     fileset))
 
 (deftask build []
