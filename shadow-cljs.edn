@@ -1,0 +1,7 @@
+
+{:source-paths ["src"]
+ :dependencies [[cirru/bisection-key    "0.1.2"]]
+ :builds {:convert {:target :node-script
+                    :output-to "target/convert.js"
+                    :main convert.main/main!
+                    :devtools {:after-load convert.main/reload!}}}}

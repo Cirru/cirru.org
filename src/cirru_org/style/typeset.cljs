@@ -1,7 +1,6 @@
 
-(ns cirru-org.style.typeset)
+(ns cirru-org.style.typeset )
+
+(def title {:font-family "'Josefin Sans', sans-serif", :font-weight "lighter"})
 
 (def content {:font-family "'Hind Vadodara', sans-serif"})
-
-(def title
- {:font-weight "lighter", :font-family "'Josefin Sans', sans-serif"})

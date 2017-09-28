@@ -1,3 +1,4 @@
 
 /target/
-/.nrepl*
+/dist
+/node_modules
