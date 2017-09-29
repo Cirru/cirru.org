@@ -1,5 +1,5 @@
 
-(ns cirru-org.schema )
+(ns app.schema )
 
 (def demo-tree
   ["defn"
@@ -20,3 +20,7 @@
        "skill-list"
        ["map-indexed"
         ["fn" ["idx" "skill"] ["[]" "idx" ["div" ["{}"] ["comp-text" "skill" "nil"]]]]]]]]]])
+
+(def snapshot {:tree demo-tree, :focus [], :clipboard []})
+
+(def store {:states {}, :snapshot snapshot})

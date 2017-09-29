@@ -1,5 +1,5 @@
 
-(ns cirru-org.style.widget (:require [hsl.core :refer [hsl]]))
+(ns app.style.widget (:require [hsl.core :refer [hsl]]))
 
 (def global {:font-family "Verdana"})
 
