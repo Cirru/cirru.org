@@ -1,9 +1,9 @@
 {
-  "short_name": "CoWorkflow",
-  "name": "CoWorkflow",
+  "short_name": "Cirru Project",
+  "name": "Cirru Project",
   "icons": [
     {
-      "src": "http://repo-cdn.b0.upaiyun.com/logo/mvc-works.png",
+      "src": "http://cdn.tiye.me/logo/cirru.png",
       "sizes": "320x320"
     }
   ],
