@@ -8,9 +8,7 @@
 (def previews? (= js/process.env.prod "preview"))
 
 (def base-info
-  {:title "Cirru: an editor for AST",
-   :icon "http://repo-cdn.b0.upaiyun.com/logo/cirru.png",
-   :ssr nil})
+  {:title "Cirru: an editor for AST", :icon "http://cdn.tiye.me/logo/cirru.png", :ssr nil})
 
 (defn prod-page []
   (let [html-content (make-string (comp-container schema/store))
