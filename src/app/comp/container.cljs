@@ -1,6 +1,6 @@
 
 (ns app.comp.container
-  (:require-macros [respo.macros :refer [defcomp <> div span a textarea]])
+  (:require-macros [respo.macros :refer [defcomp <> div span a textarea button]])
   (:require [hsl.core :refer [hsl]]
             [respo.core :refer [create-comp]]
             [respo.comp.space :refer [=<]]
@@ -9,11 +9,16 @@
             [respo-ui.style :as ui]
             [cirru-editor.comp.editor :refer [comp-editor]]
             [cirru-editor.util.dom :refer [focus!]]
-            [app.schema :refer [demo-tree]]))
+            [cirru.sepal :refer [make-code]]
+            [keycode.core :as keycode]))
 
 (defn on-update! [snapshot dispatch!] (dispatch! :save snapshot) (focus!))
 
-(defn on-command [snapshot dispatch! e] (println "command" e))
+(defn on-command [snapshot dispatch! e]
+  (println "command" e)
+  (let [event (:event e)]
+    (if (and (.-metaKey event) (= keycode/s (.-keyCode event)))
+      (do (dispatch! :write-code (make-code [(:tree snapshot)])) (.preventDefault event)))))
 
 (def style-source {:height "100vh"})
 
@@ -118,7 +123,22 @@
     {:style (merge ui/global typeset/content)}
     (render-banner)
     (div
-     {:style (merge ui/center ui/column style-theme)}
-     (comp-editor states snapshot on-update! on-command))
+     {}
+     (button
+      {:style ui/button,
+       :on {:click (fn [e d! m!] (d! :write-code (make-code [(:tree snapshot)])))}}
+      (<> "Compile")))
+    (div
+     {:style (merge ui/center ui/row style-theme)}
+     (comp-editor states snapshot on-update! on-command)
+     (div {:style {:width 1, :background-color (hsl 0 0 100 0.3)}})
+     (textarea
+      {:style (merge
+               ui/textarea
+               {:width "33%",
+                :font-family "Source Code Pro, Menlo, Consolas, monospace",
+                :white-space :pre}),
+       :value (:code store),
+       :disabled true}))
     (div {:style (merge ui/row style-source)} (render-code-intro (:tree snapshot)))
     (render-links))))

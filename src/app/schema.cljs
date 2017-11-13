@@ -1,7 +1,7 @@
 
 (ns app.schema )
 
-(def demo-tree
+(def demo-component
   ["defn"
    "render"
    ["skill-list"]
@@ -21,6 +21,6 @@
        ["map-indexed"
         ["fn" ["idx" "skill"] ["[]" "idx" ["div" ["{}"] ["comp-text" "skill" "nil"]]]]]]]]]])
 
-(def snapshot {:tree demo-tree, :focus [], :clipboard []})
+(def snapshot {:tree demo-component, :focus [], :clipboard []})
 
-(def store {:states {}, :snapshot snapshot})
+(def store {:states {}, :snapshot snapshot, :code ""})
