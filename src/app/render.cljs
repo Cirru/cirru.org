@@ -8,11 +8,13 @@
 (def previews? (= js/process.env.prod "preview"))
 
 (def base-info
-  {:title "Cirru: an editor for AST", :icon "http://cdn.tiye.me/logo/cirru.png", :ssr nil})
+  {:title "Cirru: an editor for AST",
+   :icon "http://cdn.tiye.me/logo/cirru.png",
+   :ssr nil,
+   :inline-styles [(slurp "entry/main.css")]})
 
 (defn prod-page []
   (let [html-content (make-string (comp-container schema/store))
-        webpack-info (.parse js/JSON (slurp "dist/webpack-manifest.json"))
         cljs-info (.parse js/JSON (slurp "dist/cljs-manifest.json"))
         cdn (if previews? "" "http://cdn.tiye.me/cirru.org/")
         cdn-prefix (fn [x] (str cdn x))]
@@ -20,8 +22,7 @@
      html-content
      (merge
       base-info
-      {:styles ["http://cdn.tiye.me/favored-fonts/main.css"
-                (cdn-prefix (aget webpack-info "main.css"))],
+      {:styles ["http://cdn.tiye.me/favored-fonts/main.css"],
        :scripts (map
                  cdn-prefix
                  [(-> cljs-info (aget 0) (aget "js-name"))
@@ -34,7 +35,7 @@
    (merge
     base-info
     {:styles ["http://localhost:8100/main.css"],
-     :scripts ["/main.js" "/browser/lib.js" "/browser/main.js"]})))
+     :scripts ["/browser/lib.js" "/browser/main.js"]})))
 
 (defn main! []
   (if (= js/process.env.env "dev")
