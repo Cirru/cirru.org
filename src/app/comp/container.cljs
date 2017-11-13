@@ -1,8 +1,7 @@
 
 (ns app.comp.container
-  (:require-macros [respo.macros :refer [defcomp <> div span a textarea button]])
   (:require [hsl.core :refer [hsl]]
-            [respo.core :refer [create-comp]]
+            [respo.macros :refer [defcomp <> div span a textarea button]]
             [respo.comp.space :refer [=<]]
             [app.style.widget :as widget]
             [app.style.typeset :as typeset]
@@ -10,7 +9,8 @@
             [cirru-editor.comp.editor :refer [comp-editor]]
             [cirru-editor.util.dom :refer [focus!]]
             [cirru.sepal :refer [make-code]]
-            [keycode.core :as keycode]))
+            [keycode.core :as keycode]
+            [fipp.edn :refer [pprint]]))
 
 (defn on-update! [snapshot dispatch!] (dispatch! :save snapshot) (focus!))
 
@@ -22,7 +22,7 @@
 
 (def style-source {:height "100vh"})
 
-(def style-theme {:background-color (hsl 300 80 10), :height "100vh"})
+(def style-theme {:height "100vh", :background-color (hsl 300 80 10)})
 
 (def style-banner
   {:height "50vh", :background-color (hsl 200 100 70), :color (hsl 0 0 100)})
@@ -35,7 +35,9 @@
 (defn render-banner []
   (div
    {:style (merge ui/center style-banner)}
-   (div {:style (merge typeset/title style-banner-text)} (<> "Cirru: an editor for AST"))
+   (div
+    {:style (merge typeset/title style-banner-text)}
+    (<> "Cirru: edit S-Expression and generate Clojure"))
    (div
     {}
     (a
@@ -123,22 +125,37 @@
     {:style (merge ui/global typeset/content)}
     (render-banner)
     (div
-     {}
-     (button
-      {:style ui/button,
-       :on {:click (fn [e d! m!] (d! :write-code (make-code [(:tree snapshot)])))}}
-      (<> "Compile")))
-    (div
      {:style (merge ui/center ui/row style-theme)}
      (comp-editor states snapshot on-update! on-command)
      (div {:style {:width 1, :background-color (hsl 0 0 100 0.3)}})
-     (textarea
-      {:style (merge
-               ui/textarea
-               {:width "33%",
-                :font-family "Source Code Pro, Menlo, Consolas, monospace",
-                :white-space :pre}),
-       :value (:code store),
-       :disabled true}))
+     (div
+      {:style (merge ui/column {:width "33%", :background-color :white})}
+      (div
+       {:style {:padding 8}}
+       (button
+        {:style ui/button,
+         :on {:click (fn [e d! m!] (d! :write-code (make-code [(:tree snapshot)])))}}
+        (<> "Get Clojure"))
+       (=< 8 nil)
+       (button
+        {:style ui/button,
+         :on {:click (fn [e d! m!]
+                (d! :write-code (with-out-str (pprint (:tree snapshot)))))}}
+        (<> "Get EDN"))
+       (=< 8 nil)
+       (button
+        {:style ui/button,
+         :on {:click (fn [e d! m!]
+                (d! :write-code (.stringify js/JSON (clj->js (:tree snapshot)) nil 2)))}}
+        (<> "Get JSON")))
+      (textarea
+       {:style (merge
+                ui/textarea
+                ui/flex
+                {:font-family "Source Code Pro, Menlo, Consolas, monospace",
+                 :width "100%",
+                 :white-space :pre}),
+        :value (:code store),
+        :disabled true})))
     (div {:style (merge ui/row style-source)} (render-code-intro (:tree snapshot)))
     (render-links))))
