@@ -8,9 +8,12 @@
             [respo-ui.style :as ui]
             [cirru-editor.comp.editor :refer [comp-editor]]
             [cirru-editor.util.dom :refer [focus!]]
-            [cirru.sepal :refer [make-code]]
             [keycode.core :as keycode]
-            [fipp.edn :refer [pprint]]))
+            [fipp.edn :refer [pprint]]
+            [cljs.js :as cljs]
+            [cljs.env :as env]
+            [shadow.cljs.bootstrap.browser :as boot]
+            [app.util :refer [compile-code]]))
 
 (defn on-update! [snapshot dispatch!] (dispatch! :save snapshot) (focus!))
 
@@ -18,7 +21,7 @@
   (println "command" e)
   (let [event (:event e)]
     (if (and (.-metaKey event) (= keycode/s (.-keyCode event)))
-      (do (dispatch! :write-code (make-code [(:tree snapshot)])) (.preventDefault event)))))
+      (do (dispatch! :write-code (compile-code (:tree snapshot))) (.preventDefault event)))))
 
 (def style-source {:height "100vh"})
 
@@ -52,12 +55,16 @@
       :target "_blank",
       :style style-link}))))
 
+(defn print-result [result] (println result))
+
 (def style-project {:color (hsl 200 80 60)})
 
 (defn render-project [project address]
   (a {:target "_blank", :href address, :inner-text project, :style style-project}))
 
 (def style-section-title {:font-size "24px"})
+
+(defonce *compile-state (env/default-compiler-env))
 
 (defn on-show [tree]
   (fn [e dispatch!]
@@ -66,6 +73,19 @@
         (.-document)
         (.write
          (str "<pre><code>" (.stringify js/JSON (clj->js tree) nil 2) "</code></pre>")))))
+
+(defn eval-code [code]
+  (boot/init
+   *compile-state
+   {:path "/browser/bootstrap"}
+   (fn [result]
+     (println "result" result)
+     (cljs/eval-str
+      *compile-state
+      code
+      "[test]"
+      {:eval cljs/js-eval, :load (partial boot/load *compile-state)}
+      print-result))))
 
 (def style-content {:font-size "16px"})
 
@@ -134,7 +154,7 @@
        {:style {:padding 8}}
        (button
         {:style ui/button,
-         :on {:click (fn [e d! m!] (d! :write-code (make-code [(:tree snapshot)])))}}
+         :on {:click (fn [e d! m!] (d! :write-code (compile-code (:tree snapshot))))}}
         (<> "Get Clojure"))
        (=< 8 nil)
        (button
@@ -147,7 +167,11 @@
         {:style ui/button,
          :on {:click (fn [e d! m!]
                 (d! :write-code (.stringify js/JSON (clj->js (:tree snapshot)) nil 2)))}}
-        (<> "Get JSON")))
+        (<> "Get JSON"))
+       (=< 8 nil)
+       (button
+        {:style ui/button, :on {:click (fn [e d! m!] (eval-code (:code store)))}}
+        (<> "Eval")))
       (textarea
        {:style (merge
                 ui/textarea

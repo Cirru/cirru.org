@@ -16,14 +16,21 @@
                     :modules {:main {:entries [app.main]
                                      :depends-on #{:lib}}
                               :lib {:entries [respo.core respo.macros
-                                              respo.comp.inspect]}}
+                                              respo.comp.inspect shadow.cljs.bootstrap.env]}}
                     :devtools {:after-load app.main/reload!
                                :preloads [shadow.cljs.devtools.client.hud]
                                :http-root "target"
                                :http-port 8080}
                     :release {:output-dir "dist/"
                               :module-hash-names 8
-                              :build-options {:manifest-name "cljs-manifest.json"}}}
+                              :build-options {:manifest-name "cljs-manifest.json"}
+                              :compiler-options {:optimizations :simple}}}
+          :bootstrap-support {:target :bootstrap
+                              :output-dir "target/browser/bootstrap"
+                              :entries [app.user]
+                              :exclude #{cljs.js}
+                              :release {:output-dir "dist/browser/bootstrap"
+                                        :compiler-options {:optimizations :simple}}}
           :ssr {:target :node-script
                 :output-to "target/ssr.js"
                 :main app.render/main!
