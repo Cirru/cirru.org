@@ -863,10 +863,6 @@ invariant@^2.2.2:
   dependencies:
     loose-envify "^1.0.0"
 
-ionicons@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/ionicons/-/ionicons-3.0.0.tgz#40b8daf4fd7a31150bd002160f66496e22a98c3c"
-
 is-finite@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/is-finite/-/is-finite-1.0.2.tgz#cc6677695602be550ef11e8b4aa6305342b6d0aa"
@@ -1160,12 +1156,6 @@ requires-port@1.x.x:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
 
-respo-ui@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/respo-ui/-/respo-ui-0.1.2.tgz#a857fde2a3bf24b18bf08520901574b8fb6e345e"
-  dependencies:
-    ionicons "^3.0.0"
-
 ripemd160@^2.0.0, ripemd160@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-2.0.1.tgz#0f4584295c53a3628af7e6d79aca21ce57d1c6e7"
@@ -1192,20 +1182,20 @@ sha.js@^2.4.0, sha.js@^2.4.8:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-shadow-cljs-jar@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/shadow-cljs-jar/-/shadow-cljs-jar-0.10.0.tgz#9895e6e5ccfde1c7b673737b1dfd9149194b644f"
+shadow-cljs-jar@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/shadow-cljs-jar/-/shadow-cljs-jar-1.1.0.tgz#17fee311c5832b12eec65072b5d265f1c35ff67a"
 
-shadow-cljs@^2.0.75:
-  version "2.0.75"
-  resolved "https://registry.yarnpkg.com/shadow-cljs/-/shadow-cljs-2.0.75.tgz#b00a433fd6836320b1cbdf07aee81b8c3092134b"
+shadow-cljs@^2.0.92:
+  version "2.0.92"
+  resolved "https://registry.yarnpkg.com/shadow-cljs/-/shadow-cljs-2.0.92.tgz#a2b7a57fae828d3eabf42159aa6ae088904cbdb4"
   dependencies:
     babel-core "^6.26.0"
     babel-preset-env "^1.6.0"
     mkdirp "^0.5.1"
     node-libs-browser "^2.0.0"
     readline-sync "^1.4.7"
-    shadow-cljs-jar "^0.10.0"
+    shadow-cljs-jar "1.1.0"
     signal-exit "^3.0.2"
     source-map-support "^0.4.15"
     ws "^3.0.0"
