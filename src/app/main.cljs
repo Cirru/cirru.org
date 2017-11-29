@@ -6,21 +6,23 @@
             [cljs.reader :refer [read-string]]
             [app.schema :as schema]
             [keycode.core :as keycode]
-            [cirru.sepal :refer [make-code]]))
+            [cirru-sepal.core :refer [write-code]]))
 
 (defonce *store (atom schema/store))
 
 (defn dispatch! [op op-data]
-  (comment println "Dispatch!" op op-data)
+  (println "Dispatch!" op op-data)
   (let [next-store (case op
                      :save (assoc @*store :snapshot op-data)
                      :write-code (assoc @*store :code op-data)
+                     :load-tree (assoc-in @*store [:snapshot :tree] op-data)
                      @*store)]
     (reset! *store next-store)))
 
 (def mount-target (.querySelector js/document ".app"))
 
-(defn render-app! [renderer] (renderer mount-target (comp-container @*store) dispatch!))
+(defn render-app! [renderer]
+  (renderer mount-target (comp-container @*store) #(dispatch! %1 %2)))
 
 (def ssr? (some? (js/document.querySelector "meta.respo-ssr")))
 
@@ -36,7 +38,7 @@
        (do
         (println "BUild")
         (.preventDefault event)
-        (dispatch! :write-code (make-code [(:tree (:snapshot @*store))]))))))
+        (dispatch! :write-code (write-code (:tree (:snapshot @*store))))))))
   (println "app started!"))
 
 (defn reload! [] (clear-cache!) (render-app! render!) (println "Code update."))

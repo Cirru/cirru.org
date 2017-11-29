@@ -8,9 +8,10 @@
             [respo-ui.style :as ui]
             [cirru-editor.comp.editor :refer [comp-editor]]
             [cirru-editor.util.dom :refer [focus!]]
-            [cirru.sepal :refer [make-code]]
+            [cirru-sepal.core :refer [write-code]]
             [keycode.core :as keycode]
-            [fipp.edn :refer [pprint]]))
+            [fipp.edn :refer [pprint]]
+            [app.comp.candidates :refer [comp-candidates]]))
 
 (defn on-update! [snapshot dispatch!] (dispatch! :save snapshot) (focus!))
 
@@ -18,9 +19,9 @@
   (println "command" e)
   (let [event (:event e)]
     (if (and (.-metaKey event) (= keycode/s (.-keyCode event)))
-      (do (dispatch! :write-code (make-code [(:tree snapshot)])) (.preventDefault event)))))
+      (do (dispatch! :write-code (write-code (:tree snapshot))) (.preventDefault event)))))
 
-(def style-source {:height "100vh"})
+(def style-source {:height "50vh"})
 
 (def style-theme {:height "100vh", :background-color (hsl 300 80 10)})
 
@@ -59,14 +60,6 @@
 
 (def style-section-title {:font-size "24px"})
 
-(defn on-show [tree]
-  (fn [e dispatch!]
-    (-> js/window
-        (.open)
-        (.-document)
-        (.write
-         (str "<pre><code>" (.stringify js/JSON (clj->js tree) nil 2) "</code></pre>")))))
-
 (def style-content {:font-size "16px"})
 
 (defn render-links []
@@ -89,13 +82,6 @@
 (defn render-code-intro [tree]
   (div
    {:style (merge ui/flex {:padding "64px 16px"})}
-   (div {:style (merge typeset/title style-section-title)} (<> "Get AST from editor"))
-   (div
-    {:style (merge typeset/content style-content)}
-    (<> "You may turn get AST tree in normal data type, which is probably a JSON.")
-    (=< 8 nil)
-    (div {:style ui/button, :on {:click (on-show tree)}} (<> "Show me data")))
-   (=< nil 60)
    (div {:style (merge typeset/title style-section-title)} (<> "Make language out of it!"))
    (div
     {:style (merge typeset/content style-content)}
@@ -126,15 +112,18 @@
     (render-banner)
     (div
      {:style (merge ui/center ui/row style-theme)}
-     (comp-editor states snapshot on-update! on-command)
-     (div {:style {:width 1, :background-color (hsl 0 0 100 0.3)}})
+     (div
+      {:style (merge ui/flex ui/column)}
+      (comp-candidates)
+      (comp-editor states snapshot on-update! on-command))
+     (comment div {:style {:width 1, :background-color (hsl 0 0 100 0.3)}})
      (div
       {:style (merge ui/column {:width "33%", :background-color :white})}
       (div
        {:style {:padding 8}}
        (button
         {:style ui/button,
-         :on {:click (fn [e d! m!] (d! :write-code (make-code [(:tree snapshot)])))}}
+         :on {:click (fn [e d! m!] (d! :write-code (write-code (:tree snapshot))))}}
         (<> "Get Clojure"))
        (=< 8 nil)
        (button
