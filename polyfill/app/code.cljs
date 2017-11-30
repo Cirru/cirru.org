@@ -73,21 +73,17 @@
 )
 
 (def a-component
-  [["defn"
-   "render"
-   ["skill-list"]
-   ["fn"
-    ["state" "mutate!"]
+  [["defcomp" ["skill-list"]
     ["div"
      ["{}" [":style" "style-container"]]
      ["input"
       ["{}"
        [":style" ["merge" "ui/input" ["{}" [":background-color" ["hsl" "200" "80" "80"]]]]]
        [":attrs" ["{}" [":value" "state"] [":placeholder" "|empty"]]]
-       [":event" ["{}" [":input" ["on-input" "mutate!"]]]]]]
-     ["div"
+       [":on" ["{}" [":input" ["fn" ["e" "dispatch!" "mutate!"]]]]]]]
+     ["list->" ":div"
       ["{}" [":style" "style-list"]]
       ["->>"
        "skill-list"
        ["map-indexed"
-        ["fn" ["idx" "skill"] ["[]" "idx" ["div" ["{}"] ["comp-text" "skill" "nil"]]]]]]]]]]])
+        ["fn" ["idx" "skill"] ["[]" "idx" ["div" ["{}"] ["<>" "skill"]]]]]]]]]])

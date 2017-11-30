@@ -11,7 +11,8 @@
             [cirru-sepal.core :refer [write-code]]
             [keycode.core :as keycode]
             [fipp.edn :refer [pprint]]
-            [app.comp.candidates :refer [comp-candidates]]))
+            [app.comp.candidates :refer [comp-candidates]]
+            [cirru-writer.core :refer [write]]))
 
 (defn on-update! [snapshot dispatch!] (dispatch! :save snapshot) (focus!))
 
@@ -50,6 +51,12 @@
     (a
      {:href "https://www.youtube.com/playlist?list=PLyvBXLgHYHy1AIK6i5uw3_H5BIUP4CQx6",
       :inner-text "Videos",
+      :target "_blank",
+      :style style-link})
+    (=< 80 nil)
+    (a
+     {:href "http://text.cirru.org",
+      :inner-text "Text syntax",
       :target "_blank",
       :style style-link}))))
 
@@ -136,7 +143,12 @@
         {:style ui/button,
          :on {:click (fn [e d! m!]
                 (d! :write-code (.stringify js/JSON (clj->js (:tree snapshot)) nil 2)))}}
-        (<> "Get JSON")))
+        (<> "Get JSON"))
+       (=< 8 nil)
+       (button
+        {:style ui/button,
+         :on {:click (fn [e d! m!] (d! :write-code (write (:tree snapshot))))}}
+        (<> "Indentation Syntax")))
       (textarea
        {:style (merge
                 ui/textarea

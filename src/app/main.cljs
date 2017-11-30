@@ -11,7 +11,7 @@
 (defonce *store (atom schema/store))
 
 (defn dispatch! [op op-data]
-  (println "Dispatch!" op op-data)
+  (comment println "Dispatch!" op op-data)
   (let [next-store (case op
                      :save (assoc @*store :snapshot op-data)
                      :write-code (assoc @*store :code op-data)
