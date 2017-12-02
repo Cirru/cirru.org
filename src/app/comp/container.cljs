@@ -12,7 +12,7 @@
             [keycode.core :as keycode]
             [fipp.edn :refer [pprint]]
             [app.comp.candidates :refer [comp-candidates]]
-            [cirru-writer.core :refer [write]]))
+            [cirru-writer.core :as writer]))
 
 (defn on-update! [snapshot dispatch!] (dispatch! :save snapshot) (focus!))
 
@@ -147,7 +147,7 @@
        (=< 8 nil)
        (button
         {:style ui/button,
-         :on {:click (fn [e d! m!] (d! :write-code (write (:tree snapshot))))}}
+         :on {:click (fn [e d! m!] (d! :write-code (writer/write-code (:tree snapshot))))}}
         (<> "Indentation Syntax")))
       (textarea
        {:style (merge
