@@ -14,17 +14,13 @@
             [app.comp.candidates :refer [comp-candidates]]
             [cirru-writer.core :as writer]))
 
-(defn on-update! [snapshot dispatch!] (dispatch! :save snapshot) (focus!))
-
 (defn on-command [snapshot dispatch! e]
   (println "command" e)
   (let [event (:event e)]
     (if (and (.-metaKey event) (= keycode/s (.-keyCode event)))
       (do (dispatch! :write-code (write-code (:tree snapshot))) (.preventDefault event)))))
 
-(def style-source {:height "50vh"})
-
-(def style-theme {:height "100vh", :background-color (hsl 300 80 10)})
+(defn on-update! [snapshot dispatch!] (dispatch! :save snapshot) (focus!))
 
 (def style-banner
   {:height "50vh", :background-color (hsl 200 100 70), :color (hsl 0 0 100)})
@@ -65,26 +61,9 @@
 (defn render-project [project address]
   (a {:target "_blank", :href address, :inner-text project, :style style-project}))
 
-(def style-section-title {:font-size "24px"})
-
 (def style-content {:font-size "16px"})
 
-(defn render-links []
-  (div
-   {:style {:height "50vh",
-            :padding "16px",
-            :background-color (hsl 0 0 0),
-            :color (hsl 0 0 100)}}
-   (div {:style (merge typeset/title style-section-title)} (<> "Find out more..."))
-   (div
-    {:style (merge typeset/content style-content)}
-    (<> "Follow updates on ")
-    (render-project "GitHub" "https://github.com/Cirru/")
-    (<> ", ")
-    (render-project "Twitter" "https://twitter.com/cirrulang")
-    (<> " and ")
-    (render-project "Medium" "https://medium.com/cirru-project")
-    (<> ". It's still evolving."))))
+(def style-section-title {:font-size "24px"})
 
 (defn render-code-intro [tree]
   (div
@@ -109,6 +88,27 @@
     (<> " and ")
     (render-project "Light Editor" "https://github.com/Cirru/cirru-light-editor")
     (<> ". And I've seen a lot of possibilities here."))))
+
+(defn render-links []
+  (div
+   {:style {:height "50vh",
+            :padding "16px",
+            :background-color (hsl 0 0 0),
+            :color (hsl 0 0 100)}}
+   (div {:style (merge typeset/title style-section-title)} (<> "Find out more..."))
+   (div
+    {:style (merge typeset/content style-content)}
+    (<> "Follow updates on ")
+    (render-project "GitHub" "https://github.com/Cirru/")
+    (<> ", ")
+    (render-project "Twitter" "https://twitter.com/cirrulang")
+    (<> " and ")
+    (render-project "Medium" "https://medium.com/cirru-project")
+    (<> ". It's still evolving."))))
+
+(def style-source {:height "50vh"})
+
+(def style-theme {:height "100vh", :background-color (hsl 300 80 10)})
 
 (defcomp
  comp-container
