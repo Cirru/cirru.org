@@ -1,7 +1,7 @@
 
 (ns app.comp.container
   (:require [hsl.core :refer [hsl]]
-            [respo.macros :refer [defcomp <> div span a textarea button]]
+            [respo.macros :refer [defcomp <> div span a textarea action-> button]]
             [respo.comp.space :refer [=<]]
             [app.style.widget :as widget]
             [app.style.typeset :as typeset]
@@ -12,7 +12,8 @@
             [keycode.core :as keycode]
             [fipp.edn :refer [pprint]]
             [app.comp.candidates :refer [comp-candidates]]
-            [cirru-writer.core :as writer]))
+            [cirru-writer.core :as writer]
+            [respo-md.comp.md :refer [comp-md-block]]))
 
 (defn on-command [snapshot dispatch! e]
   (println "command" e)
@@ -35,28 +36,26 @@
    (comp-editor states snapshot on-update! on-command))
   (comment div {:style {:width 1, :background-color (hsl 0 0 100 0.3)}})
   (div
-   {:style (merge ui/column {:width "33%", :background-color :white})}
+   {:style (merge ui/column {:width "38.2%", :background-color :white})}
    (div
     {:style {:padding 8}}
     (button
-     {:style ui/button,
-      :on {:click (fn [e d! m!] (d! :write-code (write-code (:tree snapshot))))}}
-     (<> "Get Clojure"))
+     {:style ui/button, :on-click (action-> :write-code (write-code (:tree snapshot)))}
+     (<> "Clojure"))
     (=< 8 nil)
     (button
      {:style ui/button,
-      :on {:click (fn [e d! m!] (d! :write-code (with-out-str (pprint (:tree snapshot)))))}}
-     (<> "Get EDN"))
+      :on-click (action-> :write-code (with-out-str (pprint (:tree snapshot))))}
+     (<> "EDN"))
     (=< 8 nil)
     (button
      {:style ui/button,
-      :on {:click (fn [e d! m!]
-             (d! :write-code (.stringify js/JSON (clj->js (:tree snapshot)) nil 2)))}}
-     (<> "Get JSON"))
+      :on-click (action-> :write-code (.stringify js/JSON (clj->js (:tree snapshot)) nil 2))}
+     (<> "JSON"))
     (=< 8 nil)
     (button
      {:style ui/button,
-      :on {:click (fn [e d! m!] (d! :write-code (writer/write-code (:tree snapshot))))}}
+      :on-click (action-> :write-code (writer/write-code (:tree snapshot)))}
      (<> "Indentation Syntax")))
    (textarea
     {:style (merge
@@ -80,7 +79,7 @@
    {:style (merge ui/center style-banner)}
    (div
     {:style (merge typeset/title style-banner-text)}
-    (<> "Cirru: edit S-Expression and generate Clojure"))
+    (<> "Cirru: morden tools for S-expression"))
    (div
     {}
     (a
@@ -101,63 +100,23 @@
       :target "_blank",
       :style style-link}))))
 
-(def style-project {:color (hsl 200 80 60)})
-
-(defn render-project [project address]
-  (a {:target "_blank", :href address, :inner-text project, :style style-project}))
-
-(def style-content {:font-size "16px"})
-
-(def style-section-title {:font-size "24px"})
-
-(defn render-code-intro [tree]
+(defn render-code-intro []
   (div
-   {:style (merge ui/flex {:padding "64px 16px"})}
-   (div {:style (merge typeset/title style-section-title)} (<> "Make language out of it!"))
-   (div
-    {:style (merge typeset/content style-content)}
-    (<> "Such as ")
-    (render-project "Sepal.clj" "https://github.com/Cirru/sepal.clj")
-    (<> " and ")
-    (render-project "CirruScript" "https://github.com/Cirru/cirru-script")
-    (<>
-     ". You can also try a lot more languages, like Ruby, Elixir, Julia, Racket, Python..."))
-   (=< nil 60)
-   (div
-    {:style (merge typeset/title style-section-title)}
-    (<> "Build tools around AST tree."))
-   (div
-    {:style (merge typeset/content style-content)}
-    (<> "I'm exploring new ways of programming with Cirru, such as ")
-    (render-project "Stack Editor" "https://github.com/Cirru/stack-editor")
-    (<> " and ")
-    (render-project "Light Editor" "https://github.com/Cirru/cirru-light-editor")
-    (<> ". And I've seen a lot of possibilities here."))))
-
-(defn render-links []
-  (div
-   {:style {:height 400,
-            :padding "16px",
-            :background-color (hsl 0 0 0),
-            :color (hsl 0 0 100)}}
-   (div {:style (merge typeset/title style-section-title)} (<> "Find out more..."))
-   (div
-    {:style (merge typeset/content style-content)}
-    (<> "Follow updates on ")
-    (render-project "GitHub" "https://github.com/Cirru/")
-    (<> ", ")
-    (render-project "Twitter" "https://twitter.com/cirrulang")
-    (<> " and ")
-    (render-project "Medium" "https://medium.com/cirru-project")
-    (<> ". It's still evolving."))))
+   {:style (merge {:width 1000, :margin :auto, :padding "120px 0 120px 0"})}
+   (comp-md-block
+    "### Tree Editor\n\nCirru Project's main purpose is to replacing parentheses with moderner tools like graphical editors. I finished creating one and now it's called \"Calcit Editor\". I use it for my daily personal projects including building this page.\n\n* [Calcit Editor](https://github.com/Cirru/calcit-editor) -- main tool of Cirru project, which edits S-expressions and generates Clojure code. It uses a snapshot file called `calcit.edn`.\n* [Calcit Viewer](https://github.com/Cirru/calcit-viewer) -- displays `calcit.edn` with DOM.\n* [Respo Cirru Editor](https://github.com/Cirru/respo-cirru-editor) -- old library to realise S-expressions editing on Web.\n\n### Old Indentation-based Syntax\n\nCirru Indentation Format has been shadowed by the new editor. Old libraries are poorly maintained, but you can still access some of them like Parser and Writer.\n\n* [Cirru Writer](https://github.com/Cirru/writer.clj) -- ClojureScript library to generate Cirru Indentation Format.\n* [Cirru Parser](https://github.com/Cirru/parser.clj) -- ClojureScript library to parse Cirru Indentation Format.\n* [Cirru Indentation Format home page](https://github.com/Cirru/text.cirru.org) -- a list of old resources related to the format.\n\n### Updates\n\n\nYou may find old entries related to Cirru on [Medium](https://medium.com/cirru-project) and [Twitter](https://twitter.com/cirrulang). More information are just spread on my Twitter and Weibo or blogs, you may find them by searching anyway. We may [discuss on Twitter](https://twitter.com/jiyinyiyong).\n"
+    {})))
 
 (defcomp
  comp-container
  (store)
  (let [states (:states store), snapshot (:snapshot store)]
    (div
-    {:style (merge ui/global typeset/content)}
+    {:style (merge ui/global)}
     (render-banner)
     (comp-explorer states store snapshot)
-    (div {:style (merge ui/row {:height 400})} (render-code-intro (:tree snapshot)))
-    (render-links))))
+    (render-code-intro))))
+
+(def style-content {:font-size "16px"})
+
+(def style-project {:color (hsl 200 80 60)})
