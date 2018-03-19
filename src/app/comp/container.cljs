@@ -5,7 +5,7 @@
             [respo.comp.space :refer [=<]]
             [app.style.widget :as widget]
             [app.style.typeset :as typeset]
-            [respo-ui.style :as ui]
+            [respo-ui.core :as ui]
             [cirru-editor.comp.editor :refer [comp-editor]]
             [cirru-editor.util.dom :refer [focus!]]
             [cirru-sepal.core :refer [write-code]]
@@ -22,8 +22,53 @@
 
 (defn on-update! [snapshot dispatch!] (dispatch! :save snapshot) (focus!))
 
-(def style-banner
-  {:height "50vh", :background-color (hsl 200 100 70), :color (hsl 0 0 100)})
+(def style-theme {:height "100vh", :background-color (hsl 300 80 10)})
+
+(defcomp
+ comp-explorer
+ (states store snapshot)
+ (div
+  {:style (merge ui/center ui/row style-theme)}
+  (div
+   {:style (merge ui/flex ui/column)}
+   (comp-candidates)
+   (comp-editor states snapshot on-update! on-command))
+  (comment div {:style {:width 1, :background-color (hsl 0 0 100 0.3)}})
+  (div
+   {:style (merge ui/column {:width "33%", :background-color :white})}
+   (div
+    {:style {:padding 8}}
+    (button
+     {:style ui/button,
+      :on {:click (fn [e d! m!] (d! :write-code (write-code (:tree snapshot))))}}
+     (<> "Get Clojure"))
+    (=< 8 nil)
+    (button
+     {:style ui/button,
+      :on {:click (fn [e d! m!] (d! :write-code (with-out-str (pprint (:tree snapshot)))))}}
+     (<> "Get EDN"))
+    (=< 8 nil)
+    (button
+     {:style ui/button,
+      :on {:click (fn [e d! m!]
+             (d! :write-code (.stringify js/JSON (clj->js (:tree snapshot)) nil 2)))}}
+     (<> "Get JSON"))
+    (=< 8 nil)
+    (button
+     {:style ui/button,
+      :on {:click (fn [e d! m!] (d! :write-code (writer/write-code (:tree snapshot))))}}
+     (<> "Indentation Syntax")))
+   (textarea
+    {:style (merge
+             ui/textarea
+             ui/flex
+             {:font-family "Source Code Pro, Menlo, Consolas, monospace",
+              :width "100%",
+              :white-space :pre}),
+     :value (:code store),
+     :disabled true}))))
+
+(def style-banner {:height 320, :background-color (hsl 200 100 70), :color (hsl 0 0 100)})
 
 (def style-banner-text {:font-size "64px"})
 
@@ -91,7 +136,7 @@
 
 (defn render-links []
   (div
-   {:style {:height "50vh",
+   {:style {:height 400,
             :padding "16px",
             :background-color (hsl 0 0 0),
             :color (hsl 0 0 100)}}
@@ -106,10 +151,6 @@
     (render-project "Medium" "https://medium.com/cirru-project")
     (<> ". It's still evolving."))))
 
-(def style-source {:height "50vh"})
-
-(def style-theme {:height "100vh", :background-color (hsl 300 80 10)})
-
 (defcomp
  comp-container
  (store)
@@ -117,46 +158,6 @@
    (div
     {:style (merge ui/global typeset/content)}
     (render-banner)
-    (div
-     {:style (merge ui/center ui/row style-theme)}
-     (div
-      {:style (merge ui/flex ui/column)}
-      (comp-candidates)
-      (comp-editor states snapshot on-update! on-command))
-     (comment div {:style {:width 1, :background-color (hsl 0 0 100 0.3)}})
-     (div
-      {:style (merge ui/column {:width "33%", :background-color :white})}
-      (div
-       {:style {:padding 8}}
-       (button
-        {:style ui/button,
-         :on {:click (fn [e d! m!] (d! :write-code (write-code (:tree snapshot))))}}
-        (<> "Get Clojure"))
-       (=< 8 nil)
-       (button
-        {:style ui/button,
-         :on {:click (fn [e d! m!]
-                (d! :write-code (with-out-str (pprint (:tree snapshot)))))}}
-        (<> "Get EDN"))
-       (=< 8 nil)
-       (button
-        {:style ui/button,
-         :on {:click (fn [e d! m!]
-                (d! :write-code (.stringify js/JSON (clj->js (:tree snapshot)) nil 2)))}}
-        (<> "Get JSON"))
-       (=< 8 nil)
-       (button
-        {:style ui/button,
-         :on {:click (fn [e d! m!] (d! :write-code (writer/write-code (:tree snapshot))))}}
-        (<> "Indentation Syntax")))
-      (textarea
-       {:style (merge
-                ui/textarea
-                ui/flex
-                {:font-family "Source Code Pro, Menlo, Consolas, monospace",
-                 :width "100%",
-                 :white-space :pre}),
-        :value (:code store),
-        :disabled true})))
-    (div {:style (merge ui/row style-source)} (render-code-intro (:tree snapshot)))
+    (comp-explorer states store snapshot)
+    (div {:style (merge ui/row {:height 400})} (render-code-intro (:tree snapshot)))
     (render-links))))

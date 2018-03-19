@@ -1,21 +1,13 @@
 {
   "name": "cirru.org",
   "version": "0.1.0",
-  "description": "Stack Workflow",
+  "description": "Cirru Home Page",
   "main": "index.js",
   "scripts": {
-    "cdn": "rsync -avr --progress dist/* tiye.me:cdn/cirru.org",
-    "tiye": "rsync -r dist/{index.html,manifest.json} tiye.me:repo/Cirru/cirru.org/",
-    "upload": "yarn cdn && yarn tiye",
-    "release": "shadow-cljs release browser",
     "watch": "shadow-cljs watch browser",
-    "compile-ssr": "shadow-cljs compile ssr",
-    "html-dev": "env=dev node target/ssr.js && cp entry/manifest.json target/",
-    "html": "node target/ssr.js && cp entry/manifest.json dist/",
-    "dev": "yarn compile-ssr && yarn html-dev",
-    "del": "rm -rf dist/*",
-    "serve": "http-server dist",
-    "build": "yarn del && yarn release && yarn compile-ssr && yarn html"
+    "serve": "http-server dist -s",
+    "repl": "rlwrap shadow-cljs clj-repl",
+    "build": "shadow-cljs clj-run build.main/build"
   },
   "repository": {
     "type": "git",
@@ -25,6 +17,9 @@
   "license": "MIT",
   "devDependencies": {
     "http-server": "^0.10.0",
-    "shadow-cljs": "^2.0.114"
+    "shadow-cljs": "^2.2.14"
+  },
+  "dependencies": {
+    "shortid": "^2.2.8"
   }
 }

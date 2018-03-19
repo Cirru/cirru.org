@@ -5,7 +5,7 @@
             [respo.comp.space :refer [=<]]
             [app.style.widget :as widget]
             [app.style.typeset :as typeset]
-            [respo-ui.style :as ui]
+            [respo-ui.core :as ui]
             [cirru-sepal.core :refer [write-code]]
             [keycode.core :as keycode]
             [fipp.edn :refer [pprint]]
