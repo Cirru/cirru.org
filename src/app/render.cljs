@@ -22,7 +22,7 @@
 (defn prod-page []
   (let [html-content (make-string (comp-container schema/store))
         assets (read-string (slurp "dist/assets.edn"))
-        cdn (if previews? "" "http://cdn.tiye.me/cirru.org/")
+        cdn (if previews? "" "http://cdn.tiye.me/cirru-org/")
         prefix-cdn (fn [x] (str cdn x))]
     (make-page
      html-content
