@@ -13,7 +13,7 @@
             [fipp.edn :refer [pprint]]
             [app.comp.candidates :refer [comp-candidates]]
             [cirru-writer.core :as writer]
-            [respo-md.comp.md :refer [comp-md-block]]))
+            [respo-md.comp.md :refer [comp-md-block comp-md]]))
 
 (defn on-command [snapshot dispatch! e]
   (println "command" e)
@@ -79,7 +79,7 @@
    {:style (merge ui/center style-banner)}
    (div
     {:style (merge typeset/title style-banner-text)}
-    (<> "Cirru: morden tools for S-expression"))
+    (<> "Cirru: modern tools for S-expression"))
    (div
     {}
     (a
@@ -114,6 +114,11 @@
    (div
     {:style (merge ui/global)}
     (render-banner)
+    (div
+     {:style {:text-align :center, :padding 16}}
+     (comp-md-block
+      "Cirru project is now concentrated on [calcit-editor](https://github.com/Cirru/calcit-editor), you can install it with:\n\n```bash\nnpm install -g calcit-editor\n```"
+      {}))
     (comp-explorer states store snapshot)
     (render-code-intro))))
 
