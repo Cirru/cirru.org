@@ -649,6 +649,7 @@
            :data {
             "T" {:type :leaf, :by "root", :at 1521476036771, :text "[]", :id "BJGhpWPpFf"}
             "j" {:type :leaf, :by "root", :at 1521476039531, :text "comp-md-block", :id "Hyfpp-DaYM"}
+            "r" {:type :leaf, :by "root", :at 1527475056474, :text "comp-md", :id "HkvuoJKyX"}
            }
           }
          }
@@ -731,6 +732,57 @@
             :type :expr, :id "BkLcZAhYM", :by nil, :at 1506618943349
             :data {
              "T" {:type :leaf, :id "HJ9EevHAico-", :text "render-banner", :by "root", :at 1506618943349}
+            }
+           }
+           "s" {
+            :type :expr, :by "root", :at 1527474998548, :id "rJe36j1KkQ"
+            :data {
+             "T" {:type :leaf, :by "root", :at 1527475000048, :text "div", :id "rkJHo1F1Xleaf"}
+             "j" {
+              :type :expr, :by "root", :at 1527475000288, :id "SkBlBiyFJ7"
+              :data {
+               "T" {:type :leaf, :by "root", :at 1527475000619, :text "{}", :id "B14lHsyKJQ"}
+               "j" {
+                :type :expr, :by "root", :at 1527475150882, :id "HkxDAo1tJ7"
+                :data {
+                 "T" {:type :leaf, :by "root", :at 1527475152207, :text ":style", :id "HyDAoyKy7"}
+                 "j" {
+                  :type :expr, :by "root", :at 1527475153466, :id "Sy7F0i1Fy7"
+                  :data {
+                   "T" {:type :leaf, :by "root", :at 1527475152646, :text "{}", :id "BJNOAjktkQ"}
+                   "j" {
+                    :type :expr, :by "root", :at 1527475154356, :id "ryl5CjkYy7"
+                    :data {
+                     "T" {:type :leaf, :by "root", :at 1527475158846, :text ":text-align", :id "HkcRjktJX"}
+                     "j" {:type :leaf, :by "root", :at 1527475160845, :text ":center", :id "HJQy1hkt1m"}
+                    }
+                   }
+                   "r" {
+                    :type :expr, :by "root", :at 1527475241379, :id "ByG-431tkQ"
+                    :data {
+                     "T" {:type :leaf, :by "root", :at 1527475243083, :text ":padding", :id "ByG-431tkQleaf"}
+                     "j" {:type :leaf, :by "root", :at 1527475244333, :text "16", :id "S1NXN2JY17"}
+                    }
+                   }
+                  }
+                 }
+                }
+               }
+              }
+             }
+             "r" {
+              :type :expr, :by "root", :at 1527475002736, :id "B1XHs1YJ7"
+              :data {
+               "T" {:type :leaf, :by "root", :at 1527475062123, :text "comp-md-block", :id "B1XHs1YJ7leaf"}
+               "j" {:type :leaf, :by "root", :at 1527475260047, :text "\"Cirru project is now concentrated on [calcit-editor](https://github.com/Cirru/calcit-editor), you can install it with:\n\n```bash\nnpm install -g calcit-editor\n```", :id "r1pHiytJX"}
+               "r" {
+                :type :expr, :by "root", :at 1527475120996, :id "SJKnokFkm"
+                :data {
+                 "T" {:type :leaf, :by "root", :at 1527475121414, :text "{}", :id "SkxuhjkYyQ"}
+                }
+               }
+              }
+             }
             }
            }
            "v" {
