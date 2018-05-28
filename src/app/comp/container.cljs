@@ -79,7 +79,7 @@
    {:style (merge ui/center style-banner)}
    (div
     {:style (merge typeset/title style-banner-text)}
-    (<> "Cirru: morden tools for S-expression"))
+    (<> "Cirru: modern tools for S-expression"))
    (div
     {}
     (a

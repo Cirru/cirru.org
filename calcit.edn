@@ -1484,7 +1484,7 @@
             :type :expr, :id "rkdFvB0jqjb", :by nil, :at 1506618943349
             :data {
              "T" {:type :leaf, :id "SkYtPrRi5oW", :text "<>", :by "root", :at 1506667688571}
-             "j" {:type :leaf, :id "Sk9tvSRscoZ", :text "|Cirru: morden tools for S-expression", :by "root", :at 1521476923919}
+             "j" {:type :leaf, :id "Sk9tvSRscoZ", :text "|Cirru: modern tools for S-expression", :by "root", :at 1527473064365}
             }
            }
           }
@@ -2443,12 +2443,12 @@
      }
     }
    }
-   "app.render" {
+   "app.page" {
     :ns {
      :type :expr, :id "SJejWrwosZ", :by "root", :at 1506665730718
      :data {
       "T" {:type :leaf, :text "ns", :id "Bybj-rvss-", :by "root", :at 1506665730718}
-      "j" {:type :leaf, :text "app.render", :id "HkfsWSPjiZ", :by "root", :at 1506665730718}
+      "j" {:type :leaf, :text "app.page", :id "HkfsWSPjiZ", :by "root", :at 1506665730718}
       "r" {
        :type :expr, :id "HyWeOIPjsZ", :by "root", :at 1506666088426
        :data {
