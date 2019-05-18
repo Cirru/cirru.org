@@ -6,11 +6,12 @@
   "scripts": {
     "watch": "shadow-cljs watch client",
     "serve": "http-server dist -s",
-    "repl": "rlwrap shadow-cljs clj-repl",
+    "build-cdn": "shadow-cljs clj-run build.main/build-cdn",
     "build": "shadow-cljs clj-run build.main/build",
-    "build-local": "shadow-cljs clj-run build.main/build-local",
+    "upload": "node target/upload.js",
+    "up": "yarn build-cdn && yarn upload",
     "page": "shadow-cljs clj-run build.main/page",
-    "upload": "lumo -c cli -m build.upload"
+    "ln": "cd target && rm -f entry && ln -s ../entry"
   },
   "repository": {
     "type": "git",
@@ -19,10 +20,10 @@
   "author": "jiyinyiyong",
   "license": "MIT",
   "devDependencies": {
-    "http-server": "^0.10.0",
-    "shadow-cljs": "^2.3.28"
+    "http-server": "^0.11.1",
+    "shadow-cljs": "^2.8.37"
   },
   "dependencies": {
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.14"
   }
 }
