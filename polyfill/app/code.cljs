@@ -1,28 +1,28 @@
 
 (ns app.code)
 
-(def a-case [["case" "a" ["1" "|one"] ["2" "|two"] ["3" "|three"] "|default"]])
+(def a-case [["case" "a" ["1" "\"one"] ["2" "\"two"] ["3" "\"three"] "\"default"]])
 
-(def a-comment [[";;" "|this is comment"]
- [";" "|comment"]]
+(def a-comment [[";;" "\"this is comment"]
+ [";" "\"comment"]]
 )
 
 (def a-cond [["cond"
-  [["<" "a" "1"] "|little"]
-  [[">" "a" "1"] "|great"]
-  [":else" "|so-so"]]]
+  [["<" "a" "1"] "\"little"]
+  [[">" "a" "1"] "\"great"]
+  [":else" "\"so-so"]]]
 )
 
 (def a-def [["println" ["+" "1" "2" "3"]]
  ["println" "1" "2" "3" "true" "false"]
- ["def" "open-paren" "|("]
+ ["def" "open-paren" "\"("]
  ["defn" "f1" ["x"] ["+" "x" "1"]]
  ["defn"
   "f2"
   [["a" "b"] ["+" "a" "b"]]
   [["a" "b" "c"] ["+" "a" "b" "c"]]]
  ["defn-" "f1" ["x"] ["+" "x" "1"]]
- ["println" ":key" "|string" "\\c" "\\newline"]]
+ ["println" ":key" "\"string" "\\c" "\\newline"]]
 )
 
 (def a-doseq
@@ -79,7 +79,7 @@
      ["input"
       ["{}"
        [":style" ["merge" "ui/input" ["{}" [":background-color" ["hsl" "200" "80" "80"]]]]]
-       [":attrs" ["{}" [":value" "state"] [":placeholder" "|empty"]]]
+       [":attrs" ["{}" [":value" "state"] [":placeholder" "\"empty"]]]
        [":on" ["{}" [":input" ["fn" ["e" "dispatch!" "mutate!"]]]]]]]
      ["list->" ":div"
       ["{}" [":style" "style-list"]]
