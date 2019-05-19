@@ -1,7 +1,7 @@
 
 (ns app.comp.candidates
   (:require [hsl.core :refer [hsl]]
-            [respo.macros :refer [defcomp list-> <> div span a textarea button action->]]
+            [respo.core :refer [defcomp list-> <> div span a textarea button action->]]
             [respo.comp.space :refer [=<]]
             [app.style.widget :as widget]
             [app.style.typeset :as typeset]

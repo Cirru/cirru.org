@@ -6,12 +6,13 @@
             [cljs.reader :refer [read-string]]
             [app.schema :as schema]
             [keycode.core :as keycode]
-            [cirru-sepal.core :refer [write-code]]))
+            [cirru-sepal.core :refer [write-code]]
+            [app.config :as config]))
 
 (defonce *store (atom schema/store))
 
 (defn dispatch! [op op-data]
-  (comment println "Dispatch!" op op-data)
+  (when config/dev? (println "Dispatch:" op))
   (let [next-store (case op
                      :save (assoc @*store :snapshot op-data)
                      :write-code (assoc @*store :code op-data)
@@ -27,6 +28,7 @@
 (def ssr? (some? (js/document.querySelector "meta.respo-ssr")))
 
 (defn main! []
+  (println "Running mode:" (if config/dev? "dev" "release"))
   (if ssr? (render-app! realize-ssr!))
   (render-app! render!)
   (add-watch *store :changes (fn [] (render-app! render!)))
@@ -39,8 +41,6 @@
         (println "BUild")
         (.preventDefault event)
         (dispatch! :write-code (write-code (:tree (:snapshot @*store))))))))
-  (println "app started!"))
+  (println "App started!"))
 
 (defn reload! [] (clear-cache!) (render-app! render!) (println "Code update."))
-
-(set! (.-onload js/window) main!)
