@@ -39,6 +39,7 @@ npm packages:
 | [cirru-vectors-format](https://github.com/Cirru/cirru-vectors-format) | ![npm](https://img.shields.io/npm/v/cirru-vectors-format.svg?style=flat-square) |
 | [cirru-writer](https://github.com/Cirru/cirru-writer)                 | ![npm](https://img.shields.io/npm/v/cirru-writer.svg?style=flat-square)         |
 | [highlightjs-cirru](https://github.com/Cirru/highlightjs-cirru)       | ![npm](https://img.shields.io/npm/v/highlightjs-cirru.svg?style=flat-square)    |
+| [jiuzhang-lang](https://github.com/Cirru/jiuzhang-lang)               | ![npm](https://img.shields.io/npm/v/@cirru/jiuzhang.svg?style=flat-square)      |
 | [scirpus](https://github.com/Cirru/scirpus)                           | ![npm](https://img.shields.io/npm/v/scirpus.svg?style=flat-square)              |
 
 ### Develop
