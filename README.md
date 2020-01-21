@@ -10,6 +10,7 @@ Clojars packages:
 | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | [bisection-key](https://github.com/Cirru/bisection-key)             | ![Clojars](https://img.shields.io/clojars/v/cirru/bisection-key.svg?style=flat-square)     |
 | [calcit-theme](https://github.com/Cirru/calcit-theme)               | ![Clojars](https://img.shields.io/clojars/v/cirru/calcit-theme.svg?style=flat-square)      |
+| [edn](https://github.com/Cirru/cirru-edn)                           | ![Clojars](https://img.shields.io/clojars/v/cirru/edn.svg?style=flat-square)               |
 | [favored-edn](https://github.com/Cirru/favored-edn)                 | ![Clojars](https://img.shields.io/clojars/v/cirru/favored-edn.svg?style=flat-square)       |
 | [minifier](https://github.com/Cirru/minifier.clj)                   | ![Clojars](https://img.shields.io/clojars/v/cirru/minifier.svg?style=flat-square)          |
 | [parser-combinator](https://github.com/Cirru/parser-combinator.clj) | ![Clojars](https://img.shields.io/clojars/v/cirru/parser-combinator.svg?style=flat-square) |
