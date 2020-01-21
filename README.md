@@ -23,6 +23,7 @@ npm packages:
 
 | Package                                                               | Version                                                                         |
 | --------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [calcit-editor](https://github.com/Cirru/calcit-editor)               | ![npm](https://img.shields.io/npm/v/calcit-editor.svg?style=flat-square)        |
 | [cirru-color](https://github.com/Cirru/cirru-color)                   | ![npm](https://img.shields.io/npm/v/cirru-color.svg?style=flat-square)          |
 | [cirru-diff-patch](https://github.com/Cirru/cirru-diff-patch)         | ![npm](https://img.shields.io/npm/v/cirru-diff-patch.svg?style=flat-square)     |
 | [cirru-editor](https://github.com/Cirru/cirru-editor)                 | ![npm](https://img.shields.io/npm/v/cirru-editor.svg?style=flat-square)         |
