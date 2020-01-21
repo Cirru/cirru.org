@@ -11,7 +11,7 @@
     [respo/markdown "0.2.5"]
     [fipp "0.6.22"]
     [cirru/writer "0.1.6"]
-    [cirru/editor "0.2.7-a1"]
+    [cirru/editor "0.2.7"]
     [cumulo/util "0.1.10"]
     [org.clojure/core.incubator "0.1.4"]
   ]
