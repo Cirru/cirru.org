@@ -34,13 +34,14 @@ npm packages:
 | [cirru-json](https://github.com/Cirru/cirru-json)                   | ![npm](https://img.shields.io/npm/v/cirru-json.svg?style=flat-square)           |
 | [cirru-light-editor](https://github.com/Cirru/cirru-light-editor)   | ![npm](https://img.shields.io/npm/v/cirru-light-editor.svg?style=flat-square)   |
 | [cirru-mustache](https://github.com/Cirru/cirru-mustache)           | ![npm](https://img.shields.io/npm/v/cirru-mustache.svg?style=flat-square)       |
-| [cirru-parser](https://github.com/Cirru/cirru-parser)               | ![npm](https://img.shields.io/npm/v/cirru-parser.svg?style=flat-square)         |
 | [cirru-script-loader](https://github.com/Cirru/cirru-script-loader) | ![npm](https://img.shields.io/npm/v/cirru-script-loader.svg?style=flat-square)  |
 | [cirru-script](https://github.com/Cirru/cirru-script)               | ![npm](https://img.shields.io/npm/v/cirru-script.svg?style=flat-square)         |
 | [cirru-shell](https://github.com/Cirru/cirru-shell)                 | ![npm](https://img.shields.io/npm/v/cirru-shell.svg?style=flat-square)          |
 | [cirru-writer](https://github.com/Cirru/cirru-writer)               | ![npm](https://img.shields.io/npm/v/cirru-writer.svg?style=flat-square)         |
 | [highlightjs-cirru](https://github.com/Cirru/highlightjs-cirru)     | ![npm](https://img.shields.io/npm/v/highlightjs-cirru.svg?style=flat-square)    |
 | [jiuzhang-lang](https://github.com/Cirru/jiuzhang-lang)             | ![npm](https://img.shields.io/npm/v/@cirru/jiuzhang.svg?style=flat-square)      |
+| [parser.coffee](https://github.com/Cirru/parser.coffee)             | ![npm](https://img.shields.io/npm/v/cirru-parser.svg?style=flat-square)         |
+| [parser.ts](https://github.com/Cirru/parser.ts)                     | ![npm](https://img.shields.io/npm/v/@cirru/parser.ts.svg?style=flat-square)     |
 | [scirpus](https://github.com/Cirru/scirpus)                         | ![npm](https://img.shields.io/npm/v/scirpus.svg?style=flat-square)              |
 | [vectors-format](https://github.com/Cirru/vectors-format)           | ![npm](https://img.shields.io/npm/v/cirru-vectors-format.svg?style=flat-square) |
 
