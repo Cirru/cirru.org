@@ -1,7 +1,7 @@
 
 (ns app.comp.candidates
   (:require [hsl.core :refer [hsl]]
-            [respo.core :refer [defcomp list-> <> div span a textarea button action->]]
+            [respo.core :refer [defcomp list-> <> div span a textarea button]]
             [respo.comp.space :refer [=<]]
             [app.style.widget :as widget]
             [app.style.typeset :as typeset]
@@ -41,5 +41,5 @@
             [alias
              (div
               {:style {:margin 8, :cursor :pointer, :co nil},
-               :on-click (action-> :load-tree example)}
+               :on-click (fn [e d!] (d! :load-tree example))}
               (<> (name alias)))]))))))

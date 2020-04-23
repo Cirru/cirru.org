@@ -1,7 +1,7 @@
 
 (ns app.comp.container
   (:require [hsl.core :refer [hsl]]
-            [respo.core :refer [defcomp <> div span a textarea action-> button]]
+            [respo.core :refer [defcomp <> div span a textarea button]]
             [respo.comp.space :refer [=<]]
             [app.style.widget :as widget]
             [app.style.typeset :as typeset]
@@ -40,22 +40,24 @@
    (div
     {:style {:padding 8}}
     (button
-     {:style ui/button, :on-click (action-> :write-code (write-code (:tree snapshot)))}
+     {:style ui/button,
+      :on-click (fn [e d!] (d! :write-code (write-code (:tree snapshot))))}
      (<> "Clojure"))
     (=< 8 nil)
     (button
      {:style ui/button,
-      :on-click (action-> :write-code (with-out-str (pprint (:tree snapshot))))}
+      :on-click (fn [e d!] (d! :write-code (with-out-str (pprint (:tree snapshot)))))}
      (<> "EDN"))
     (=< 8 nil)
     (button
      {:style ui/button,
-      :on-click (action-> :write-code (.stringify js/JSON (clj->js (:tree snapshot)) nil 2))}
+      :on-click (fn [e d!]
+        (d! :write-code (.stringify js/JSON (clj->js (:tree snapshot)) nil 2)))}
      (<> "JSON"))
     (=< 8 nil)
     (button
      {:style ui/button,
-      :on-click (action-> :write-code (writer/write-code (:tree snapshot)))}
+      :on-click (fn [e d!] (d! :write-code (writer/write-code (:tree snapshot))))}
      (<> "Indentation Syntax")))
    (textarea
     {:style (merge
