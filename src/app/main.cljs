@@ -1,7 +1,7 @@
 
 (ns app.main
   (:require [respo.core :refer [render! clear-cache! realize-ssr!]]
-            [respo.cursor :refer [mutate]]
+            [respo.cursor :refer [update-states]]
             [app.comp.container :refer [comp-container]]
             [cljs.reader :refer [read-string]]
             [app.schema :as schema]
