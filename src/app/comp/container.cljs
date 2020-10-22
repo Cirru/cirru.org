@@ -81,7 +81,7 @@
    {:style (merge ui/center style-banner)}
    (div
     {:style (merge typeset/title style-banner-text)}
-    (<> "Cirru: modern tools for S-expression"))
+    (<> "Cirru: modern interface for S-expressions"))
    (div
     {}
     (a
@@ -106,7 +106,7 @@
   (div
    {:style (merge {:width 1000, :margin :auto, :padding "120px 0 120px 0"})}
    (comp-md-block
-    "### Tree Editor\n\nCirru Project's main purpose is to replacing parentheses with moderner tools like graphical editors. I finished creating one and now it's called \"Calcit Editor\". I use it for my daily personal projects including building this page.\n\n* [Calcit Editor](https://github.com/Cirru/calcit-editor) -- main tool of Cirru project, which edits S-expressions and generates Clojure code. It uses a snapshot file called `calcit.edn`.\n* [Calcit Viewer](https://github.com/Cirru/calcit-viewer) -- displays `calcit.edn` with DOM.\n* [Respo Cirru Editor](https://github.com/Cirru/respo-cirru-editor) -- old library to realise S-expressions editing on Web.\n\n### Old Indentation-based Syntax\n\nCirru Indentation Format has been shadowed by the new editor. Old libraries are poorly maintained, but you can still access some of them like Parser and Writer.\n\n* [Cirru Writer](https://github.com/Cirru/writer.clj) -- ClojureScript library to generate Cirru Indentation Format.\n* [Cirru Parser](https://github.com/Cirru/parser.clj) -- ClojureScript library to parse Cirru Indentation Format.\n* [Cirru Indentation Format home page](https://github.com/Cirru/text.cirru.org) -- a list of old resources related to the format.\n\n### Updates\n\n\nYou may find old entries related to Cirru on [Medium](https://medium.com/cirru-project) and [Twitter](https://twitter.com/cirrulang). More information are just spread on my Twitter and Weibo or blogs, you may find them by searching anyway. We may [discuss on Twitter](https://twitter.com/jiyinyiyong).\n"
+    "### Tree Editor\n\nCirru Project's main purpose is to replacing parentheses with moderner tools like graphical editors. I finished creating one and now it's called \"Calcit Editor\". I use it for my daily personal projects including building this page.\n\n* [Calcit Editor](https://github.com/Cirru/calcit-editor) -- main tool of Cirru project, which edits S-expressions and generates Clojure code. It uses a snapshot file called `calcit.edn`.\n* [Calcit Viewer](https://github.com/Cirru/calcit-viewer) -- displays `calcit.edn` with DOM.\n* [Respo Cirru Editor](https://github.com/Cirru/respo-cirru-editor) -- old library to realise S-expressions editing on Web.\n\n### Old Indentation-based Syntax\n\n[Cirru Indentation Format](http://text.cirru.org/) has been shadowed by the new editor. Only a small portion of libraries are maintained, but you can still access some of them like Parser and Writer.\n\n* [Cirru Writer](https://github.com/Cirru/writer.clj) -- ClojureScript library to generate Cirru Indentation Format.\n* [Cirru Parser](https://github.com/Cirru/parser.clj) -- ClojureScript library to parse Cirru Indentation Format.\n* [Cirru Indentation Format home page](https://github.com/Cirru/text.cirru.org) -- a list of old resources related to the format.\n\n### Updates\n\n\nYou may find old entries related to Cirru on [Medium](https://medium.com/cirru-project) and [Twitter](https://twitter.com/cirrulang). More information are just spread on my Twitter and Weibo or blogs, you may find them by searching anyway. We may [discuss on Twitter](https://twitter.com/jiyinyiyong).\n"
     {})))
 
 (defcomp
