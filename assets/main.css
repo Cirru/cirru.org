@@ -2,9 +2,12 @@
 body {
   margin: 0;
   font-display: optional;
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
 }
 
 body * {
+  flex-shrink: 0;
   box-sizing: border-box;
 }
 
@@ -25,7 +28,7 @@ body * {
   background-color: transparent;
 }
 
-::-webkit-resizer{
+::-webkit-resizer {
   background-color:transparent;
 }
 

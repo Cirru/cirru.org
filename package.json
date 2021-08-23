@@ -4,13 +4,6 @@
   "description": "Cirru Home Page",
   "main": "index.js",
   "scripts": {
-    "watch": "shadow-cljs watch client",
-    "build-cdn": "shadow-cljs clj-run build.main/build-cdn",
-    "build": "shadow-cljs clj-run build.main/build",
-    "upload": "node target/upload.js",
-    "up": "yarn build-cdn && yarn upload",
-    "page": "shadow-cljs clj-run build.main/page",
-    "ln": "cd target && rm -f entry && ln -s ../entry"
   },
   "repository": {
     "type": "git",
@@ -19,9 +12,10 @@
   "author": "jiyinyiyong",
   "license": "MIT",
   "devDependencies": {
-    "shadow-cljs": "^2.11.5"
+    "bottom-tip": "^0.1.2",
+    "vite": "^2.5.0"
   },
   "dependencies": {
-    "shortid": "^2.2.16"
+    "@calcit/procs": "^0.4.19"
   }
 }
