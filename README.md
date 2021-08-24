@@ -2,6 +2,8 @@
 
 Introducing Cirru Project. http://cirru.org .
 
+Previous ClojureScript version: https://repo.cirru.org/cirru.org.cljs/ .
+
 ### Components
 
 Clojars packages:
