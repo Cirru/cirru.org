@@ -45,7 +45,7 @@ jobs:
         && git clone https://github.com/Respo/reel.calcit.git
         && git clone https://github.com/Respo/respo-markdown.calcit.git
         && git clone https://github.com/Respo/respo-ui.calcit.git
-        && git clone https://github.com/Cirru/respo-cirru-editor.calcit.git
+        && git clone https://github.com/Cirru/respo-cirru-editor.calcit.git --branch 0.4.1
 
     - name: "compiles to js"
       run: >
