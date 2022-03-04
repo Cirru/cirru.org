@@ -1,9 +1,8 @@
 
 {}
-  :configs $ {} (:reload-fn |app.main/reload!) (:port 6001) (:output |src) (:storage-key |calcit.cirru)
-    :modules $ [] |respo.calcit/ |lilac/ |memof/ |respo-ui.calcit/ |respo-markdown.calcit/ |reel.calcit/ |respo-cirru-editor.calcit/
-    :init-fn |app.main/main!
-    :extension |.cljs
+  :users $ {}
+    |Z6DCCnivu $ {} (:avatar nil) (:name |chen) (:nickname |chen) (:id |Z6DCCnivu) (:theme :star-trail) (:password |d41d8cd98f00b204e9800998ecf8427e)
+    |root $ {} (:avatar nil) (:name |root) (:nickname |root) (:id |root) (:theme :star-trail) (:password |d41d8cd98f00b204e9800998ecf8427e)
   :ir $ {} (:package |app)
     :files $ {}
       |app.comp.candidates $ {}
@@ -1058,6 +1057,10 @@
                             :type :expr
                             :at 1506618943349
                             :by nil
+                          |b $ {} (:type :expr) (:by |Z6DCCnivu) (:at 1646393334438)
+                            :data $ {}
+                              |T $ {} (:type :leaf) (:by |Z6DCCnivu) (:at 1646393339506) (:text |:class-name)
+                              |b $ {} (:type :leaf) (:by |Z6DCCnivu) (:at 1646393346374) (:text "|\"cirru-tile")
                         :type :expr
                         :at 1506618943349
                         :by nil
@@ -1442,6 +1445,10 @@
                         :type :expr
                         :at 1506618943349
                         :by nil
+                      |b $ {} (:type :expr) (:by |Z6DCCnivu) (:at 1646393177255)
+                        :data $ {}
+                          |T $ {} (:type :leaf) (:by |Z6DCCnivu) (:at 1646393178890) (:text |:class-name)
+                          |b $ {} (:type :leaf) (:by |Z6DCCnivu) (:at 1646393187839) (:text "|\"cirru-tile")
                     :type :expr
                     :at 1506618943349
                     :by nil
@@ -3029,6 +3036,8 @@
           :type :expr
           :at 1558163662541
           :by |Z6DCCnivu
-  :users $ {}
-    |Z6DCCnivu $ {} (:avatar nil) (:name |chen) (:nickname |chen) (:id |Z6DCCnivu) (:theme :star-trail) (:password |d41d8cd98f00b204e9800998ecf8427e)
-    |root $ {} (:avatar nil) (:name |root) (:nickname |root) (:id |root) (:theme :star-trail) (:password |d41d8cd98f00b204e9800998ecf8427e)
+  :configs $ {} (:reload-fn |app.main/reload!) (:port 6001) (:output |src) (:storage-key |calcit.cirru)
+    :modules $ [] |respo.calcit/ |lilac/ |memof/ |respo-ui.calcit/ |respo-markdown.calcit/ |reel.calcit/ |respo-cirru-editor.calcit/
+    :init-fn |app.main/main!
+    :extension |.cljs
+  :entries $ {}

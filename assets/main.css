@@ -68,3 +68,8 @@ body * {
   font-weight: 300;
   margin: 64px 0px 24px;
 }
+
+.cirru-tile {
+  background-image: url(./cirru-tile.png);
+  background-size: 100px;
+}
