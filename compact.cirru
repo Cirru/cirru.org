@@ -3,6 +3,7 @@
   :configs $ {} (:init-fn |app.main/main!) (:reload-fn |app.main/reload!)
     :modules $ [] |respo.calcit/ |lilac/ |memof/ |respo-ui.calcit/ |respo-markdown.calcit/ |reel.calcit/ |respo-cirru-editor.calcit/
     :version nil
+  :entries $ {}
   :files $ {}
     |app.comp.candidates $ {}
       :ns $ quote
@@ -112,7 +113,8 @@
                 states $ :states store
                 snapshot $ :snapshot store
               div
-                {} $ :style (merge ui/global)
+                {} (:class-name "\"cirru-tile")
+                  :style $ merge ui/global
                 render-banner
                 div
                   {} $ :style
@@ -145,7 +147,8 @@
             :text-decoration |none
         |render-banner $ quote
           defn render-banner () $ div
-            {} $ :style (merge ui/center style-banner)
+            {} (:class-name "\"cirru-tile")
+              :style $ merge ui/center style-banner
             div
               {} $ :style (merge typeset/title style-banner-text)
               <> "|Cirru: modern interface for S-expressions"
