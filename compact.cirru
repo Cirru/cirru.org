@@ -46,7 +46,14 @@
                     {} $ :padding 16
                   comp-md-block "\"Cirru project is now concentrated on [Calcit Editor](https://github.com/calcit-lang/editor), you can install via:\n\n```bash\nnpm install -g @calcit/editor\n```" $ {} (:text-align :center)
                 comp-explorer states store snapshot
+                =< nil 80
+                div
+                  {} $ :class-name css-video-section
+                  <> "\"Review video of Cirru(voice in Chinese)"
+                  div $ {} (:innerHTML "\"<iframe width=\"720\" height=\"405\" frameborder=\"0\" src=\"https://www.ixigua.com/iframe/7092697111279763975?autoplay=0\" referrerpolicy=\"unsafe-url\" allowfullscreen></iframe>")
+                =< nil 80
                 render-code-intro
+                =< nil 200
         |comp-explorer $ quote
           defcomp comp-explorer (states store snapshot)
             div
@@ -94,6 +101,11 @@
                     {} (:font-family "|Source Code Pro, Menlo, Consolas, monospace") (:width |100%) (:white-space :pre)
                   :value $ :code store
                   :disabled true
+        |css-video-section $ quote
+          defstyle css-video-section $ {}
+            "\"$0" $ {} (:width 1000) (:margin :auto) (:padding "|0px 0 0px 0")
+            "\"$0 iframe" $ {}
+              :border $ str "\"1px solid " (hsl 0 0 86)
         |on-command $ quote
           defn on-command (snapshot dispatch! e) (println |command e)
             let
@@ -122,7 +134,7 @@
         |render-code-intro $ quote
           defn render-code-intro () $ div
             {} $ :style
-              merge $ {} (:width 1000) (:margin :auto) (:padding "|120px 0 120px 0")
+              merge $ {} (:width 1000) (:margin :auto)
             comp-md-block "|### Tree Editor\n\nCirru Project's main purpose is to replacing parentheses with moderner tools like graphical editors. I finished creating one and now it's called \"Calcit Editor\". I use it for my daily personal projects including building this page.\n\n* [Calcit Editor](https://github.com/calcit-lang/editor) -- main tool of Cirru and Calcit, which edits S-expressions and `compact.cirru` for Calcit language.\n* [Calcit Viewer](https://github.com/Cirru/calcit-viewer.calcit) -- displays `calcit.cirru` with DOM.\n* [Respo Cirru Editor](https://github.com/Cirru/respo-cirru-editor) -- old library to realise S-expressions editing on Web.\n\nThere's also a canvas-based layout experimental editor:\n\n* [Hovenia Editor](https://github.com/Cirru/hovenia-editor)\n\n### Old Indentation-based Syntax\n\n[Cirru Indentation Format](http://text.cirru.org/) has been shadowed by the new editor. Only a small portion of libraries are maintained, but you can still access some of them like Parser and Writer.\n\n* [Cirru Writer](https://github.com/Cirru/writer.clj) -- ClojureScript library to generate Cirru Indentation Format.\n* [Cirru Parser](https://github.com/Cirru/parser.clj) -- ClojureScript library to parse Cirru Indentation Format.\n* [Cirru Indentation Format home page](https://github.com/Cirru/text.cirru.org) -- a list of old resources related to the format.\n\n### Updates\n\nYou may find old entries related to Cirru on [Medium](https://medium.com/cirru-project) and [Twitter](https://twitter.com/cirrulang). More information are just spread on my Twitter and Weibo or blogs, you may find them by searching anyway. We may [discuss on Twitter](https://twitter.com/tiyecirru).\n" $ {}
         |style-banner $ quote
           def style-banner $ {} (:height 320)
@@ -157,10 +169,11 @@
           [] app.comp.candidates :refer $ [] comp-candidates
           [] respo-md.comp.md :refer $ [] comp-md-block comp-md
           app.config :as config
+          respo.css :refer $ defstyle
     |app.config $ {}
       :defs $ {}
         |dev? $ quote
-          def dev? $ = "\"dev" (get-env "\"mode")
+          def dev? $ = "\"dev" (get-env "\"mode" "\"release")
         |key-s $ quote (def key-s 83)
         |site $ quote
           def site $ {} (:dev-ui "\"http://localhost:8100/main-fonts.css") (:release-ui "\"http://cdn.tiye.me/favored-fonts/main-fonts.css") (:cdn-url "\"http://cdn.tiye.me/cirru-org/") (:cdn-folder "\"tiye.me:cdn/cirru-org") (:title "\"Cirru: an editor for AST") (:icon "\"http://cdn.tiye.me/logo/cirru.png") (:storage-key "\"cirru-org") (:upload-folder "\"tiye.me:repo/Cirru/cirru.org/")

@@ -271,9 +271,48 @@
                           |j $ {} (:at 1521439376909) (:by |root) (:text |states) (:type :leaf)
                           |n $ {} (:at 1521439405651) (:by |root) (:text |store) (:type :leaf)
                           |r $ {} (:at 1521439380293) (:by |root) (:text |snapshot) (:type :leaf)
+                      |vT $ {} (:at 1651401348704) (:by |Z6DCCnivu) (:type :expr)
+                        :data $ {}
+                          |T $ {} (:at 1651401349231) (:by |Z6DCCnivu) (:text |=<) (:type :leaf)
+                          |b $ {} (:at 1651401351814) (:by |Z6DCCnivu) (:text |nil) (:type :leaf)
+                          |h $ {} (:at 1651401401854) (:by |Z6DCCnivu) (:text |80) (:type :leaf)
+                      |w $ {} (:at 1651401030684) (:by |Z6DCCnivu) (:type :expr)
+                        :data $ {}
+                          |T $ {} (:at 1651401030684) (:by |Z6DCCnivu) (:text |div) (:type :leaf)
+                          |b $ {} (:at 1651401030684) (:by |Z6DCCnivu) (:type :expr)
+                            :data $ {}
+                              |T $ {} (:at 1651401030684) (:by |Z6DCCnivu) (:text |{}) (:type :leaf)
+                              |b $ {} (:at 1651401030684) (:by |Z6DCCnivu) (:type :expr)
+                                :data $ {}
+                                  |T $ {} (:at 1651401267249) (:by |Z6DCCnivu) (:text |:class-name) (:type :leaf)
+                                  |b $ {} (:at 1651401272554) (:by |Z6DCCnivu) (:text |css-video-section) (:type :leaf)
+                          |h $ {} (:at 1651401034041) (:by |Z6DCCnivu) (:type :expr)
+                            :data $ {}
+                              |T $ {} (:at 1651401034345) (:by |Z6DCCnivu) (:text |<>) (:type :leaf)
+                              |b $ {} (:at 1651401173353) (:by |Z6DCCnivu) (:text "|\"Review video of Cirru(voice in Chinese)") (:type :leaf)
+                          |l $ {} (:at 1651401042600) (:by |Z6DCCnivu) (:type :expr)
+                            :data $ {}
+                              |T $ {} (:at 1651401042997) (:by |Z6DCCnivu) (:text |div) (:type :leaf)
+                              |b $ {} (:at 1651401043304) (:by |Z6DCCnivu) (:type :expr)
+                                :data $ {}
+                                  |T $ {} (:at 1651401044296) (:by |Z6DCCnivu) (:text |{}) (:type :leaf)
+                                  |b $ {} (:at 1651401044588) (:by |Z6DCCnivu) (:type :expr)
+                                    :data $ {}
+                                      |T $ {} (:at 1651401046764) (:by |Z6DCCnivu) (:text |:innerHTML) (:type :leaf)
+                                      |b $ {} (:at 1651401052348) (:by |Z6DCCnivu) (:text "|\"<iframe width=\"720\" height=\"405\" frameborder=\"0\" src=\"https://www.ixigua.com/iframe/7092697111279763975?autoplay=0\" referrerpolicy=\"unsafe-url\" allowfullscreen></iframe>") (:type :leaf)
+                      |wT $ {} (:at 1651401384076) (:by |Z6DCCnivu) (:type :expr)
+                        :data $ {}
+                          |T $ {} (:at 1651401384076) (:by |Z6DCCnivu) (:text |=<) (:type :leaf)
+                          |b $ {} (:at 1651401384076) (:by |Z6DCCnivu) (:text |nil) (:type :leaf)
+                          |h $ {} (:at 1651401415154) (:by |Z6DCCnivu) (:text |80) (:type :leaf)
                       |x $ {} (:at 1506618943349) (:by nil) (:type :expr)
                         :data $ {}
                           |r $ {} (:at 1506618943349) (:by |root) (:text |render-code-intro) (:type :leaf)
+                      |y $ {} (:at 1651401384959) (:by |Z6DCCnivu) (:type :expr)
+                        :data $ {}
+                          |T $ {} (:at 1651401384959) (:by |Z6DCCnivu) (:text |=<) (:type :leaf)
+                          |b $ {} (:at 1651401384959) (:by |Z6DCCnivu) (:text |nil) (:type :leaf)
+                          |h $ {} (:at 1651401389075) (:by |Z6DCCnivu) (:text |200) (:type :leaf)
           |comp-explorer $ {} (:at 1521439315903) (:by |root) (:type :expr)
             :data $ {}
               |T $ {} (:at 1521439390296) (:by |root) (:text |defcomp) (:type :leaf)
@@ -589,6 +628,50 @@
                                 :data $ {}
                                   |T $ {} (:at 1521439315903) (:by |root) (:text |:disabled) (:type :leaf)
                                   |j $ {} (:at 1521439315903) (:by |root) (:text |true) (:type :leaf)
+          |css-video-section $ {} (:at 1651401272812) (:by |Z6DCCnivu) (:type :expr)
+            :data $ {}
+              |T $ {} (:at 1651401274416) (:by |Z6DCCnivu) (:text |defstyle) (:type :leaf)
+              |b $ {} (:at 1651401272812) (:by |Z6DCCnivu) (:text |css-video-section) (:type :leaf)
+              |h $ {} (:at 1651401275827) (:by |Z6DCCnivu) (:type :expr)
+                :data $ {}
+                  |D $ {} (:at 1651401276341) (:by |Z6DCCnivu) (:text |{}) (:type :leaf)
+                  |T $ {} (:at 1651401277134) (:by |Z6DCCnivu) (:type :expr)
+                    :data $ {}
+                      |D $ {} (:at 1651401279042) (:by |Z6DCCnivu) (:text "|\"$0") (:type :leaf)
+                      |T $ {} (:at 1651401275254) (:by |Z6DCCnivu) (:type :expr)
+                        :data $ {}
+                          |T $ {} (:at 1651401275254) (:by |Z6DCCnivu) (:text |{}) (:type :leaf)
+                          |b $ {} (:at 1651401275254) (:by |Z6DCCnivu) (:type :expr)
+                            :data $ {}
+                              |T $ {} (:at 1651401275254) (:by |Z6DCCnivu) (:text |:width) (:type :leaf)
+                              |b $ {} (:at 1651401275254) (:by |Z6DCCnivu) (:text |1000) (:type :leaf)
+                          |h $ {} (:at 1651401275254) (:by |Z6DCCnivu) (:type :expr)
+                            :data $ {}
+                              |T $ {} (:at 1651401275254) (:by |Z6DCCnivu) (:text |:margin) (:type :leaf)
+                              |b $ {} (:at 1651401275254) (:by |Z6DCCnivu) (:text |:auto) (:type :leaf)
+                          |l $ {} (:at 1651401275254) (:by |Z6DCCnivu) (:type :expr)
+                            :data $ {}
+                              |T $ {} (:at 1651401275254) (:by |Z6DCCnivu) (:text |:padding) (:type :leaf)
+                              |b $ {} (:at 1651401344084) (:by |Z6DCCnivu) (:text "||0px 0 0px 0") (:type :leaf)
+                  |b $ {} (:at 1651401294810) (:by |Z6DCCnivu) (:type :expr)
+                    :data $ {}
+                      |T $ {} (:at 1651401301271) (:by |Z6DCCnivu) (:text "|\"$0 iframe") (:type :leaf)
+                      |b $ {} (:at 1651401302288) (:by |Z6DCCnivu) (:type :expr)
+                        :data $ {}
+                          |T $ {} (:at 1651401303359) (:by |Z6DCCnivu) (:text |{}) (:type :leaf)
+                          |b $ {} (:at 1651401303626) (:by |Z6DCCnivu) (:type :expr)
+                            :data $ {}
+                              |T $ {} (:at 1651401307529) (:by |Z6DCCnivu) (:text |:border) (:type :leaf)
+                              |b $ {} (:at 1651401307949) (:by |Z6DCCnivu) (:type :expr)
+                                :data $ {}
+                                  |T $ {} (:at 1651401308426) (:by |Z6DCCnivu) (:text |str) (:type :leaf)
+                                  |b $ {} (:at 1651401310958) (:by |Z6DCCnivu) (:text "|\"1px solid ") (:type :leaf)
+                                  |h $ {} (:at 1651401311853) (:by |Z6DCCnivu) (:type :expr)
+                                    :data $ {}
+                                      |T $ {} (:at 1651401312258) (:by |Z6DCCnivu) (:text |hsl) (:type :leaf)
+                                      |b $ {} (:at 1651401312668) (:by |Z6DCCnivu) (:text |0) (:type :leaf)
+                                      |h $ {} (:at 1651401312934) (:by |Z6DCCnivu) (:text |0) (:type :leaf)
+                                      |l $ {} (:at 1651401323020) (:by |Z6DCCnivu) (:text |86) (:type :leaf)
           |on-command $ {} (:at 1506618943349) (:by nil) (:type :expr)
             :data $ {}
               |T $ {} (:at 1506618943349) (:by |root) (:text |defn) (:type :leaf)
@@ -820,10 +903,6 @@
                                     :data $ {}
                                       |T $ {} (:at 1521477021416) (:by |root) (:text |:margin) (:type :leaf)
                                       |j $ {} (:at 1521477023073) (:by |root) (:text |:auto) (:type :leaf)
-                                  |v $ {} (:at 1521477030152) (:by |root) (:type :expr)
-                                    :data $ {}
-                                      |T $ {} (:at 1521477031304) (:by |root) (:text |:padding) (:type :leaf)
-                                      |j $ {} (:at 1521477048801) (:by |root) (:text "||120px 0 120px 0") (:type :leaf)
                   |q $ {} (:at 1521476015955) (:by |root) (:type :expr)
                     :data $ {}
                       |T $ {} (:at 1521476020854) (:by |root) (:text |comp-md-block) (:type :leaf)
@@ -1055,6 +1134,13 @@
                     |T $ {} (:at 1629746701914) (:by |Z6DCCnivu) (:text |app.config) (:type :leaf)
                     |j $ {} (:at 1629746707369) (:by |Z6DCCnivu) (:text |:as) (:type :leaf)
                     |r $ {} (:at 1629746706166) (:by |Z6DCCnivu) (:text |config) (:type :leaf)
+                |z $ {} (:at 1651401283938) (:by |Z6DCCnivu) (:type :expr)
+                  :data $ {}
+                    |T $ {} (:at 1651401287185) (:by |Z6DCCnivu) (:text |respo.css) (:type :leaf)
+                    |b $ {} (:at 1651401287987) (:by |Z6DCCnivu) (:text |:refer) (:type :leaf)
+                    |h $ {} (:at 1651401288204) (:by |Z6DCCnivu) (:type :expr)
+                      :data $ {}
+                        |T $ {} (:at 1651401289733) (:by |Z6DCCnivu) (:text |defstyle) (:type :leaf)
         :proc $ {} (:at 1506618943349) (:by nil) (:type :expr)
           :data $ {}
       |app.config $ {}
@@ -1071,6 +1157,7 @@
                     :data $ {}
                       |T $ {} (:at 1629746659096) (:by |Z6DCCnivu) (:text |get-env) (:type :leaf)
                       |j $ {} (:at 1629746660389) (:by |Z6DCCnivu) (:text "|\"mode") (:type :leaf)
+                      |n $ {} (:at 1651401121734) (:by |Z6DCCnivu) (:text "|\"release") (:type :leaf)
           |key-s $ {} (:at 1629746414218) (:by |Z6DCCnivu) (:type :expr)
             :data $ {}
               |T $ {} (:at 1629746414218) (:by |Z6DCCnivu) (:text |def) (:type :leaf)
