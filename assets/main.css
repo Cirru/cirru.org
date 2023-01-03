@@ -49,12 +49,19 @@ body * {
   display: inline-block;
   border-radius: 4px;
   line-height: 20px;
+  font-family: Source Code Pro, Menlo, Roboto Mono, monospace;
+}
+.md-code-block code {
+  font-family: Source Code Pro, Menlo, Roboto Mono, monospace;
 }
 
 .md-p a {
   text-decoration: none;
   color: #9a9aff;
   font-weight: 500;
+}
+.md-p a:hover {
+  color: #aaaaff;
 }
 
 .md-p li {

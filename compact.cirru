@@ -8,8 +8,8 @@
       :defs $ {}
         |comp-candidates $ quote
           defcomp comp-candidates () $ list->
-            {} $ :style
-              merge ui/row $ {} (:height 48)
+            {} (:class-name css/row)
+              :style $ {} (:height 48)
                 :color $ hsl 230 80 80 0.8
                 :font-family "|Josefin Sans, serif-sans"
             -> examples (.to-list)
@@ -21,14 +21,15 @@
                   <> $ turn-string alias
       :ns $ quote
         ns app.comp.candidates $ :require
-          [] respo-ui.core :refer $ [] hsl
-          [] respo.core :refer $ [] defcomp list-> <> div span a textarea button
-          [] respo.comp.space :refer $ [] =<
-          [] app.style.widget :as widget
-          [] app.style.typeset :as typeset
-          [] respo-ui.core :as ui
-          [] keycode.core :as keycode
-          [] app.code :as code
+          respo-ui.core :refer $ hsl
+          respo-ui.css :as css
+          respo.core :refer $ defcomp list-> <> div span a textarea button
+          respo.comp.space :refer $ =<
+          app.style.widget :as widget
+          app.style.typeset :as typeset
+          respo-ui.core :as ui
+          keycode.core :as keycode
+          app.code :as code
           app.schema :refer $ examples
     |app.comp.container $ {}
       :defs $ {}
@@ -38,8 +39,7 @@
                 states $ :states store
                 snapshot $ :snapshot store
               div
-                {} (:class-name "\"cirru-tile")
-                  :style $ merge ui/global
+                {} $ :class-name (str-spaced css/global "\"cirru-tile")
                 render-banner
                 div
                   {} $ :style
@@ -57,22 +57,24 @@
         |comp-explorer $ quote
           defcomp comp-explorer (states store snapshot)
             div
-              {} $ :style (merge ui/center ui/row style-theme)
+              {}
+                :class-name $ str-spaced css/row
+                :style style-theme
               div
-                {} $ :style (merge ui/flex ui/column)
+                {} $ :class-name (str-spaced css/flex css/column)
                 comp-candidates
                 comp-editor states snapshot on-update! on-command
               ; div $ {}
                 :style $ {} (:width 1)
                   :background-color $ hsl 0 0 100 0.3
               div
-                {} $ :style
-                  merge ui/column $ {} (:width |38.2%) (:background-color :white)
+                {} (:class-name css/column)
+                  :style $ {} (:width |38.2%) (:background-color :white)
                 div
                   {} $ :style
                     {} $ :padding 8
                   button
-                    {} (:style ui/button)
+                    {} (:class-name css/button)
                       :on-click $ fn (e d!)
                         d! :write-code $ js/JSON.stringify
                           to-js-data $ :tree snapshot
@@ -80,27 +82,34 @@
                     <> |JSON
                   =< 8 nil
                   button
-                    {} (:style ui/button)
+                    {} (:class-name css/button)
                       :on-click $ fn (e d!)
                         d! :write-code $ format-cirru-edn (:tree snapshot)
                     <> |EDN
                   =< 8 nil
                   button
-                    {} (:style ui/button)
+                    {} (:class-name css/button)
                       :on-click $ fn (e d!)
                         d! :write-code $ format-cirru (:tree snapshot)
                     <> "|Indentation Syntax"
                   =< 8 nil
                   button
-                    {} (:style ui/button)
+                    {} (:class-name css/button)
                       :on-click $ fn (e d!)
                         d! :write-code $ format-to-lisp (:tree snapshot)
                     <> |S-Expression
                 textarea $ {}
-                  :style $ merge ui/textarea ui/flex
-                    {} (:font-family "|Source Code Pro, Menlo, Consolas, monospace") (:width |100%) (:white-space :pre)
+                  :class-name $ str-spaced css/textarea css/flex
+                  :style $ {} (:font-family "|Source Code Pro, Menlo, Consolas, monospace") (:width |100%) (:white-space :pre)
                   :value $ :code store
                   :disabled true
+        |css-link $ quote
+          defstyle css-link $ {}
+            "\"$0" $ {} (:font-size |20px)
+              :color $ hsl 200 90 92
+              :font-weight |lighter
+              :text-decoration |none
+            "\"$0:hover" $ {} (:color :white)
         |css-video-section $ quote
           defstyle css-video-section $ {}
             "\"$0" $ {} (:width 1000) (:margin :auto) (:padding "|0px 0 0px 0")
@@ -120,17 +129,21 @@
           defn on-update! (snapshot dispatch!) (dispatch! :save snapshot) (focus!)
         |render-banner $ quote
           defn render-banner () $ div
-            {} (:class-name "\"cirru-tile")
-              :style $ merge ui/center style-banner
+            {}
+              :class-name $ str-spaced css/center "\"cirru-tile"
+              :style style-banner
             div
               {} $ :style (merge typeset/title style-banner-text)
               <> "|Cirru: modern interface for S-expressions"
             div ({})
-              a $ {} (:href |https://github.com/Cirru/respo-cirru-editor/wiki/Keyboard-Shortcuts) (:inner-text "|Keyboard Shortcuts") (:target |_blank) (:style style-link)
+              a $ {} (:href |https://github.com/Cirru/respo-cirru-editor/wiki/Keyboard-Shortcuts) (:inner-text "|Keyboard Shortcuts") (:target |_blank)
+                :class-name $ str-spaced css/link css-link
               =< 80 nil
-              a $ {} (:href |https://www.youtube.com/playlist?list=PLyvBXLgHYHy1AIK6i5uw3_H5BIUP4CQx6) (:inner-text |Videos) (:target |_blank) (:style style-link)
+              a $ {} (:href |https://www.youtube.com/playlist?list=PLyvBXLgHYHy1AIK6i5uw3_H5BIUP4CQx6) (:inner-text |Videos) (:target |_blank)
+                :class-name $ str-spaced css/link css-link
               =< 80 nil
-              a $ {} (:href |http://text.cirru.org) (:inner-text "|Text syntax") (:target |_blank) (:style style-link)
+              a $ {} (:href |http://text.cirru.org) (:inner-text "|Text syntax") (:target |_blank)
+                :class-name $ str-spaced css/link css-link
         |render-code-intro $ quote
           defn render-code-intro () $ div
             {} $ :style
@@ -144,11 +157,6 @@
           def style-banner-text $ {} (:font-size |64px)
         |style-content $ quote
           def style-content $ {} (:font-size |16px)
-        |style-link $ quote
-          def style-link $ {} (:font-size |20px)
-            :color $ hsl 0 0 100
-            :font-weight |lighter
-            :text-decoration |none
         |style-project $ quote
           def style-project $ {}
             :color $ hsl 200 80 60
@@ -157,17 +165,18 @@
             :background-color $ hsl 300 80 10
       :ns $ quote
         ns app.comp.container $ :require
-          [] respo-ui.core :refer $ [] hsl
-          [] respo.core :refer $ [] defcomp <> div span a textarea button
-          [] respo.comp.space :refer $ [] =<
-          [] app.style.widget :as widget
-          [] app.style.typeset :as typeset
-          [] respo-ui.core :as ui
-          [] cirru-editor.comp.editor :refer $ [] comp-editor
-          [] cirru-editor.util.dom :refer $ [] focus!
-          [] fipp.edn :refer $ [] pprint
-          [] app.comp.candidates :refer $ [] comp-candidates
-          [] respo-md.comp.md :refer $ [] comp-md-block comp-md
+          respo-ui.core :refer $ hsl
+          respo-ui.css :as css
+          respo.core :refer $ defcomp <> div span a textarea button
+          respo.comp.space :refer $ =<
+          app.style.widget :as widget
+          app.style.typeset :as typeset
+          respo-ui.core :as ui
+          cirru-editor.comp.editor :refer $ comp-editor
+          cirru-editor.util.dom :refer $ focus!
+          fipp.edn :refer $ pprint
+          app.comp.candidates :refer $ comp-candidates
+          respo-md.comp.md :refer $ comp-md-block comp-md
           app.config :as config
           respo.css :refer $ defstyle
     |app.config $ {}
@@ -194,13 +203,14 @@
         |main! $ quote
           defn main! ()
             println "\"Running mode:" $ if config/dev? "\"dev" "\"release"
+            if config/dev? $ load-console-formatter!
             render-app!
             add-watch *store :changes $ fn (s p) (render-app!)
-            .addEventListener js/window |keydown $ fn (event)
+            js/window.addEventListener |keydown $ fn (event)
               if
                 and (.-metaKey event)
                   = config/key-s $ .-keyCode event
-                do (println |Build) (.preventDefault event)
+                do (.!preventDefault event)
                   dispatch! :write-code $ format-to-lisp
                     :tree $ :snapshot @*store
             println "\"App started!"
@@ -249,7 +259,7 @@
             read-file $ str "\"examples/" path
         |snapshot $ quote
           def snapshot $ {}
-            :tree $ parse-cirru (inline "\"component.cirru")
+            :tree $ parse-cirru-list (inline "\"component.cirru")
             :focus $ []
             :clipboard $ []
         |store $ quote
