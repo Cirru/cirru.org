@@ -96,7 +96,8 @@
                   button
                     {} (:class-name css/button)
                       :on-click $ fn (e d!)
-                        d! :write-code $ format-to-lisp (:tree snapshot)
+                        d! :write-code $ -> (:tree snapshot) (map list-to-code) (map format-to-lisp)
+                          .join-str $ str &newline &newline
                     <> |S-Expression
                 textarea $ {}
                   :class-name $ str-spaced css/textarea css/flex
@@ -115,6 +116,14 @@
             "\"$0" $ {} (:width 1000) (:margin :auto) (:padding "|0px 0 0px 0")
             "\"$0 iframe" $ {}
               :border $ str "\"1px solid " (hsl 0 0 86)
+        |list-to-code $ quote
+          defn list-to-code (xs)
+            if (string? xs)
+              if
+                or (.starts-with? xs "\"|") (.starts-with? xs "\"\"")
+                .slice xs 1
+                turn-symbol xs
+              map xs list-to-code
         |on-command $ quote
           defn on-command (snapshot dispatch! e) (println |command e)
             let
