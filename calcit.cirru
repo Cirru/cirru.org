@@ -1559,7 +1559,7 @@
                       |T $ {} (:at 1511973169658) (:by |root) (:text |:case) (:type :leaf)
                       |j $ {} (:at 1629746180870) (:by |Z6DCCnivu) (:type :expr)
                         :data $ {}
-                          |T $ {} (:at 1629746188718) (:by |Z6DCCnivu) (:text |parse-cirru) (:type :leaf)
+                          |T $ {} (:at 1629746188718) (:by |Z6DCCnivu) (:text |parse-cirru-list) (:type :leaf)
                           |j $ {} (:at 1629746191417) (:by |Z6DCCnivu) (:type :expr)
                             :data $ {}
                               |T $ {} (:at 1629746192241) (:by |Z6DCCnivu) (:text |inline) (:type :leaf)
@@ -1569,7 +1569,7 @@
                       |T $ {} (:at 1511973191128) (:by |root) (:text |:comment) (:type :leaf)
                       |j $ {} (:at 1629746223164) (:by |Z6DCCnivu) (:type :expr)
                         :data $ {}
-                          |T $ {} (:at 1629746223164) (:by |Z6DCCnivu) (:text |parse-cirru) (:type :leaf)
+                          |T $ {} (:at 1629746223164) (:by |Z6DCCnivu) (:text |parse-cirru-list) (:type :leaf)
                           |j $ {} (:at 1629746223164) (:by |Z6DCCnivu) (:type :expr)
                             :data $ {}
                               |T $ {} (:at 1629746223164) (:by |Z6DCCnivu) (:text |inline) (:type :leaf)
@@ -1579,7 +1579,7 @@
                       |T $ {} (:at 1511973196810) (:by |root) (:text |:cond) (:type :leaf)
                       |j $ {} (:at 1629746228212) (:by |Z6DCCnivu) (:type :expr)
                         :data $ {}
-                          |T $ {} (:at 1629746228212) (:by |Z6DCCnivu) (:text |parse-cirru) (:type :leaf)
+                          |T $ {} (:at 1629746228212) (:by |Z6DCCnivu) (:text |parse-cirru-list) (:type :leaf)
                           |j $ {} (:at 1629746228212) (:by |Z6DCCnivu) (:type :expr)
                             :data $ {}
                               |T $ {} (:at 1629746228212) (:by |Z6DCCnivu) (:text |inline) (:type :leaf)
@@ -1589,7 +1589,7 @@
                       |T $ {} (:at 1511973201462) (:by |root) (:text |:def) (:type :leaf)
                       |j $ {} (:at 1629746233237) (:by |Z6DCCnivu) (:type :expr)
                         :data $ {}
-                          |T $ {} (:at 1629746233237) (:by |Z6DCCnivu) (:text |parse-cirru) (:type :leaf)
+                          |T $ {} (:at 1629746233237) (:by |Z6DCCnivu) (:text |parse-cirru-list) (:type :leaf)
                           |j $ {} (:at 1629746233237) (:by |Z6DCCnivu) (:type :expr)
                             :data $ {}
                               |T $ {} (:at 1629746233237) (:by |Z6DCCnivu) (:text |inline) (:type :leaf)
@@ -1599,7 +1599,7 @@
                       |T $ {} (:at 1511973205753) (:by |root) (:text |:doseq) (:type :leaf)
                       |j $ {} (:at 1629746238287) (:by |Z6DCCnivu) (:type :expr)
                         :data $ {}
-                          |T $ {} (:at 1629746238287) (:by |Z6DCCnivu) (:text |parse-cirru) (:type :leaf)
+                          |T $ {} (:at 1629746238287) (:by |Z6DCCnivu) (:text |parse-cirru-list) (:type :leaf)
                           |j $ {} (:at 1629746238287) (:by |Z6DCCnivu) (:type :expr)
                             :data $ {}
                               |T $ {} (:at 1629746238287) (:by |Z6DCCnivu) (:text |inline) (:type :leaf)
@@ -1609,7 +1609,7 @@
                       |T $ {} (:at 1511973213102) (:by |root) (:text |:fn*) (:type :leaf)
                       |j $ {} (:at 1629746245362) (:by |Z6DCCnivu) (:type :expr)
                         :data $ {}
-                          |T $ {} (:at 1629746245362) (:by |Z6DCCnivu) (:text |parse-cirru) (:type :leaf)
+                          |T $ {} (:at 1629746245362) (:by |Z6DCCnivu) (:text |parse-cirru-list) (:type :leaf)
                           |j $ {} (:at 1629746245362) (:by |Z6DCCnivu) (:type :expr)
                             :data $ {}
                               |T $ {} (:at 1629746245362) (:by |Z6DCCnivu) (:text |inline) (:type :leaf)
@@ -1619,7 +1619,7 @@
                       |T $ {} (:at 1511973222727) (:by |root) (:text |:fn) (:type :leaf)
                       |j $ {} (:at 1629746253172) (:by |Z6DCCnivu) (:type :expr)
                         :data $ {}
-                          |T $ {} (:at 1629746253172) (:by |Z6DCCnivu) (:text |parse-cirru) (:type :leaf)
+                          |T $ {} (:at 1629746253172) (:by |Z6DCCnivu) (:text |parse-cirru-list) (:type :leaf)
                           |j $ {} (:at 1629746253172) (:by |Z6DCCnivu) (:type :expr)
                             :data $ {}
                               |T $ {} (:at 1629746253172) (:by |Z6DCCnivu) (:text |inline) (:type :leaf)
@@ -1629,7 +1629,7 @@
                       |T $ {} (:at 1511973226806) (:by |root) (:text |:let) (:type :leaf)
                       |j $ {} (:at 1629746256704) (:by |Z6DCCnivu) (:type :expr)
                         :data $ {}
-                          |T $ {} (:at 1629746256704) (:by |Z6DCCnivu) (:text |parse-cirru) (:type :leaf)
+                          |T $ {} (:at 1629746256704) (:by |Z6DCCnivu) (:text |parse-cirru-list) (:type :leaf)
                           |j $ {} (:at 1629746256704) (:by |Z6DCCnivu) (:type :expr)
                             :data $ {}
                               |T $ {} (:at 1629746256704) (:by |Z6DCCnivu) (:text |inline) (:type :leaf)
@@ -1639,7 +1639,7 @@
                       |T $ {} (:at 1511973232045) (:by |root) (:text |:loop) (:type :leaf)
                       |j $ {} (:at 1629746263093) (:by |Z6DCCnivu) (:type :expr)
                         :data $ {}
-                          |T $ {} (:at 1629746263093) (:by |Z6DCCnivu) (:text |parse-cirru) (:type :leaf)
+                          |T $ {} (:at 1629746263093) (:by |Z6DCCnivu) (:text |parse-cirru-list) (:type :leaf)
                           |j $ {} (:at 1629746263093) (:by |Z6DCCnivu) (:type :expr)
                             :data $ {}
                               |T $ {} (:at 1629746263093) (:by |Z6DCCnivu) (:text |inline) (:type :leaf)
@@ -1649,7 +1649,7 @@
                       |T $ {} (:at 1511973239982) (:by |root) (:text |:map) (:type :leaf)
                       |j $ {} (:at 1629746266764) (:by |Z6DCCnivu) (:type :expr)
                         :data $ {}
-                          |T $ {} (:at 1629746266764) (:by |Z6DCCnivu) (:text |parse-cirru) (:type :leaf)
+                          |T $ {} (:at 1629746266764) (:by |Z6DCCnivu) (:text |parse-cirru-list) (:type :leaf)
                           |j $ {} (:at 1629746266764) (:by |Z6DCCnivu) (:type :expr)
                             :data $ {}
                               |T $ {} (:at 1629746266764) (:by |Z6DCCnivu) (:text |inline) (:type :leaf)
@@ -1659,7 +1659,7 @@
                       |T $ {} (:at 1511973244655) (:by |root) (:text |:namespace) (:type :leaf)
                       |j $ {} (:at 1629746270995) (:by |Z6DCCnivu) (:type :expr)
                         :data $ {}
-                          |T $ {} (:at 1629746270995) (:by |Z6DCCnivu) (:text |parse-cirru) (:type :leaf)
+                          |T $ {} (:at 1629746270995) (:by |Z6DCCnivu) (:text |parse-cirru-list) (:type :leaf)
                           |j $ {} (:at 1629746270995) (:by |Z6DCCnivu) (:type :expr)
                             :data $ {}
                               |T $ {} (:at 1629746270995) (:by |Z6DCCnivu) (:text |inline) (:type :leaf)
@@ -1669,7 +1669,7 @@
                       |T $ {} (:at 1511973252381) (:by |root) (:text |:vector) (:type :leaf)
                       |j $ {} (:at 1629746275176) (:by |Z6DCCnivu) (:type :expr)
                         :data $ {}
-                          |T $ {} (:at 1629746275176) (:by |Z6DCCnivu) (:text |parse-cirru) (:type :leaf)
+                          |T $ {} (:at 1629746275176) (:by |Z6DCCnivu) (:text |parse-cirru-list) (:type :leaf)
                           |j $ {} (:at 1629746275176) (:by |Z6DCCnivu) (:type :expr)
                             :data $ {}
                               |T $ {} (:at 1629746275176) (:by |Z6DCCnivu) (:text |inline) (:type :leaf)
@@ -1679,7 +1679,7 @@
                       |T $ {} (:at 1511973258381) (:by |root) (:text |:component) (:type :leaf)
                       |j $ {} (:at 1629746278565) (:by |Z6DCCnivu) (:type :expr)
                         :data $ {}
-                          |T $ {} (:at 1629746278565) (:by |Z6DCCnivu) (:text |parse-cirru) (:type :leaf)
+                          |T $ {} (:at 1629746278565) (:by |Z6DCCnivu) (:text |parse-cirru-list) (:type :leaf)
                           |j $ {} (:at 1629746278565) (:by |Z6DCCnivu) (:type :expr)
                             :data $ {}
                               |T $ {} (:at 1629746278565) (:by |Z6DCCnivu) (:text |inline) (:type :leaf)

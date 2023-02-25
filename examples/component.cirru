@@ -1,5 +1,5 @@
 
-defcomp (skill-list)
+defcomp comp-skills (skill-list)
   div
     {} $ :style style-container
     input $ {}
