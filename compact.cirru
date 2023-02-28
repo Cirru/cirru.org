@@ -96,7 +96,8 @@
                   button
                     {} (:class-name css/button)
                       :on-click $ fn (e d!)
-                        d! :write-code $ format-to-lisp (:tree snapshot)
+                        d! :write-code $ -> (:tree snapshot) (map list-to-code) (map format-to-lisp)
+                          .join-str $ str &newline &newline
                     <> |S-Expression
                 textarea $ {}
                   :class-name $ str-spaced css/textarea css/flex
@@ -115,6 +116,14 @@
             "\"$0" $ {} (:width 1000) (:margin :auto) (:padding "|0px 0 0px 0")
             "\"$0 iframe" $ {}
               :border $ str "\"1px solid " (hsl 0 0 86)
+        |list-to-code $ quote
+          defn list-to-code (xs)
+            if (string? xs)
+              if
+                or (.starts-with? xs "\"|") (.starts-with? xs "\"\"")
+                .slice xs 1
+                turn-symbol xs
+              map xs list-to-code
         |on-command $ quote
           defn on-command (snapshot dispatch! e) (println |command e)
             let
@@ -241,19 +250,19 @@
       :defs $ {}
         |examples $ quote
           def examples $ {}
-            :case $ parse-cirru (inline "\"case.cirru")
-            :comment $ parse-cirru (inline "\"comment.cirru")
-            :cond $ parse-cirru (inline "\"cond.cirru")
-            :def $ parse-cirru (inline "\"def.cirru")
-            :doseq $ parse-cirru (inline "\"doseq.cirru")
-            :fn* $ parse-cirru (inline "\"fn-star.cirru")
-            :fn $ parse-cirru (inline "\"fn.cirru")
-            :let $ parse-cirru (inline "\"let.cirru")
-            :loop $ parse-cirru (inline "\"loop.cirru")
-            :map $ parse-cirru (inline "\"map.cirru")
-            :namespace $ parse-cirru (inline "\"namespace.cirru")
-            :vector $ parse-cirru (inline "\"vector.cirru")
-            :component $ parse-cirru (inline "\"component.cirru")
+            :case $ parse-cirru-list (inline "\"case.cirru")
+            :comment $ parse-cirru-list (inline "\"comment.cirru")
+            :cond $ parse-cirru-list (inline "\"cond.cirru")
+            :def $ parse-cirru-list (inline "\"def.cirru")
+            :doseq $ parse-cirru-list (inline "\"doseq.cirru")
+            :fn* $ parse-cirru-list (inline "\"fn-star.cirru")
+            :fn $ parse-cirru-list (inline "\"fn.cirru")
+            :let $ parse-cirru-list (inline "\"let.cirru")
+            :loop $ parse-cirru-list (inline "\"loop.cirru")
+            :map $ parse-cirru-list (inline "\"map.cirru")
+            :namespace $ parse-cirru-list (inline "\"namespace.cirru")
+            :vector $ parse-cirru-list (inline "\"vector.cirru")
+            :component $ parse-cirru-list (inline "\"component.cirru")
         |inline $ quote
           defmacro inline (path)
             read-file $ str "\"examples/" path
