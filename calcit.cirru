@@ -241,10 +241,18 @@
                                   |j $ {} (:at 1527475153466) (:by |root) (:type :expr)
                                     :data $ {}
                                       |T $ {} (:at 1527475152646) (:by |root) (:text |{}) (:type :leaf)
+                                      |f $ {} (:at 1680016470935) (:by |Z6DCCnivu) (:type :expr)
+                                        :data $ {}
+                                          |T $ {} (:at 1680016472596) (:by |Z6DCCnivu) (:text |:max-width) (:type :leaf)
+                                          |b $ {} (:at 1680016474061) (:by |Z6DCCnivu) (:text |1000) (:type :leaf)
                                       |r $ {} (:at 1527475241379) (:by |root) (:type :expr)
                                         :data $ {}
-                                          |T $ {} (:at 1527475243083) (:by |root) (:text |:padding) (:type :leaf)
-                                          |j $ {} (:at 1527475244333) (:by |root) (:text |16) (:type :leaf)
+                                          |T $ {} (:at 1680016463858) (:by |Z6DCCnivu) (:text |:margin) (:type :leaf)
+                                          |j $ {} (:at 1680016470134) (:by |Z6DCCnivu) (:text |:auto) (:type :leaf)
+                                      |t $ {} (:at 1680016487357) (:by |Z6DCCnivu) (:type :expr)
+                                        :data $ {}
+                                          |T $ {} (:at 1680016488498) (:by |Z6DCCnivu) (:text |:padding) (:type :leaf)
+                                          |b $ {} (:at 1680016498698) (:by |Z6DCCnivu) (:text "|\"16px 0") (:type :leaf)
                           |r $ {} (:at 1527475002736) (:by |root) (:type :expr)
                             :data $ {}
                               |T $ {} (:at 1527475062123) (:by |root) (:text |comp-md-block) (:type :leaf)
@@ -1018,7 +1026,7 @@
                   |q $ {} (:at 1521476015955) (:by |root) (:type :expr)
                     :data $ {}
                       |T $ {} (:at 1521476020854) (:by |root) (:text |comp-md-block) (:type :leaf)
-                      |j $ {} (:at 1649587367220) (:by |Z6DCCnivu) (:text "||### Tree Editor\n\nCirru Project's main purpose is to replacing parentheses with moderner tools like graphical editors. I finished creating one and now it's called \"Calcit Editor\". I use it for my daily personal projects including building this page.\n\n* [Calcit Editor](https://github.com/calcit-lang/editor) -- main tool of Cirru and Calcit, which edits S-expressions and `compact.cirru` for Calcit language.\n* [Calcit Viewer](https://github.com/Cirru/calcit-viewer.calcit) -- displays `calcit.cirru` with DOM.\n* [Respo Cirru Editor](https://github.com/Cirru/respo-cirru-editor) -- old library to realise S-expressions editing on Web.\n\nThere's also a canvas-based layout experimental editor:\n\n* [Hovenia Editor](https://github.com/Cirru/hovenia-editor)\n\n### Old Indentation-based Syntax\n\n[Cirru Indentation Format](http://text.cirru.org/) has been shadowed by the new editor. Only a small portion of libraries are maintained, but you can still access some of them like Parser and Writer.\n\n* [Cirru Writer](https://github.com/Cirru/writer.clj) -- ClojureScript library to generate Cirru Indentation Format.\n* [Cirru Parser](https://github.com/Cirru/parser.clj) -- ClojureScript library to parse Cirru Indentation Format.\n* [Cirru Indentation Format home page](https://github.com/Cirru/text.cirru.org) -- a list of old resources related to the format.\n\n### Updates\n\nYou may find old entries related to Cirru on [Medium](https://medium.com/cirru-project) and [Twitter](https://twitter.com/cirrulang). More information are just spread on my Twitter and Weibo or blogs, you may find them by searching anyway. We may [discuss on Twitter](https://twitter.com/tiyecirru).\n") (:type :leaf)
+                      |j $ {} (:at 1680016328796) (:by |Z6DCCnivu) (:text "||### Tree Editor\n\nCirru Project's main purpose is to replacing parentheses with moderner tools like graphical editors. I finished creating one and now it's called \"Calcit Editor\". I use it for my daily personal projects including building this page.\n\n* [Calcit Editor](https://github.com/calcit-lang/editor) -- main tool of Cirru and Calcit, which edits S-expressions and `compact.cirru` for Calcit language.\n* [Calcit Viewer](https://github.com/Cirru/calcit-viewer.calcit) -- displays `calcit.cirru` with DOM.\n* [Respo Cirru Editor](https://github.com/Cirru/respo-cirru-editor) -- old library to realise S-expressions editing on Web.\n\nThere's also a canvas-based layout experimental editor:\n\n* [Hovenia Editor](https://github.com/Cirru/hovenia-editor)\n\n![](https://pbs.twimg.com/media/FpvtOKCagAAKLHE?format=jpg&name=4096x4096)\n\n### Old Indentation-based Syntax\n\n[Cirru Indentation Format](http://text.cirru.org/) has been shadowed by the new editor. Only a small portion of libraries are maintained, but you can still access some of them like Parser and Writer.\n\n* [Cirru Writer](https://github.com/Cirru/writer.clj) -- ClojureScript library to generate Cirru Indentation Format.\n* [Cirru Parser](https://github.com/Cirru/parser.clj) -- ClojureScript library to parse Cirru Indentation Format.\n* [Cirru Indentation Format home page](https://github.com/Cirru/text.cirru.org) -- a list of old resources related to the format.\n\n### Updates\n\nYou may find old entries related to Cirru on [Medium](https://medium.com/cirru-project) and [Twitter](https://twitter.com/cirrulang). More information are just spread on my Twitter and Weibo or blogs, you may find them by searching anyway. We may [discuss on Twitter](https://twitter.com/tiyecirru).\n") (:type :leaf)
                       |r $ {} (:at 1521476025097) (:by |root) (:type :expr)
                         :data $ {}
                           |T $ {} (:at 1521476025840) (:by |root) (:text |{}) (:type :leaf)
