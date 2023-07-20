@@ -200,14 +200,16 @@
       :defs $ {}
         |*store $ quote (defatom *store schema/store)
         |dispatch! $ quote
-          defn dispatch! (op op-data)
+          defn dispatch! (op)
             when config/dev? $ println "\"Dispatch:" op
             let
-                next-store $ case op
-                  :save $ assoc @*store :snapshot op-data
-                  :write-code $ assoc @*store :code op-data
-                  :load-tree $ assoc-in @*store ([] :snapshot :tree) op-data
-                  , @*store
+                next-store $ tag-match op
+                    :save d
+                    assoc @*store :snapshot d
+                  (:write-code d) (assoc @*store :code d)
+                  (:load-tree d)
+                    assoc-in @*store ([] :snapshot :tree) d
+                  _ $ do (eprintln "\"Unknown op:" op) @*store
               reset! *store next-store
         |main! $ quote
           defn main! ()
@@ -220,8 +222,8 @@
                 and (.-metaKey event)
                   = config/key-s $ .-keyCode event
                 do (.!preventDefault event)
-                  dispatch! :write-code $ format-to-lisp
-                    :tree $ :snapshot @*store
+                  dispatch! $ :: :write-code
+                    format-to-lisp $ :tree (:snapshot @*store)
             println "\"App started!"
         |mount-target $ quote
           def mount-target $ .querySelector js/document |.app
