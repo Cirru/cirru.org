@@ -6,4 +6,4 @@
     |Respo/reel.calcit |main
     |Respo/respo-markdown.calcit |main
     |Respo/respo-ui.calcit |main
-    |Cirru/respo-cirru-editor |main
+    |Cirru/respo-cirru-editor |0.6.1

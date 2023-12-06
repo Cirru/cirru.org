@@ -1499,8 +1499,7 @@
               |j $ %{} :Leaf (:at 1506668212668) (:by |root) (:text |mount-target)
               |r $ %{} :Expr (:at 1506618943349) (:by nil)
                 :data $ {}
-                  |T $ %{} :Leaf (:at 1506618943349) (:by |root) (:text |.querySelector)
-                  |j $ %{} :Leaf (:at 1506618943349) (:by |root) (:text |js/document)
+                  |j $ %{} :Leaf (:at 1701877623624) (:by |Z6DCCnivu) (:text |js/document.querySelector)
                   |r $ %{} :Leaf (:at 1506668258863) (:by |root) (:text ||.app)
         |reload! $ %{} :CodeEntry (:doc |)
           :code $ %{} :Expr (:at 1629746762741) (:by |Z6DCCnivu)
