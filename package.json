@@ -6,16 +6,16 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git@github.com:mvc-works/coworkflow.git"
+    "url": "git@github.com:calcit-lang/respo-calcit-workflow.git"
   },
   "author": "jiyinyiyong",
   "license": "MIT",
   "devDependencies": {
     "bottom-tip": "^0.1.5",
-    "vite": "^5.4.12"
+    "vite": "^6.0.11"
   },
   "dependencies": {
-    "@calcit/procs": "^0.8.44",
+    "@calcit/procs": "^0.9.8",
     "cirru-color": "^0.2.4",
     "copy-text-to-clipboard": "^3.2.0"
   }
