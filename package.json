@@ -15,8 +15,8 @@
     "vite": "npm:rolldown-vite@latest"
   },
   "dependencies": {
-    "@calcit/procs": "^0.9.12",
+    "@calcit/procs": "^0.9.18",
     "cirru-color": "^0.2.4",
-    "copy-text-to-clipboard": "^3.2.0"
+    "copy-text-to-clipboard": "^3.2.1"
   }
 }
