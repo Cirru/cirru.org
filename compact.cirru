@@ -20,6 +20,7 @@
                       :style $ {} (:margin 8) (:cursor :pointer)
                       :on-click $ fn (e d!) (d! :load-tree example)
                     <> $ turn-string alias
+          :examples $ []
       :ns $ %{} :CodeEntry (:doc |)
         :code $ quote
           ns app.comp.candidates $ :require
@@ -57,6 +58,7 @@
                   =< nil 80
                   render-code-intro
                   =< nil 200
+          :examples $ []
         |comp-explorer $ %{} :CodeEntry (:doc |)
           :code $ quote
             defcomp comp-explorer (states store snapshot)
@@ -108,6 +110,7 @@
                     :style $ {} (:font-family "|Source Code Pro, Menlo, Consolas, monospace") (:width |100%) (:white-space :pre)
                     :value $ :code store
                     :disabled true
+          :examples $ []
         |css-link $ %{} :CodeEntry (:doc |)
           :code $ quote
             defstyle css-link $ {}
@@ -116,12 +119,14 @@
                 :font-weight |lighter
                 :text-decoration |none
               "\"$0:hover" $ {} (:color :white)
+          :examples $ []
         |css-video-section $ %{} :CodeEntry (:doc |)
           :code $ quote
             defstyle css-video-section $ {}
               "\"$0" $ {} (:width 1000) (:margin :auto) (:padding "|0px 0 0px 0")
               "\"$0 iframe" $ {}
                 :border $ str "\"1px solid " (hsl 0 0 86)
+          :examples $ []
         |list-to-code $ %{} :CodeEntry (:doc |)
           :code $ quote
             defn list-to-code (xs)
@@ -131,6 +136,7 @@
                   .slice xs 1
                   turn-symbol xs
                 map xs list-to-code
+          :examples $ []
         |on-command $ %{} :CodeEntry (:doc |)
           :code $ quote
             defn on-command (snapshot dispatch! e) (println |command e)
@@ -142,9 +148,11 @@
                   do
                     dispatch! :write-code $ format-to-lisp (:tree snapshot)
                     .preventDefault event
+          :examples $ []
         |on-update! $ %{} :CodeEntry (:doc |)
           :code $ quote
             defn on-update! (snapshot dispatch!) (dispatch! :save snapshot) (focus!)
+          :examples $ []
         |render-banner $ %{} :CodeEntry (:doc |)
           :code $ quote
             defn render-banner () $ div
@@ -163,31 +171,38 @@
                 =< 80 nil
                 a $ {} (:href |http://text.cirru.org) (:inner-text "|Text syntax") (:target |_blank)
                   :class-name $ str-spaced css/link css-link
+          :examples $ []
         |render-code-intro $ %{} :CodeEntry (:doc |)
           :code $ quote
             defn render-code-intro () $ div
               {} $ :style
                 merge $ {} (:width 1000) (:margin :auto)
               comp-md-block "|### Tree Editor\n\nCirru Project's main purpose is to replacing parentheses with moderner tools like graphical editors. I finished creating one and now it's called \"Calcit Editor\". I use it for my daily personal projects including building this page.\n\n* [Calcit Editor](https://github.com/calcit-lang/editor) -- main tool of Cirru and Calcit, which edits S-expressions and `compact.cirru` for Calcit language.\n* [Calcit Viewer](https://github.com/Cirru/calcit-viewer.calcit) -- displays `calcit.cirru` with DOM.\n* [Respo Cirru Editor](https://github.com/Cirru/respo-cirru-editor) -- old library to realise S-expressions editing on Web.\n\nThere's also a canvas-based layout experimental editor:\n\n* [Hovenia Editor](https://github.com/Cirru/hovenia-editor)\n\n![](https://pbs.twimg.com/media/FpvtOKCagAAKLHE?format=jpg&name=4096x4096)\n\n### Old Indentation-based Syntax\n\n[Cirru Indentation Format](http://text.cirru.org/) has been shadowed by the new editor. Only a small portion of libraries are maintained, but you can still access some of them like Parser and Writer.\n\n* [Cirru Writer](https://github.com/Cirru/writer.clj) -- ClojureScript library to generate Cirru Indentation Format.\n* [Cirru Parser](https://github.com/Cirru/parser.clj) -- ClojureScript library to parse Cirru Indentation Format.\n* [Cirru Indentation Format home page](https://github.com/Cirru/text.cirru.org) -- a list of old resources related to the format.\n\n### Updates\n\nYou may find old entries related to Cirru on [Medium](https://medium.com/cirru-project) and [Twitter](https://twitter.com/cirrulang). More information are just spread on my Twitter and Weibo or blogs, you may find them by searching anyway. We may [discuss on Twitter](https://twitter.com/tiyecirru).\n" $ {}
+          :examples $ []
         |style-banner $ %{} :CodeEntry (:doc |)
           :code $ quote
             def style-banner $ {} (:height 320)
               :background-color $ hsl 200 100 70
               :color $ hsl 0 0 100
+          :examples $ []
         |style-banner-text $ %{} :CodeEntry (:doc |)
           :code $ quote
             def style-banner-text $ {} (:font-size |64px)
+          :examples $ []
         |style-content $ %{} :CodeEntry (:doc |)
           :code $ quote
             def style-content $ {} (:font-size |16px)
+          :examples $ []
         |style-project $ %{} :CodeEntry (:doc |)
           :code $ quote
             def style-project $ {}
               :color $ hsl 200 80 60
+          :examples $ []
         |style-theme $ %{} :CodeEntry (:doc |)
           :code $ quote
             def style-theme $ {} (:height "\"100vh")
               :background-color $ hsl 300 80 10
+          :examples $ []
       :ns $ %{} :CodeEntry (:doc |)
         :code $ quote
           ns app.comp.container $ :require
@@ -210,17 +225,21 @@
         |dev? $ %{} :CodeEntry (:doc |)
           :code $ quote
             def dev? $ = "\"dev" (get-env "\"mode" "\"release")
+          :examples $ []
         |key-s $ %{} :CodeEntry (:doc |)
           :code $ quote (def key-s 83)
+          :examples $ []
         |site $ %{} :CodeEntry (:doc |)
           :code $ quote
             def site $ {} (:dev-ui "\"http://localhost:8100/main-fonts.css") (:release-ui "\"http://cdn.tiye.me/favored-fonts/main-fonts.css") (:cdn-url "\"http://cdn.tiye.me/cirru-org/") (:cdn-folder "\"tiye.me:cdn/cirru-org") (:title "\"Cirru: an editor for AST") (:icon "\"http://cdn.tiye.me/logo/cirru.png") (:storage-key "\"cirru-org") (:upload-folder "\"tiye.me:repo/Cirru/cirru.org/")
+          :examples $ []
       :ns $ %{} :CodeEntry (:doc |)
         :code $ quote (ns app.config)
     |app.main $ %{} :FileEntry
       :defs $ {}
         |*store $ %{} :CodeEntry (:doc |)
           :code $ quote (defatom *store schema/store)
+          :examples $ []
         |dispatch! $ %{} :CodeEntry (:doc |)
           :code $ quote
             defn dispatch! (op)
@@ -234,6 +253,7 @@
                       assoc-in @*store ([] :snapshot :tree) d
                     _ $ do (eprintln "\"Unknown op:" op) @*store
                 reset! *store next-store
+          :examples $ []
         |main! $ %{} :CodeEntry (:doc |)
           :code $ quote
             defn main! ()
@@ -249,9 +269,11 @@
                     dispatch! $ :: :write-code
                       format-to-lisp $ :tree (:snapshot @*store)
               println "\"App started!"
+          :examples $ []
         |mount-target $ %{} :CodeEntry (:doc |)
           :code $ quote
             def mount-target $ js/document.querySelector |.app
+          :examples $ []
         |reload! $ %{} :CodeEntry (:doc |)
           :code $ quote
             defn reload! () $ if (nil? build-errors)
@@ -260,9 +282,11 @@
                 render-app!
                 hud! "\"ok~" "\"Ok"
               hud! "\"error" build-errors
+          :examples $ []
         |render-app! $ %{} :CodeEntry (:doc |)
           :code $ quote
             defn render-app! () $ render! mount-target (comp-container @*store) dispatch!
+          :examples $ []
       :ns $ %{} :CodeEntry (:doc |)
         :code $ quote
           ns app.main $ :require
@@ -294,22 +318,26 @@
               :namespace $ parse-cirru-list (inline "\"namespace.cirru")
               :vector $ parse-cirru-list (inline "\"vector.cirru")
               :component $ parse-cirru-list (inline "\"component.cirru")
+          :examples $ []
         |inline $ %{} :CodeEntry (:doc |)
           :code $ quote
             defmacro inline (path)
               read-file $ str "\"examples/" path
+          :examples $ []
         |snapshot $ %{} :CodeEntry (:doc |)
           :code $ quote
             def snapshot $ {}
               :tree $ parse-cirru-list (inline "\"component.cirru")
               :focus $ []
               :clipboard $ []
+          :examples $ []
         |store $ %{} :CodeEntry (:doc |)
           :code $ quote
             def store $ {}
               :states $ {}
               :snapshot snapshot
               :code |
+          :examples $ []
       :ns $ %{} :CodeEntry (:doc |)
         :code $ quote
           ns app.schema $ :require ([] app.code :as code)
@@ -318,6 +346,7 @@
         |title $ %{} :CodeEntry (:doc |)
           :code $ quote
             def title $ {} (:font-family "|'Josefin Sans', sans-serif") (:font-weight |lighter)
+          :examples $ []
       :ns $ %{} :CodeEntry (:doc |)
         :code $ quote (ns app.style.typeset)
     |app.style.widget $ %{} :FileEntry
@@ -328,9 +357,11 @@
               :background-color $ hsl 200 90 60
               :display |inline-block
               :padding "|0 8px"
+          :examples $ []
         |global $ %{} :CodeEntry (:doc |)
           :code $ quote
             def global $ {} (:font-family |Verdana)
+          :examples $ []
       :ns $ %{} :CodeEntry (:doc |)
         :code $ quote
           ns app.style.widget $ :require
