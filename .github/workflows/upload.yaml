@@ -20,7 +20,10 @@ jobs:
     - uses: calcit-lang/setup-cr@0.0.9
 
     - name: "compiles to js"
-      run: yarn build
+      run: |
+        corepack enable
+        yarn install --immutable
+        yarn build
 
     - name: Deploy to server
       id: deploy
