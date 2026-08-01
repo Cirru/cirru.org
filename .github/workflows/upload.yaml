@@ -17,12 +17,13 @@ jobs:
         node-version: 24.x
         cache: yarn
 
-    - uses: calcit-lang/setup-cr@0.0.8
+    - uses: calcit-lang/setup-cr@0.0.9
 
     - name: "compiles to js"
-      run: >
-        caps --ci && cr --once js
-        && yarn && yarn vite build --base=./
+      run: |
+        corepack enable
+        yarn install --immutable
+        yarn build
 
     - name: Deploy to server
       id: deploy

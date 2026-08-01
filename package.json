@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "description": "Cirru Home Page",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "compile": "caps --ci && cr compact.cirru js",
+    "build": "yarn compile && vite build --base=./"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:calcit-lang/respo-calcit-workflow.git"
@@ -15,8 +18,9 @@
     "vite": "npm:rolldown-vite@latest"
   },
   "dependencies": {
-    "@calcit/procs": "^0.9.20",
+    "@calcit/procs": "^0.12.56",
     "cirru-color": "^0.2.4",
-    "copy-text-to-clipboard": "^3.2.2"
+    "copy-text-to-clipboard": "^3.2.2",
+    "dayjs": "^1.11.13"
   }
 }
