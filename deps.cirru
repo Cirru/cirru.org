@@ -1,9 +1,9 @@
 
-{} (:calcit-version |0.12.56)
-  :dependencies $ {} (|Cirru/respo-cirru-editor |0.6.5)
-    |Respo/reel.calcit |0.6.4
-    |Respo/respo-markdown.calcit |0.4.20
-    |Respo/respo-ui.calcit |0.6.5
-    |Respo/respo.calcit |0.16.59
-    |calcit-lang/lilac |0.5.1
-    |calcit-lang/memof |0.0.26
+{} (:calcit-version |0.13.77) (:version |0.1.0)
+  :dependencies $ {} (|Cirru/respo-cirru-editor |0.6.6)
+    |Respo/reel.calcit |0.6.19
+    |Respo/respo-markdown.calcit |0.4.33
+    |Respo/respo-ui.calcit |0.7.19
+    |Respo/respo.calcit |0.16.95
+    |calcit-lang/lilac |0.5.9
+    |calcit-lang/memof |0.0.31
