@@ -1,16 +1,19 @@
 
-{} (:about "|Machine-generated snapshot. Do not edit directly — changes will be overwritten. Use `calcit query` to inspect and `calcit edit`/`calcit tree` to modify. Run `calcit docs agents --full` first. Manual edits must follow format and schema conventions, then run `calcit edit format`.") (:package |app)
-  :entries $ {}
-    :default $ {} (:description |) (:init-fn 'app.main/main!) (:mode :native) (:reload-fn 'app.main/reload!)
+{}
+  :about "|Machine-generated snapshot. Do not edit directly — changes will be overwritten. Use `calcit query` to inspect and `calcit edit`/`calcit tree` to modify. Run `calcit docs agents --contract` before mutations; use `--full` for first orientation or changed contract digest. Manual edits must follow format and schema conventions, then run `calcit edit format`."
+  :package |app
+  :entries $ {} $ :default
+    {} (:description |) (:init-fn 'app.main/main!) (:mode :native)
+      :reload-fn 'app.main/reload!
       :feature-policy $ {}
       :modules $ [] |respo.calcit/ |lilac/ |memof/ |respo-ui.calcit/ |respo-markdown.calcit/ |reel.calcit/ |respo-cirru-editor/
       :type-slots $ {}
   :files $ {}
     'app.comp.candidates $ %{} 'FileEntry
-      :defs $ {}
-        'comp-candidates $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defcomp comp-candidates () $ list->
+      :defs $ {} $ 'comp-candidates
+        %{} 'CodeEntry (:doc |)
+          :code $ quote $ defcomp comp-candidates ()
+            list->
               {} (:class-name css/row)
                 :style $ {} (:height 48)
                   :color $ hsl 230 80 80 0.8
@@ -24,8 +27,8 @@
           :examples $ []
           :schema $ :: 'Dynamic
       :ns $ %{} 'NsEntry (:doc |)
-        :code $ quote
-          ns app.comp.candidates $ :require
+        :code $ quote $ ns app.comp.candidates
+          :require
             respo-ui.core :refer $ hsl
             respo-ui.css :as css
             respo.core :refer $ defcomp list-> <> div span a textarea button
@@ -39,207 +42,212 @@
     'app.comp.container $ %{} 'FileEntry
       :defs $ {}
         'comp-container $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defcomp comp-container (store)
-              let
-                  states $
-                    get store :states
-                    , .unwrap-or ({})
-                  snapshot $
-                    get store :snapshot
-                    , .unwrap-or ({})
+          :code $ quote $ defcomp comp-container (store)
+            let
+                states $
+                  get store :states
+                  , .unwrap-or $ {}
+                snapshot $
+                  get store :snapshot
+                  , .unwrap-or $ {}
+              div
+                {} $ :class-name $ str-spaced css/global |cirru-tile
+                render-banner
                 div
-                  {} $ :class-name (str-spaced css/global |cirru-tile)
-                  render-banner
-                  div
-                    {} $ :style
-                      {} (:max-width 1000) (:margin :auto) (:padding "|16px 0")
-                    comp-md-block "|Cirru project is now concentrated on [Calcit Editor](https://github.com/calcit-lang/editor), you can install via:\n\n```bash\nnpm install -g @calcit/editor\n```" $ {} (:text-align :center)
-                  comp-explorer states store snapshot
-                  =< nil 80
-                  div
-                    {} $ :class-name css-video-section
-                    <> "|Review video of Cirru(voice in Chinese)"
-                    div $ {} (:innerHTML "|<iframe width=\"720\" height=\"405\" frameborder=\"0\" src=\"https://www.ixigua.com/iframe/7092697111279763975?autoplay=0\" referrerpolicy=\"unsafe-url\" allowfullscreen></iframe>")
-                  =< nil 80
-                  render-code-intro
-                  =< nil 200
+                  {} $ :style $ {} (:max-width 1000) (:margin :auto) (:padding "|16px 0")
+                  comp-md-block "|Cirru project is now concentrated on [Calcit Editor](https://github.com/calcit-lang/editor), you can install via:\n\n```bash\nnpm install -g @calcit/editor\n```" $ {} $ :text-align :center
+                comp-explorer states store snapshot
+                =< nil 80
+                div
+                  {} $ :class-name css-video-section
+                  <> "|Review video of Cirru(voice in Chinese)"
+                  div $ {} $ :innerHTML "|<iframe width=\"720\" height=\"405\" frameborder=\"0\" src=\"https://www.ixigua.com/iframe/7092697111279763975?autoplay=0\" referrerpolicy=\"unsafe-url\" allowfullscreen></iframe>"
+                =< nil 80
+                render-code-intro
+                =< nil 200
           :examples $ []
           :schema $ :: 'Dynamic
         'comp-explorer $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defcomp comp-explorer (states store snapshot)
-              let
-                  tree $
-                    get snapshot :tree
-                    , .unwrap-or ([])
-                  code $
-                    get store :code
-                    , .unwrap-or |
+          :code $ quote $ defcomp comp-explorer (states store snapshot)
+            let
+                tree $
+                  get snapshot :tree
+                  , .unwrap-or $ []
+                code $
+                  get store :code
+                  , .unwrap-or |
+              div
+                {}
+                  :class-name $ str-spaced css/row
+                  :style style-theme
                 div
-                  {}
-                    :class-name $ str-spaced css/row
-                    :style style-theme
+                  {} $ :class-name $ str-spaced css/flex css/column
+                  comp-candidates
+                  comp-editor states snapshot on-update! on-command
+                ; div $ {} $ :style
+                  {} (:width 1)
+                    :background-color $ hsl 0 0 100 0.3
+                div
+                  {} (:class-name css/column)
+                    :style $ {} (:width |38.2%)
+                      :background-color :white
                   div
-                    {} $ :class-name (str-spaced css/flex css/column)
-                    comp-candidates
-                    comp-editor states snapshot on-update! on-command
-                  ; div $ {}
-                    :style $ {} (:width 1)
-                      :background-color $ hsl 0 0 100 0.3
-                  div
-                    {} (:class-name css/column)
-                      :style $ {} (:width |38.2%) (:background-color :white)
-                    div
-                      {} $ :style
-                        {} $ :padding 8
-                      button
-                        {} (:class-name css/button)
-                          :on-click $ fn (e d!)
-                            d! :write-code $ js/JSON.stringify (to-js-data tree) nil 2
-                        <> |JSON
-                      =< 8 nil
-                      button
-                        {} (:class-name css/button)
-                          :on-click $ fn (e d!)
-                            d! :write-code $ format-cirru-edn tree
-                        <> |EDN
-                      =< 8 nil
-                      button
-                        {} (:class-name css/button)
-                          :on-click $ fn (e d!)
-                            d! :write-code $ format-cirru tree
-                        <> "|Indentation Syntax"
-                      =< 8 nil
-                      button
-                        {} (:class-name css/button)
-                          :on-click $ fn (e d!)
-                            d! :write-code $ -> tree (map list-to-code) (map format-to-lisp)
-                              .join-str $ str &newline &newline
-                        <> |S-Expression
-                    textarea $ {}
-                      :class-name $ str-spaced css/textarea css/flex
-                      :style $ {} (:font-family "|Source Code Pro, Menlo, Consolas, monospace") (:width |100%) (:white-space :pre)
-                      :value code
-                      :disabled true
+                    {} $ :style $ {} (:padding 8)
+                    button
+                      {} (:class-name css/button)
+                        :on-click $ fn (e d!)
+                          d! :write-code $ js/JSON.stringify (to-js-data tree) nil 2
+                      <> |JSON
+                    =< 8 nil
+                    button
+                      {} (:class-name css/button)
+                        :on-click $ fn (e d!)
+                          d! :write-code $ format-cirru-edn tree
+                      <> |EDN
+                    =< 8 nil
+                    button
+                      {} (:class-name css/button)
+                        :on-click $ fn (e d!)
+                          d! :write-code $ format-cirru tree
+                      <> "|Indentation Syntax"
+                    =< 8 nil
+                    button
+                      {} (:class-name css/button)
+                        :on-click $ fn (e d!)
+                          d! :write-code $ -> tree (map list-to-code) (map format-to-lisp)
+                            .join-str $ str &newline &newline
+                      <> |S-Expression
+                  textarea $ {}
+                    :class-name $ str-spaced css/textarea css/flex
+                    :style $ {}
+                      :font-family "|Source Code Pro, Menlo, Consolas, monospace"
+                      :width |100%
+                      :white-space :pre
+                    :value code
+                    :disabled true
           :examples $ []
-          :schema $ :: 'Fn
-            {} (:return 'respo.schema/Component)
-              :args $ [] 'Dynamic 'Dynamic 'Dynamic
-              :features $ #{} :js-ffi
+          :schema $ :: 'Fn $ {}
+            :return 'respo.schema/Component
+            :args $ [] 'Dynamic 'Dynamic 'Dynamic
+            :features $ #{} :js-ffi
         'css-link $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defstyle css-link $ {}
+          :code $ quote $ defstyle css-link
+            {}
               |$0 $ {} (:font-size |20px)
                 :color $ hsl 200 90 92
                 :font-weight |lighter
                 :text-decoration |none
-              |$0:hover $ {} (:color :white)
+              |$0:hover $ {} $ :color :white
           :examples $ []
           :schema $ :: 'Dynamic
         'css-video-section $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defstyle css-video-section $ {}
+          :code $ quote $ defstyle css-video-section
+            {}
               |$0 $ {} (:width 1000) (:margin :auto) (:padding "|0px 0 0px 0")
-              "|$0 iframe" $ {}
-                :border $ str "|1px solid " (hsl 0 0 86)
+              "|$0 iframe" $ {} $ :border
+                str "|1px solid " $ hsl 0 0 86
           :examples $ []
           :schema $ :: 'Dynamic
         'list-to-code $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn list-to-code (xs)
-              if (string? xs)
-                if
-                  or (.starts-with? xs ||) (.starts-with? xs "|\"")
-                  .slice xs 1
-                  turn-symbol xs
-                map xs list-to-code
+          :code $ quote $ defn list-to-code (xs)
+            if (string? xs)
+              if
+                or (.starts-with? xs ||) (.starts-with? xs "|\"")
+                .slice xs 1
+                turn-symbol xs
+              map xs list-to-code
           :examples $ []
           :schema $ :: 'Dynamic
         'on-command $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn on-command (snapshot dispatch! e) (println |command e)
-              let
-                  event $ unsafe-coerce
-                      get e :event
-                      , .unwrap-or nil
-                    , JsObject
-                if
-                  and
-                    unsafe-coerce (.?-metaKey event) Bool
-                    = config/key-s $ unsafe-coerce (.?-keyCode event) Number
-                  do
-                    dispatch! :write-code $ format-to-lisp
-                        get snapshot :tree
-                        , .unwrap-or $ []
-                    .?!preventDefault event
+          :code $ quote $ defn on-command (snapshot dispatch! e) (println |command e)
+            let
+                event $ unsafe-coerce
+                    get e :event
+                    , .unwrap-or nil
+                  , JsObject
+              if
+                and
+                  unsafe-coerce (.?-metaKey event) Bool
+                  = config/key-s $ unsafe-coerce (.?-keyCode event) Number
+                do
+                  dispatch! :write-code $ format-to-lisp $
+                    get snapshot :tree
+                    , .unwrap-or ([])
+                  .?!preventDefault event
           :examples $ []
           :schema $ :: 'Dynamic
         'on-update! $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn on-update! (snapshot dispatch!) (dispatch! :save snapshot) (focus!)
+          :code $ quote $ defn on-update! (snapshot dispatch!) (dispatch! :save snapshot) (focus!)
           :examples $ []
           :schema $ :: 'Dynamic
         'render-banner $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn render-banner () $ div
+          :code $ quote $ defn render-banner ()
+            div
               {}
                 :class-name $ str-spaced css/center |cirru-tile
                 :style style-banner
               div
-                {} $ :style (merge typeset/title style-banner-text)
+                {} $ :style $ merge typeset/title style-banner-text
                 <> "|Cirru: modern interface for S-expressions"
               div ({})
-                a $ {} (:href |https://github.com/Cirru/respo-cirru-editor/wiki/Keyboard-Shortcuts) (:inner-text "|Keyboard Shortcuts") (:target |_blank)
+                a $ {}
+                  :href |https://github.com/Cirru/respo-cirru-editor/wiki/Keyboard-Shortcuts
+                  :inner-text "|Keyboard Shortcuts"
+                  :target |_blank
                   :class-name $ str-spaced css/link css-link
                 =< 80 nil
-                a $ {} (:href |https://www.youtube.com/playlist?list=PLyvBXLgHYHy1AIK6i5uw3_H5BIUP4CQx6) (:inner-text |Videos) (:target |_blank)
+                a $ {}
+                  :href |https://www.youtube.com/playlist?list=PLyvBXLgHYHy1AIK6i5uw3_H5BIUP4CQx6
+                  :inner-text |Videos
+                  :target |_blank
                   :class-name $ str-spaced css/link css-link
                 =< 80 nil
-                a $ {} (:href |http://text.cirru.org) (:inner-text "|Text syntax") (:target |_blank)
+                a $ {}
+                  :href |http://text.cirru.org
+                  :inner-text "|Text syntax"
+                  :target |_blank
                   :class-name $ str-spaced css/link css-link
           :examples $ []
           :schema $ :: 'Dynamic
         'render-code-intro $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn render-code-intro () $ div
-              {} $ :style
-                merge $ {} (:width 1000) (:margin :auto)
+          :code $ quote $ defn render-code-intro ()
+            div
+              {} $ :style $ merge
+                {} (:width 1000) (:margin :auto)
               comp-md-block "|### Tree Editor\n\nCirru Project's main purpose is to replacing parentheses with moderner tools like graphical editors. I finished creating one and now it's called \"Calcit Editor\". I use it for my daily personal projects including building this page.\n\n* [Calcit Editor](https://github.com/calcit-lang/editor) -- main tool of Cirru and Calcit, which edits S-expressions and `compact.cirru` for Calcit language.\n* [Calcit Viewer](https://github.com/Cirru/calcit-viewer.calcit) -- displays `calcit.cirru` with DOM.\n* [Respo Cirru Editor](https://github.com/Cirru/respo-cirru-editor) -- old library to realise S-expressions editing on Web.\n\nThere's also a canvas-based layout experimental editor:\n\n* [Hovenia Editor](https://github.com/Cirru/hovenia-editor)\n\n![](https://pbs.twimg.com/media/FpvtOKCagAAKLHE?format=jpg&name=4096x4096)\n\n### Old Indentation-based Syntax\n\n[Cirru Indentation Format](http://text.cirru.org/) has been shadowed by the new editor. Only a small portion of libraries are maintained, but you can still access some of them like Parser and Writer.\n\n* [Cirru Writer](https://github.com/Cirru/writer.clj) -- ClojureScript library to generate Cirru Indentation Format.\n* [Cirru Parser](https://github.com/Cirru/parser.clj) -- ClojureScript library to parse Cirru Indentation Format.\n* [Cirru Indentation Format home page](https://github.com/Cirru/text.cirru.org) -- a list of old resources related to the format.\n\n### Updates\n\nYou may find old entries related to Cirru on [Medium](https://medium.com/cirru-project) and [Twitter](https://twitter.com/cirrulang). More information are just spread on my Twitter and Weibo or blogs, you may find them by searching anyway. We may [discuss on Twitter](https://twitter.com/tiyecirru).\n" $ {}
           :examples $ []
           :schema $ :: 'Dynamic
         'style-banner $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def style-banner $ {} (:height 320)
+          :code $ quote $ def style-banner
+            {} (:height 320)
               :background-color $ hsl 200 100 70
               :color $ hsl 0 0 100
           :examples $ []
           :schema $ :: 'Dynamic
         'style-banner-text $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def style-banner-text $ {} (:font-size |64px)
+          :code $ quote $ def style-banner-text
+            {} $ :font-size |64px
           :examples $ []
           :schema $ :: 'Dynamic
         'style-content $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def style-content $ {} (:font-size |16px)
+          :code $ quote $ def style-content
+            {} $ :font-size |16px
           :examples $ []
           :schema $ :: 'Dynamic
         'style-project $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def style-project $ {}
-              :color $ hsl 200 80 60
+          :code $ quote $ def style-project
+            {} $ :color $ hsl 200 80 60
           :examples $ []
           :schema $ :: 'Dynamic
         'style-theme $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def style-theme $ {} (:height |100vh)
+          :code $ quote $ def style-theme
+            {} (:height |100vh)
               :background-color $ hsl 300 80 10
           :examples $ []
           :schema $ :: 'Dynamic
       :ns $ %{} 'NsEntry (:doc |)
-        :code $ quote
-          ns app.comp.container $ :require
+        :code $ quote $ ns app.comp.container
+          :require
             respo-ui.core :refer $ hsl
             respo-ui.css :as css
             respo.core :refer $ defcomp <> div span a textarea button
@@ -257,73 +265,78 @@
     'app.config $ %{} 'FileEntry
       :defs $ {}
         'dev? $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def dev? $ = |dev
-              (get-env |mode) .unwrap-or |release
+          :code $ quote $ def dev?
+            = |dev $
+              get-env |mode
+              , .unwrap-or |release
           :examples $ []
           :schema $ :: 'Dynamic
         'key-s $ %{} 'CodeEntry (:doc |)
-          :code $ quote (def key-s 83)
+          :code $ quote $ def key-s 83
           :examples $ []
           :schema $ :: 'Dynamic
         'site $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def site $ {} (:dev-ui |http://localhost:8100/main-fonts.css) (:release-ui |http://cdn.tiye.me/favored-fonts/main-fonts.css) (:cdn-url |http://cdn.tiye.me/cirru-org/) (:cdn-folder |tiye.me:cdn/cirru-org) (:title "|Cirru: an editor for AST") (:icon |http://cdn.tiye.me/logo/cirru.png) (:storage-key |cirru-org) (:upload-folder |tiye.me:repo/Cirru/cirru.org/)
+          :code $ quote $ def site
+            {}
+              :dev-ui |http://localhost:8100/main-fonts.css
+              :release-ui |http://cdn.tiye.me/favored-fonts/main-fonts.css
+              :cdn-url |http://cdn.tiye.me/cirru-org/
+              :cdn-folder |tiye.me:cdn/cirru-org
+              :title "|Cirru: an editor for AST"
+              :icon |http://cdn.tiye.me/logo/cirru.png
+              :storage-key |cirru-org
+              :upload-folder |tiye.me:repo/Cirru/cirru.org/
           :examples $ []
           :schema $ :: 'Dynamic
       :ns $ %{} 'NsEntry (:doc |)
-        :code $ quote (ns app.config)
+        :code $ quote $ ns app.config
     'app.main $ %{} 'FileEntry
       :defs $ {}
         '*store $ %{} 'CodeEntry (:doc |)
-          :code $ quote (defatom *store schema/store)
+          :code $ quote $ defatom *store schema/store
           :examples $ []
           :schema $ :: 'Dynamic
         'dispatch! $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn dispatch! (op)
-              when config/dev? $ println |Dispatch: op
-              let
-                  next-store $ match op
-                    (:save d) (assoc @*store :snapshot d)
-                    (:write-code d) (assoc @*store :code d)
-                    (:load-tree d)
-                      assoc-in @*store ([] :snapshot :tree) d
-                    _ $ do (eprintln "|Unknown op:" op) @*store
-                reset! *store next-store
+          :code $ quote $ defn dispatch! (op)
+            when config/dev? $ println |Dispatch: op
+            let
+                next-store $ match op
+                  (:save d) (assoc @*store :snapshot d)
+                  (:write-code d) (assoc @*store :code d)
+                  (:load-tree d)
+                    assoc-in @*store ([] :snapshot :tree) d
+                  _ $ do (eprintln "|Unknown op:" op) @*store
+              reset! *store next-store
           :examples $ []
           :schema $ :: 'Dynamic
         'main! $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn main! ()
-              println "|Running mode:" $ if config/dev? |dev |release
-              if config/dev? $ load-console-formatter!
-              render-app!
-              add-watch *store :changes $ fn (s p) (render-app!)
-              js/window.addEventListener |keydown $ fn (event)
-                if
-                  and
-                    unsafe-coerce (.-metaKey event) Bool
-                    = config/key-s $ unsafe-coerce (.-keyCode event) Number
-                  do (.!preventDefault event)
-                    dispatch! $ :: :write-code
-                      format-to-lisp $
-                        get-in @*store $ [] :snapshot :tree
-                        , .unwrap-or ([])
-              println "|App started!"
+          :code $ quote $ defn main! ()
+            println "|Running mode:" $ if config/dev? |dev |release
+            if config/dev? $ load-console-formatter!
+            render-app!
+            add-watch *store :changes $ fn (s p) (render-app!)
+            js/window.addEventListener |keydown $ fn (event)
+              if
+                and
+                  unsafe-coerce (.-metaKey event) Bool
+                  = config/key-s $ unsafe-coerce (.-keyCode event) Number
+                do (.!preventDefault event)
+                  dispatch! $ :: :write-code $ format-to-lisp
+                      get-in @*store $ [] :snapshot :tree
+                      , .unwrap-or $ []
+            println "|App started!"
           :examples $ []
-          :schema $ :: 'Fn
-            {} (:return 'Dynamic)
-              :args $ []
-              :features $ #{} :js-ffi
+          :schema $ :: 'Fn $ {} (:return 'Dynamic)
+            :args $ []
+            :features $ #{} :js-ffi
         'mount-target $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def mount-target $ js/document.querySelector |.app
+          :code $ quote $ def mount-target
+            js/document.querySelector |.app
           :examples $ []
           :schema $ :: 'Dynamic
         'reload! $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn reload! () $ if (nil? build-errors)
+          :code $ quote $ defn reload! ()
+            if (nil? build-errors)
               do (remove-watch *store :changes) (clear-cache!)
                 add-watch *store :changes $ fn (r prev) (render-app!)
                 render-app!
@@ -332,13 +345,13 @@
           :examples $ []
           :schema $ :: 'Dynamic
         'render-app! $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defn render-app! () $ render! mount-target (comp-container @*store) dispatch!
+          :code $ quote $ defn render-app! ()
+            render! mount-target (comp-container @*store) dispatch!
           :examples $ []
           :schema $ :: 'Dynamic
       :ns $ %{} 'NsEntry (:doc |)
-        :code $ quote
-          ns app.main $ :require
+        :code $ quote $ ns app.main
+          :require
             [] respo.core :refer $ [] render! clear-cache! realize-ssr!
             [] respo.cursor :refer $ [] update-states
             [] app.comp.container :refer $ [] comp-container
@@ -352,77 +365,76 @@
     'app.schema $ %{} 'FileEntry
       :defs $ {}
         'examples $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def examples $ {}
-              :case $ parse-cirru-list (inline |case.cirru)
-              :comment $ parse-cirru-list (inline |comment.cirru)
-              :cond $ parse-cirru-list (inline |cond.cirru)
-              :def $ parse-cirru-list (inline |def.cirru)
-              :doseq $ parse-cirru-list (inline |doseq.cirru)
-              :fn* $ parse-cirru-list (inline |fn-star.cirru)
-              :fn $ parse-cirru-list (inline |fn.cirru)
-              :let $ parse-cirru-list (inline |let.cirru)
-              :loop $ parse-cirru-list (inline |loop.cirru)
-              :map $ parse-cirru-list (inline |map.cirru)
-              :namespace $ parse-cirru-list (inline |namespace.cirru)
-              :vector $ parse-cirru-list (inline |vector.cirru)
-              :component $ parse-cirru-list (inline |component.cirru)
+          :code $ quote $ def examples
+            {}
+              :case $ parse-cirru-list $ inline |case.cirru
+              :comment $ parse-cirru-list $ inline |comment.cirru
+              :cond $ parse-cirru-list $ inline |cond.cirru
+              :def $ parse-cirru-list $ inline |def.cirru
+              :doseq $ parse-cirru-list $ inline |doseq.cirru
+              :fn* $ parse-cirru-list $ inline |fn-star.cirru
+              :fn $ parse-cirru-list $ inline |fn.cirru
+              :let $ parse-cirru-list $ inline |let.cirru
+              :loop $ parse-cirru-list $ inline |loop.cirru
+              :map $ parse-cirru-list $ inline |map.cirru
+              :namespace $ parse-cirru-list $ inline |namespace.cirru
+              :vector $ parse-cirru-list $ inline |vector.cirru
+              :component $ parse-cirru-list $ inline |component.cirru
           :examples $ []
           :schema $ :: 'Dynamic
         'inline $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            defmacro inline (path)
-              read-file $ str |examples/ path
+          :code $ quote $ defmacro inline (path)
+            read-file $ str |examples/ path
           :examples $ []
-          :schema $ :: 'Macro
-            {}
-              :capabilities $ #{} :fs-read
-              :expansion $ :: 'Expr 'String
-              :required $ [] (:: 'Expr 'String)
+          :schema $ :: 'Macro $ {}
+            :capabilities $ #{} :fs-read
+            :expansion $ :: 'Expr 'String
+            :required $ [] $ :: 'Expr 'String
         'snapshot $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def snapshot $ {}
-              :tree $ parse-cirru-list (inline |component.cirru)
+          :code $ quote $ def snapshot
+            {}
+              :tree $ parse-cirru-list $ inline |component.cirru
               :focus $ []
               :clipboard $ []
           :examples $ []
           :schema $ :: 'Dynamic
         'store $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def store $ {}
+          :code $ quote $ def store
+            {}
               :states $ {}
               :snapshot snapshot
               :code |
           :examples $ []
           :schema $ :: 'Dynamic
       :ns $ %{} 'NsEntry (:doc |)
-        :code $ quote
-          ns app.schema $ :require ([] app.code :as code)
+        :code $ quote $ ns app.schema
+          :require $ [] app.code :as code
     'app.style.typeset $ %{} 'FileEntry
-      :defs $ {}
-        'title $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def title $ {} (:font-family "|'Josefin Sans', sans-serif") (:font-weight |lighter)
+      :defs $ {} $ 'title
+        %{} 'CodeEntry (:doc |)
+          :code $ quote $ def title
+            {}
+              :font-family "|'Josefin Sans', sans-serif"
+              :font-weight |lighter
           :examples $ []
           :schema $ :: 'Dynamic
       :ns $ %{} 'NsEntry (:doc |)
-        :code $ quote (ns app.style.typeset)
+        :code $ quote $ ns app.style.typeset
     'app.style.widget $ %{} 'FileEntry
       :defs $ {}
         'button $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def button $ {} (:color |white) (:line-height 2)
+          :code $ quote $ def button
+            {} (:color |white) (:line-height 2)
               :background-color $ hsl 200 90 60
               :display |inline-block
               :padding "|0 8px"
           :examples $ []
           :schema $ :: 'Dynamic
         'global $ %{} 'CodeEntry (:doc |)
-          :code $ quote
-            def global $ {} (:font-family |Verdana)
+          :code $ quote $ def global
+            {} $ :font-family |Verdana
           :examples $ []
           :schema $ :: 'Dynamic
       :ns $ %{} 'NsEntry (:doc |)
-        :code $ quote
-          ns app.style.widget $ :require
-            [] hsl.core :refer $ [] hsl
+        :code $ quote $ ns app.style.widget
+          :require $ [] hsl.core :refer $ [] hsl
