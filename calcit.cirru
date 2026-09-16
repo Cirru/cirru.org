@@ -3,8 +3,7 @@
   :about "|Machine-generated snapshot. Do not edit directly — changes will be overwritten. Use `calcit query` to inspect and `calcit edit`/`calcit tree` to modify. Run `calcit docs agents --contract` before mutations; use `--full` for first orientation or changed contract digest. Manual edits must follow format and schema conventions, then run `calcit edit format`."
   :package |app
   :entries $ {} $ :default
-    {} (:description |) (:init-fn 'app.main/main!) (:mode :native)
-      :reload-fn 'app.main/reload!
+    {} (:description |) (:init-fn 'app.main/main!) (:mode :native) (:reload-fn 'app.main/reload!)
       :feature-policy $ {}
       :modules $ [] |respo.calcit/ |lilac/ |memof/ |respo-ui.calcit/ |respo-markdown.calcit/ |reel.calcit/ |respo-cirru-editor/
       :type-slots $ {}
@@ -16,10 +15,10 @@
             list->
               {} (:class-name css/row)
                 :style $ {} (:height 48)
-                  :color $ hsl 230 80 80 0.8
+                  :color $ hsl 230 80 80
                   :font-family "|Josefin Sans, serif-sans"
-              map-kv examples $ fn (alias example)
-                [] alias $ div
+              .to-list $ filter-map-kv examples $ fn (alias example)
+                %:: MapEntryDecision :keep alias $ [] alias $ div
                   {}
                     :style $ {} (:margin 8) (:cursor :pointer)
                     :on-click $ fn (e d!) (d! :load-tree example)
@@ -89,8 +88,7 @@
                     :background-color $ hsl 0 0 100 0.3
                 div
                   {} (:class-name css/column)
-                    :style $ {} (:width |38.2%)
-                      :background-color :white
+                    :style $ {} (:width |38.2%) (:background-color :white)
                   div
                     {} $ :style $ {} (:padding 8)
                     button
@@ -119,15 +117,11 @@
                       <> |S-Expression
                   textarea $ {}
                     :class-name $ str-spaced css/textarea css/flex
-                    :style $ {}
-                      :font-family "|Source Code Pro, Menlo, Consolas, monospace"
-                      :width |100%
-                      :white-space :pre
+                    :style $ {} (:font-family "|Source Code Pro, Menlo, Consolas, monospace") (:width |100%) (:white-space :pre)
                     :value code
                     :disabled true
           :examples $ []
-          :schema $ :: 'Fn $ {}
-            :return 'respo.schema/Component
+          :schema $ :: 'Fn $ {} (:return 'respo.schema/Component)
             :args $ [] 'Dynamic 'Dynamic 'Dynamic
             :features $ #{} :js-ffi
         'css-link $ %{} 'CodeEntry (:doc |)
@@ -202,10 +196,7 @@
                   :target |_blank
                   :class-name $ str-spaced css/link css-link
                 =< 80 nil
-                a $ {}
-                  :href |http://text.cirru.org
-                  :inner-text "|Text syntax"
-                  :target |_blank
+                a $ {} (:href |http://text.cirru.org) (:inner-text "|Text syntax") (:target |_blank)
                   :class-name $ str-spaced css/link css-link
           :examples $ []
           :schema $ :: 'Dynamic
@@ -277,15 +268,7 @@
           :schema $ :: 'Dynamic
         'site $ %{} 'CodeEntry (:doc |)
           :code $ quote $ def site
-            {}
-              :dev-ui |http://localhost:8100/main-fonts.css
-              :release-ui |http://cdn.tiye.me/favored-fonts/main-fonts.css
-              :cdn-url |http://cdn.tiye.me/cirru-org/
-              :cdn-folder |tiye.me:cdn/cirru-org
-              :title "|Cirru: an editor for AST"
-              :icon |http://cdn.tiye.me/logo/cirru.png
-              :storage-key |cirru-org
-              :upload-folder |tiye.me:repo/Cirru/cirru.org/
+            {} (:dev-ui |http://localhost:8100/main-fonts.css) (:release-ui |http://cdn.tiye.me/favored-fonts/main-fonts.css) (:cdn-url |http://cdn.tiye.me/cirru-org/) (:cdn-folder |tiye.me:cdn/cirru-org) (:title "|Cirru: an editor for AST") (:icon |http://cdn.tiye.me/logo/cirru.png) (:storage-key |cirru-org) (:upload-folder |tiye.me:repo/Cirru/cirru.org/)
           :examples $ []
           :schema $ :: 'Dynamic
       :ns $ %{} 'NsEntry (:doc |)
@@ -330,8 +313,7 @@
             :args $ []
             :features $ #{} :js-ffi
         'mount-target $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ def mount-target
-            js/document.querySelector |.app
+          :code $ quote $ def mount-target (js/document.querySelector |.app)
           :examples $ []
           :schema $ :: 'Dynamic
         'reload! $ %{} 'CodeEntry (:doc |)
@@ -413,9 +395,7 @@
       :defs $ {} $ 'title
         %{} 'CodeEntry (:doc |)
           :code $ quote $ def title
-            {}
-              :font-family "|'Josefin Sans', sans-serif"
-              :font-weight |lighter
+            {} (:font-family "|'Josefin Sans', sans-serif") (:font-weight |lighter)
           :examples $ []
           :schema $ :: 'Dynamic
       :ns $ %{} 'NsEntry (:doc |)
