@@ -58,8 +58,8 @@ and `package.cirru` files must not be restored. CI enforces this source layout.
 ### Deployment
 
 Only frontend dist assets are uploaded to COS, with public verification handled
-inside cos-upload-action. CI checks each generated JS/CSS CDN URL and local
-artifact. Deployment jobs share a queue and use the exact tested artifact,
+inside cos-upload-action using its built-in verify settings, without extra
+project-local CDN checker scripts. Deployment jobs share a queue and use the exact tested artifact,
 retained for 90 days. Superseded branch commits skip COS and server uploads.
 The original server source `dist/*` and `/web-assets/repo/${repository}`
 destination remain unchanged. PRs do not run production server deployment.
