@@ -51,6 +51,19 @@ npm packages:
 
 Workflow https://github.com/calcit-lang/respo-calcit-workflow
 
+Use Calcit 0.27.0 with `calcit.cirru` and `deps.cirru`; retired `compact.cirru`
+and `package.cirru` files must not be restored. CI enforces this source layout.
+`yarn build` regenerates Calcit JS and applies `VITE_BASE_URL` (default `./`).
+
+### Deployment
+
+Only frontend dist assets are uploaded to COS, with public verification handled
+inside cos-upload-action. CI checks each generated JS/CSS CDN URL and local
+artifact. Deployment jobs share a queue and use the exact tested artifact,
+retained for 90 days. Superseded branch commits skip COS and server uploads.
+The original server source `dist/*` and `/web-assets/repo/${repository}`
+destination remain unchanged. PRs do not run production server deployment.
+
 ### License
 
 MIT

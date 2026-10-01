@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "compile": "calcit calcit.cirru js",
-    "build": "vite build",
-    "release": "yarn compile && yarn build",
+    "build": "yarn compile && vite build",
+    "release": "yarn build",
     "dev": "vite"
   },
   "repository": {
