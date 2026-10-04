@@ -57,12 +57,15 @@ and `package.cirru` files must not be restored. CI enforces this source layout.
 
 ### Deployment
 
-Only frontend dist assets are uploaded to COS, with public verification handled
-inside cos-upload-action using its built-in verify settings, without extra
-project-local CDN checker scripts. Deployment jobs share a queue and use the exact tested artifact,
-retained for 90 days. Superseded branch commits skip COS and server uploads.
-The original server source `dist/*` and `/web-assets/repo/${repository}`
-destination remain unchanged. PRs do not run production server deployment.
+仅前端 `dist` 资源上传 COS。cos-upload-action 1.2.0 根据
+`public-base-url` 内置校验上传内容和 HTML 资源引用，无额外 CDN 校验脚本。
+PR 使用 `${repository}/pr/${number}/${run_id}/${run_attempt}/`，各 PR
+独立排队、不取消正在上传的任务；构建与上传复用同一份保留 90 天的 artifact。
+旧分支提交仍跳过部署。生产 COS 前缀、服务器源 `dist/*` 和
+`/web-assets/repo/${repository}` 目标不变，PR 不执行生产服务器同步。
+
+本次只调整前端发布配置。Calcit/procs 仍为正式 0.27.0；原 Caps 冲突选择
+策略和源码门禁保留，不代表正式 0.28.0 的类型迁移已经完成。
 
 ### License
 
