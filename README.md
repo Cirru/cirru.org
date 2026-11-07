@@ -51,7 +51,7 @@ npm packages:
 
 Workflow https://github.com/calcit-lang/respo-calcit-workflow
 
-Use Calcit 0.27.0 with `calcit.cirru` and `deps.cirru`; retired `compact.cirru`
+Use Calcit 0.36.0 with `calcit.cirru` and `deps.cirru`; retired `compact.cirru`
 and `package.cirru` files must not be restored. CI enforces this source layout.
 `yarn build` regenerates Calcit JS and applies `VITE_BASE_URL` (default `./`).
 
@@ -64,8 +64,7 @@ PR 使用 `${repository}/pr/${number}/${run_id}/${run_attempt}/`，各 PR
 旧分支提交仍跳过部署。生产 COS 前缀、服务器源 `dist/*` 和
 `/web-assets/repo/${repository}` 目标不变，PR 不执行生产服务器同步。
 
-本次只调整前端发布配置。Calcit/procs 仍为正式 0.27.0；原 Caps 冲突选择
-策略和源码门禁保留，不代表正式 0.28.0 的类型迁移已经完成。
+Calcit/procs 现为正式 0.36.0，依赖 Respo 0.19.4 和 Cirru Editor 0.7.1。
 
 ### License
 
