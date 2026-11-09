@@ -35,7 +35,7 @@ jobs:
         yarn --version
 
     - name: Set up Calcit and Caps
-      uses: calcit-lang/setup-calcit@ca701be5a471759e442aa053cd100720bbe1f09f # v1.5.0
+      uses: calcit-lang/setup-calcit@4a5130ea981278fd4f624f2c2cf64e6776742c01 # v1.5.1
       with:
         tools: calcit,caps
         caps-version: "0.1.1"
@@ -43,16 +43,14 @@ jobs:
     - name: Resolve immutable dependencies
       run: |
         set -euo pipefail
-        # Published dependencies request different compatible js-ffi and
-        # Respo versions; Caps records the deterministic highest selections.
-        caps --ci
+        caps --strict --ci
         yarn install --immutable
         caps verify --toolchain
 
     - name: Validate Calcit upgrade
       run: |
         set -euo pipefail
-        test "$(calcit --version)" = "0.36.0"
+        test "$(calcit --version)" = "0.38.0"
         test -f calcit.cirru
         test -f deps.cirru
         test ! -e compact.cirru
@@ -175,7 +173,7 @@ jobs:
 
     - name: Upload and verify static assets on COS
       if: steps.deploy-head.outputs.current == 'true' && steps.cos-credentials.outputs.available == 'true'
-      uses: worktools/cos-upload-action@06d6027dcca6413c5936e04a9b6e9f0d5ef71ba0 # v1.2.0
+      uses: worktools/cos-upload-action@8c4f3d09a4478b0d4c8698ffb94759b41831cba8 # v1.3.0
       with:
         source-dir: dist
         bucket: ${{ secrets.COS_BUCKET }}
