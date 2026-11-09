@@ -49,42 +49,30 @@
       :defs $ {}
         'comp-container $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defcomp comp-container (store)
-            let
-                states $ respo.core/as-states-map $
-                  get store :states
-                  , .unwrap-or ({})
-                snapshot $ decode-map-as
-                    get store :snapshot
-                    , .unwrap-or $ {}
-                  , cirru-editor.schema/Store
+            div
+              {} $ :class-name $ str-spaced css/global |cirru-tile
+              render-banner
               div
-                {} $ :class-name $ str-spaced css/global |cirru-tile
-                render-banner
-                div
-                  {} $ :style $ {} (:max-width 1000) (:margin :auto) (:padding "|16px 0")
-                  comp-md-block "|Cirru project is now concentrated on [Calcit Editor](https://github.com/calcit-lang/editor), you can install via:\n\n```bash\nnpm install -g @calcit/editor\n```" $ {} $ :text-align :center
-                comp-explorer states store snapshot
-                space-y 80
-                div
-                  {} $ :class-name css-video-section
-                  <> "|Review video of Cirru(voice in Chinese)"
-                  div $ {} $ :innerHTML "|<iframe width=\"720\" height=\"405\" frameborder=\"0\" src=\"https://www.ixigua.com/iframe/7092697111279763975?autoplay=0\" referrerpolicy=\"unsafe-url\" allowfullscreen></iframe>"
-                space-y 80
-                render-code-intro
-                space-y 200
+                {} $ :style $ {} (:max-width 1000) (:margin :auto) (:padding "|16px 0")
+                comp-md-block "|Cirru project is now concentrated on [Calcit Editor](https://github.com/calcit-lang/editor), you can install via:\n\n```bash\nnpm install -g @calcit/editor\n```" $ {} $ :text-align :center
+              comp-explorer (:states store) (:code store) (:snapshot store)
+              space-y 80
+              div
+                {} $ :class-name css-video-section
+                <> "|Review video of Cirru(voice in Chinese)"
+                div $ {} $ :innerHTML "|<iframe width=\"720\" height=\"405\" frameborder=\"0\" src=\"https://www.ixigua.com/iframe/7092697111279763975?autoplay=0\" referrerpolicy=\"unsafe-url\" allowfullscreen></iframe>"
+              space-y 80
+              render-code-intro
+              space-y 200
           :examples $ []
-          :schema $ quote $ Fn (Map Tag Dynamic) (-> respo.schema/Component)
+          :schema $ quote $ Fn app.schema/SiteStore (-> respo.schema/Component)
         'comp-explorer $ %{} 'CodeEntry (:doc |)
-          :code $ quote $ defcomp comp-explorer (states store snapshot)
+          :code $ quote $ defcomp comp-explorer (states code snapshot)
             let
                 tree $ decode-map-as
                     get snapshot :tree
                     , .unwrap-or $ []
                   List calcit.core/CirruNode
-                code $ decode-map-as
-                    get store :code
-                    , .unwrap-or |
-                  , String
               div
                 {}
                   :class-name $ str-spaced css/row
@@ -144,7 +132,7 @@
                     :value code
                     :disabled true
           :examples $ []
-          :schema $ quote $ Fn respo.schema/States (Map Tag Dynamic) cirru-editor.schema/Store (-> respo.schema/Component) (:features :js-ffi)
+          :schema $ quote $ Fn respo.schema/States String cirru-editor.schema/Store (-> respo.schema/Component) (:features :js-ffi)
         'css-link $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defstyle css-link
             {}
@@ -242,7 +230,7 @@
               :background-color $ hsl 200 100 70
               :color $ hsl 0 0 100
           :examples $ []
-          :schema $ quote Dynamic
+          :schema $ quote $ Map Tag respo.schema/CssValue
         'style-banner-text $ %{} 'CodeEntry (:doc |)
           :code $ quote $ def style-banner-text
             {} $ :font-size |64px
@@ -307,7 +295,7 @@
         '*store $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defref *store schema/store
           :examples $ []
-          :schema $ quote $ Ref (Map Tag Dynamic)
+          :schema $ quote $ Ref app.schema/SiteStore
         'dispatch! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn dispatch! (op)
             when config/dev? $ println |Dispatch: op
@@ -316,11 +304,11 @@
                   (:save snapshot) (assoc @*store :snapshot snapshot)
                   (:write-code code) (assoc @*store :code code)
                   (:load-tree tree)
-                    let
-                        snapshot $ decode-map-as
-                          .unwrap $ get @*store :snapshot
-                          , cirru-editor.schema/Store
-                      assoc @*store :snapshot $ assoc snapshot :tree tree
+                    assoc @*store :snapshot $ .assoc (:snapshot @*store) :tree tree
+                  (:states cursor folded?)
+                    assoc @*store :states $ decode-map-as
+                      update-state-tree (:states @*store) cursor folded?
+                      , respo.schema/States
               reset! *store next-store
             , &unit
           :examples $ []
@@ -339,7 +327,7 @@
                     = config/key-s $ key-event :key-code
                   do (key-event .prevent-default!)
                     dispatch! $ app.schema/Op :write-code $ format-to-lisp
-                        get-in @*store $ [] :snapshot :tree
+                        get (:snapshot @*store) :tree
                         , .unwrap-or $ []
                 , &unit
             println "|App started!"
@@ -370,7 +358,7 @@
         :code $ quote $ ns app.main
           :require
             respo.core :refer $ render! clear-cache! realize-ssr!
-            respo.cursor :refer $ update-states
+            respo.cursor :refer $ update-state-tree
             app.comp.container :refer $ comp-container
             cljs.reader :refer $ read-string
             app.schema :as schema
@@ -385,8 +373,13 @@
         'Op $ %{} 'CodeEntry (:doc "|Actions dispatched by the explorer and editor.")
           :code $ quote $ defenum Op (:save cirru-editor.schema/Store) (:write-code String)
             :load-tree $ List calcit.core/CirruNode
+            :states (List respo.schema/CoordKey) Bool
           :examples $ []
           :schema $ quote EnumDef
+        'SiteStore $ %{} 'CodeEntry (:doc |)
+          :code $ quote $ defstruct SiteStore (:states respo.schema/States) (:snapshot cirru-editor.schema/Store) (:code String)
+          :examples $ []
+          :schema $ quote StructDef
         'examples $ %{} 'CodeEntry (:doc |)
           :code $ quote $ def examples
             {}
@@ -419,15 +412,12 @@
               :focus $ []
               :clipboard $ []
           :examples $ []
-          :schema $ quote Dynamic
+          :schema $ quote cirru-editor.schema/Store
         'store $ %{} 'CodeEntry (:doc |)
           :code $ quote $ def store
-            {}
-              :states $ {}
-              :snapshot snapshot
-              :code |
+            SiteStore :states ({}) :snapshot snapshot :code |
           :examples $ []
-          :schema $ quote $ Map Tag Dynamic
+          :schema $ quote app.schema/SiteStore
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote $ ns app.schema
           :require $ app.code :as code
@@ -449,7 +439,7 @@
               :display |inline-block
               :padding "|0 8px"
           :examples $ []
-          :schema $ quote Dynamic
+          :schema $ quote $ Map Tag respo.schema/CssValue
         'global $ %{} 'CodeEntry (:doc |)
           :code $ quote $ def global
             {} $ :font-family |Verdana
