@@ -1,5 +1,5 @@
 
-{} (:calcit-version |0.38.0)
+{} (:calcit-version |0.40.0)
   :version |0.1.3
   :dependencies $ {} (|Cirru/respo-cirru-editor |0.7.2)
     |Respo/reel.calcit |0.11.0
