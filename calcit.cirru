@@ -164,7 +164,7 @@
                   join-string (map children format-node-as-lisp) "| "
                   , "|)"
           :examples $ []
-          :schema $ quote $ Fn calcit.core/CirruNode (-> String)
+          :schema $ quote $ Fn CirruNode (-> String)
         'on-command $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn on-command (snapshot dispatch! event)
             let
@@ -295,7 +295,7 @@
         '*store $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defref *store schema/store
           :examples $ []
-          :schema $ quote $ Ref app.schema/SiteStore
+          :schema $ quote $ Ref schema/SiteStore
         'dispatch! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn dispatch! (op)
             when config/dev? $ println |Dispatch: op
@@ -312,7 +312,7 @@
               reset! *store next-store
             , &unit
           :examples $ []
-          :schema $ quote $ Fn app.schema/Op (-> Unit)
+          :schema $ quote $ Fn schema/Op (-> Unit)
         'main! $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn main! ()
             println "|Running mode:" $ if config/dev? |dev |release
@@ -397,7 +397,7 @@
               :vector $ parse-cirru-list $ inline |vector.cirru
               :component $ parse-cirru-list $ inline |component.cirru
           :examples $ []
-          :schema $ quote $ Map Tag (List calcit.core/CirruNode)
+          :schema $ quote $ Map Tag (List CirruNode)
         'inline $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defmacro inline (path)
             read-file $ str |examples/ path
@@ -417,7 +417,7 @@
           :code $ quote $ def store
             SiteStore :states ({}) :snapshot snapshot :code |
           :examples $ []
-          :schema $ quote app.schema/SiteStore
+          :schema $ quote SiteStore
       :ns $ %{} 'NsEntry (:doc |)
         :code $ quote $ ns app.schema
           :require $ app.code :as code
