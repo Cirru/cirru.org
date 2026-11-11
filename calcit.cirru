@@ -20,7 +20,7 @@
               map (&map:to-list examples)
                 fn (entry)
                   hint-fn $ Fn
-                    Tuple Tag $ List calcit.core/CirruNode
+                    Tuple Tag $ List CirruNode
                     -> respo.schema/ChildPair
                   let[] (alias example) entry $ respo.util.detect/make-child-pair alias $ div
                     {}
@@ -70,7 +70,7 @@
           :code $ quote $ defcomp comp-explorer (states code snapshot)
             let
                 tree $ decode-map-as
-                    get snapshot :tree
+                    &map:get snapshot :tree
                     , .unwrap-or $ []
                   List calcit.core/CirruNode
               div
@@ -173,7 +173,10 @@
                 and (:meta? keyboard)
                   = (:code keyboard) |KeyS
                 dispatch! $ app.schema/Op :write-code $ format-to-lisp
-                  .unwrap-or (get snapshot :tree) ([])
+                  decode-map-as
+                      &map:get snapshot :tree
+                      , .unwrap-or $ []
+                    List CirruNode
                 .prevent-default! $ :event event
             , &unit
           :examples $ []
@@ -327,8 +330,10 @@
                     = config/key-s $ key-event :key-code
                   do (key-event .prevent-default!)
                     dispatch! $ app.schema/Op :write-code $ format-to-lisp
-                        get (:snapshot @*store) :tree
-                        , .unwrap-or $ []
+                      decode-map-as
+                          &map:get (:snapshot @*store) :tree
+                          , .unwrap-or $ []
+                        List CirruNode
                 , &unit
             println "|App started!"
           :examples $ []
