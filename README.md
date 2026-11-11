@@ -51,7 +51,7 @@ npm packages:
 
 Workflow https://github.com/calcit-lang/respo-calcit-workflow
 
-Use Calcit 0.40.0 with `calcit.cirru` and `deps.cirru`; retired `compact.cirru`
+Use Calcit 0.41.0 with `calcit.cirru` and `deps.cirru`; retired `compact.cirru`
 and `package.cirru` files must not be restored. CI enforces this source layout.
 `yarn build` regenerates Calcit JS and applies `VITE_BASE_URL` (default `./`).
 
