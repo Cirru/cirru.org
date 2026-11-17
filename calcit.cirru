@@ -62,7 +62,7 @@
               render-code-intro
               space-y 200
           :examples $ []
-          :schema $ quote $ Fn app.schema/SiteStore (-> respo.schema/Component)
+          :schema $ quote $ Fn app.schema/SiteStore (-> respo.schema/Component) (:features :io :state)
         'comp-explorer $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defcomp comp-explorer (states code snapshot)
             let
@@ -129,7 +129,7 @@
                     :value code
                     :disabled true
           :examples $ []
-          :schema $ quote $ Fn respo.schema/States String cirru-editor.schema/Store (-> respo.schema/Component) (:features :js-ffi)
+          :schema $ quote $ Fn respo.schema/States String cirru-editor.schema/Store (-> respo.schema/Component) (:features :io :js-ffi :state)
         'css-link $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defstyle css-link
             {}
@@ -189,7 +189,7 @@
           :schema $ quote $ Fn cirru-editor.schema/Store
             Fn app.schema/Op $ -> Unit
             -> Unit
-            :features :js-ffi
+            :features :io :js-ffi
         'render-banner $ %{} 'CodeEntry (:doc |)
           :code $ quote $ defn render-banner ()
             div
@@ -223,7 +223,7 @@
                 {} (:width 1000) (:margin :auto)
               comp-md-block "|### Tree Editor\n\nCirru Project's main purpose is to replacing parentheses with moderner tools like graphical editors. I finished creating one and now it's called \"Calcit Editor\". I use it for my daily personal projects including building this page.\n\n* [Calcit Editor](https://github.com/calcit-lang/editor) -- main tool of Cirru and Calcit, which edits S-expressions and `compact.cirru` for Calcit language.\n* [Calcit Viewer](https://github.com/Cirru/calcit-viewer.calcit) -- displays `calcit.cirru` with DOM.\n* [Respo Cirru Editor](https://github.com/Cirru/respo-cirru-editor) -- old library to realise S-expressions editing on Web.\n\nThere's also a canvas-based layout experimental editor:\n\n* [Hovenia Editor](https://github.com/Cirru/hovenia-editor)\n\n![](https://pbs.twimg.com/media/FpvtOKCagAAKLHE?format=jpg&name=4096x4096)\n\n### Old Indentation-based Syntax\n\n[Cirru Indentation Format](http://text.cirru.org/) has been shadowed by the new editor. Only a small portion of libraries are maintained, but you can still access some of them like Parser and Writer.\n\n* [Cirru Writer](https://github.com/Cirru/writer.clj) -- ClojureScript library to generate Cirru Indentation Format.\n* [Cirru Parser](https://github.com/Cirru/parser.clj) -- ClojureScript library to parse Cirru Indentation Format.\n* [Cirru Indentation Format home page](https://github.com/Cirru/text.cirru.org) -- a list of old resources related to the format.\n\n### Updates\n\nYou may find old entries related to Cirru on [Medium](https://medium.com/cirru-project) and [Twitter](https://twitter.com/cirrulang). More information are just spread on my Twitter and Weibo or blogs, you may find them by searching anyway. We may [discuss on Twitter](https://twitter.com/tiyecirru).\n" $ {}
           :examples $ []
-          :schema $ quote $ Fn (-> respo.schema/Element)
+          :schema $ quote $ Fn (-> respo.schema/Element) (:features :state)
         'style-banner $ %{} 'CodeEntry (:doc |)
           :code $ quote $ def style-banner
             {} (:height 320)
