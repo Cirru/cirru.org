@@ -51,7 +51,7 @@ npm packages:
 
 Workflow https://github.com/calcit-lang/respo-calcit-workflow
 
-Use Calcit 0.44.0 with `calcit.cirru` and `deps.cirru`; retired `compact.cirru`
+Use Calcit 0.45.1 with `calcit.cirru` and `deps.cirru`; retired `compact.cirru`
 and `package.cirru` files must not be restored. CI enforces this source layout.
 `yarn build` regenerates Calcit JS and applies `VITE_BASE_URL` (default `./`).
 
@@ -64,7 +64,7 @@ PR 使用 `${repository}/pr/${number}/${run_id}/${run_attempt}/`，各 PR
 旧分支提交仍跳过部署。生产 COS 前缀、服务器源 `dist/*` 和
 `/web-assets/repo/${repository}` 目标不变，PR 不执行生产服务器同步。
 
-Calcit 和 `@calcit/procs` 配对正式 0.44.0；依赖 Respo 0.19.13、Cirru Editor 0.7.5、Markdown 0.9.5、Reel 0.11.5 与 UI 0.15.7。页面内的编辑器折叠事件会更新当前预览，应用内部使用具名站点状态，横幅和按钮样式使用 CssValue union。
+Calcit 和 `@calcit/procs` 配对正式 0.45.1；依赖 Respo 0.19.18、Cirru Editor 0.7.6、Markdown 0.9.9、Reel 0.11.9 与 UI 0.16.5。页面内的编辑器折叠事件会更新当前预览，应用内部使用具名站点状态，横幅和按钮样式使用 CssValue union。
 
 ### License
 
